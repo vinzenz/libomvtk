@@ -12,7 +12,7 @@
 #include <boost/bind.hpp>
 #include <boost/asio/placeholders.hpp>
 
-namespace vw
+namespace omvtk
 {
 	Simulator::Simulator(Network & network, UDPConnection::Endpoint const & endpoint)
 		: m_network(network)

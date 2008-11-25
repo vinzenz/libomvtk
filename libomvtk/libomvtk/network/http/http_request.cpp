@@ -1,7 +1,7 @@
 #include "http_request.h"
 #include <boost/lexical_cast.hpp>
 
-namespace vw
+namespace omvtk
 {
 
 	HTTPRequest::HTTPRequest(LLURI  const & uri, 

@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_NETWORK_ASYNC_TIMER_H_INCLUDED
-#define GUARD_LIBVW_NETWORK_ASYNC_TIMER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_NETWORK_ASYNC_TIMER_H_INCLUDED
+#define GUARD_LIBOMVTK_NETWORK_ASYNC_TIMER_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -8,7 +8,7 @@
 #include <boost/asio.hpp>
 #include <boost/asio/placeholders.hpp>
 
-namespace vw
+namespace omvtk
 {
 	
 	struct AsyncTimer
@@ -64,4 +64,4 @@ namespace vw
 	};
 }
 
-#endif // GUARD_LIBVW_NETWORK_ASYNC_TIMER_H_INCLUDED
+#endif // GUARD_LIBOMVTK_NETWORK_ASYNC_TIMER_H_INCLUDED

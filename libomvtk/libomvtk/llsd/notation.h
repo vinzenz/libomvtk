@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_LLSD_NOTATION_H_INCLUDED
-#define GUARD_LIBVW_LLSD_NOTATION_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_LLSD_NOTATION_H_INCLUDED
+#define GUARD_LIBOMVTK_LLSD_NOTATION_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -8,7 +8,7 @@
 #include "value.h"
 
 
-namespace vw
+namespace omvtk
 {
 	namespace detail
 	{
@@ -24,4 +24,4 @@ namespace vw
 	}
 }
 
-#endif //GUARD_LIBVW_LLSD_NOTATION_H_INCLUDED
+#endif //GUARD_LIBOMVTK_LLSD_NOTATION_H_INCLUDED

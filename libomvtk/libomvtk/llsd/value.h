@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_LLSD_LLSD_VALUE_H_INCLUDED
-#define GUARD_LIBVW_LLSD_LLSD_VALUE_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_LLSD_LLSD_VALUE_H_INCLUDED
+#define GUARD_LIBOMVTK_LLSD_LLSD_VALUE_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -14,7 +14,7 @@
 #include <map>
 #include <vector>
 
-namespace vw
+namespace omvtk
 {
 	struct LLSDValue
 	{		
@@ -36,7 +36,7 @@ namespace vw
 		typedef bool						Boolean;
 		typedef Int32						Integer;
 		typedef Real64						Real;
-		typedef vw::String					String;
+		typedef omvtk::String					String;
 		typedef LLURI						URI;
 		typedef LLUUID						UUID;
 		typedef LLDate						Date;
@@ -289,4 +289,4 @@ namespace vw
 	};
 }
 
-#endif //GUARD_LIBVW_LLSD_LLSD_VALUE_H_INCLUDED
+#endif //GUARD_LIBOMVTK_LLSD_LLSD_VALUE_H_INCLUDED

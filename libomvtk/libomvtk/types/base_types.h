@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_TYPES_BASE_TYPES_H_INCLUDED
-#define GUARD_LIBVW_TYPES_BASE_TYPES_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_TYPES_BASE_TYPES_H_INCLUDED
+#define GUARD_LIBOMVTK_TYPES_BASE_TYPES_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -13,7 +13,7 @@
 #include <ostream>
 #include <istream>
 
-namespace vw
+namespace omvtk
 {
 	typedef Poco::Int8  Int8;
 	typedef Poco::Int16 Int16;
@@ -62,9 +62,9 @@ namespace vw
 
 namespace std
 {
-	inline std::ostream & operator<<(std::ostream & os, vw::ByteBuffer const & v)
+	inline std::ostream & operator<<(std::ostream & os, omvtk::ByteBuffer const & v)
 	{
-		BOOST_FOREACH(vw::Byte const & b, v)
+		BOOST_FOREACH(omvtk::Byte const & b, v)
 		{
 			os << (int(b));
 		}
@@ -72,5 +72,5 @@ namespace std
 	}
 }
 
-#endif //GUARD_LIBVW_TYPES_BASE_TYPES_H_INCLUDED
+#endif //GUARD_LIBOMVTK_TYPES_BASE_TYPES_H_INCLUDED
 

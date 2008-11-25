@@ -1,12 +1,12 @@
-#ifndef GUARD_LIBVW_NETWORK_CAPS_CAPS_CLIENT_H_INCLUDED
-#define GUARD_LIBVW_NETWORK_CAPS_CAPS_CLIENT_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_NETWORK_CAPS_CAPS_CLIENT_H_INCLUDED
+#define GUARD_LIBOMVTK_NETWORK_CAPS_CAPS_CLIENT_H_INCLUDED
 
 #include "../../types/base_types.h"
 #include "../../llsd/value.h"
 #include <boost/shared_ptr.hpp>
 #include <boost/function.hpp>
 
-namespace vw
+namespace omvtk
 {
 	struct CapsClient
 	{
@@ -23,5 +23,5 @@ namespace vw
 	};
 }
 
-#endif //GUARD_LIBVW_NETWORK_CAPS_CAPS_CLIENT_H_INCLUDED
+#endif //GUARD_LIBOMVTK_NETWORK_CAPS_CAPS_CLIENT_H_INCLUDED
 

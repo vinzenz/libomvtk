@@ -1,14 +1,14 @@
 #include "../test_suite.h"
-#include "../../libvw/packets/message_handler_manager.h"
-#include "../../libvw/packets/packets.h"
+#include "../../libomvtk/packets/message_handler_manager.h"
+#include "../../libomvtk/packets/packets.h"
 #define UNIT_TEST
-#include "../../libvw/network/simulator.h"
+#include "../../libomvtk/network/simulator.h"
 #include <boost/bind.hpp>
 
 namespace tut
 {	
-	using namespace vw;
-	using vw::packets::ParcelAccessListReplyMessage;
+	using namespace omvtk;
+	using omvtk::packets::ParcelAccessListReplyMessage;
 
 
 	struct message_handler_manager_data

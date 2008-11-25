@@ -4,7 +4,7 @@
 #include <boost/bimap/unordered_set_of.hpp>
 #include <boost/preprocessor/stringize.hpp>
 
-namespace vw
+namespace omvtk
 {
 	namespace detail
 	{
@@ -56,9 +56,9 @@ namespace vw
 
 		void CapsEventLookupImpl::init()
 		{
-#define VW_CAPS_ADD(EVT) add(EVT,(BOOST_STRINGIZE(EVT)))
-			VW_CAPS_ADD(EventQueueGet);
-#undef 	VW_CAPS_ADD
+#define OMVTK_CAPS_ADD(EVT) add(EVT,(BOOST_STRINGIZE(EVT)))
+			OMVTK_CAPS_ADD(EventQueueGet);
+#undef 	OMVTK_CAPS_ADD
 		}
 
 		typedef boost::details::pool::singleton_default<CapsEventLookupImpl> CapsEventLookup;

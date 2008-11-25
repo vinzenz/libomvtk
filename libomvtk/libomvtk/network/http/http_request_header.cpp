@@ -2,7 +2,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/foreach.hpp>
 
-namespace vw
+namespace omvtk
 {
 
 	HTTPRequestHeader::HTTPRequestHeader(LLURI const & uri_, 

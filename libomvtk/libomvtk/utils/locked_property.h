@@ -1,10 +1,10 @@
-#ifndef GUARD_LIBVW_UTILS_LOCKED_PROPERTY_H_INCLUDED
-#define GUARD_LIBVW_UTILS_LOCKED_PROPERTY_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_UTILS_LOCKED_PROPERTY_H_INCLUDED
+#define GUARD_LIBOMVTK_UTILS_LOCKED_PROPERTY_H_INCLUDED
 
 #include <boost/noncopyable.hpp>
 #include <boost/thread/mutex.hpp>
 
-namespace vw
+namespace omvtk
 {
 	template<typename ValueType>
 	struct LockedProperty : boost::noncopyable
@@ -52,5 +52,5 @@ namespace vw
 	};
 }
 
-#endif //GUARD_LIBVW_UTILS_LOCKED_PROPERTY_H_INCLUDED
+#endif //GUARD_LIBOMVTK_UTILS_LOCKED_PROPERTY_H_INCLUDED
 

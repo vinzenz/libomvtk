@@ -1,9 +1,9 @@
-#ifndef GUARD_LIBVW_NETWORK_CAPS_EVENT_H_INCLUDED
-#define GUARD_LIBVW_NETWORK_CAPS_EVENT_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_NETWORK_CAPS_EVENT_H_INCLUDED
+#define GUARD_LIBOMVTK_NETWORK_CAPS_EVENT_H_INCLUDED
 
 #include "../../types/base_types.h"
 
-namespace vw
+namespace omvtk
 {
 	// If you add an event here 
 	// don't forget to add it in the init() method
@@ -21,5 +21,5 @@ namespace vw
 
 }
 
-#endif //GUARD_LIBVW_NETWORK_CAPS_EVENT_H_INCLUDED
+#endif //GUARD_LIBOMVTK_NETWORK_CAPS_EVENT_H_INCLUDED
 

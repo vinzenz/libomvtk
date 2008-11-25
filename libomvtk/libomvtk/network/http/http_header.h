@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_NETWORK_HTTP_HEADER_H_INCLUDED
-#define GUARD_LIBVW_NETWORK_HTTP_HEADER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_NETWORK_HTTP_HEADER_H_INCLUDED
+#define GUARD_LIBOMVTK_NETWORK_HTTP_HEADER_H_INCLUDED
 
 #include "../../types/lluri.h"
 #include "../../types/base_types.h"
@@ -8,7 +8,7 @@
 #include <sstream>
 #include <boost/algorithm/string/compare.hpp>
 
-namespace vw
+namespace omvtk
 {
 	struct str_iless
 	{
@@ -108,5 +108,5 @@ namespace vw
 	};
 }
 
-#endif // GUARD_LIBVW_NETWORK_HTTP_HEADER_H_INCLUDED
+#endif // GUARD_LIBOMVTK_NETWORK_HTTP_HEADER_H_INCLUDED
 

@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_NETWORK_SIMULATOR_H_INCLUDED
-#define GUARD_LIBVW_NETWORK_SIMULATOR_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_NETWORK_SIMULATOR_H_INCLUDED
+#define GUARD_LIBOMVTK_NETWORK_SIMULATOR_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -8,7 +8,7 @@
 #include "udpconnection.h"
 #include "network.h"
 #include "simulator_stats.h"            
-namespace vw
+namespace omvtk
 {
 #ifndef UNIT_TEST
 	struct Simulator
@@ -53,5 +53,5 @@ namespace vw
 #endif		
 }
 
-#endif // GUARD_LIBVW_NETWORK_SIMULATOR_H_INCLUDED
+#endif // GUARD_LIBOMVTK_NETWORK_SIMULATOR_H_INCLUDED
 

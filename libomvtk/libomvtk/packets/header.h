@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_PACKETS_HEADER_H_INCLUDED
-#define GUARD_LIBVW_PACKETS_HEADER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_PACKETS_HEADER_H_INCLUDED
+#define GUARD_LIBOMVTK_PACKETS_HEADER_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -11,7 +11,7 @@
 #include <boost/shared_ptr.hpp>
 #include <cstring>
 
-namespace vw
+namespace omvtk
 {
 	namespace packets
 	{		
@@ -165,7 +165,7 @@ namespace vw
 						m_acks.resize(count);
 						buffer.pop_back();
 						std::size_t index = m_acks.size() - (count + 1);
-						libvw_assert(m_acks.size() > index);
+						libomvtk_assert(m_acks.size() > index);
 						std::memcpy(&m_acks[0], &buffer[index], count);
 						buffer.erase(buffer.begin() + count, buffer.end());
 					}
@@ -337,4 +337,4 @@ namespace vw
 	}
 }
 
-#endif //GUARD_LIBVW_PACKETS_HEADER_H_INCLUDED
+#endif //GUARD_LIBOMVTK_PACKETS_HEADER_H_INCLUDED

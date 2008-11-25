@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_PACKETS_PACKETS_H_INCLUDED
-#define GUARD_LIBVW_PACKETS_PACKETS_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED
+#define GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED
 
 
 #if _MSC_VER > 1200
@@ -7,7 +7,7 @@
 #endif
 
 #include "../packets/processors.h"
-namespace vw
+namespace omvtk
 {
 	namespace packets
 	{
@@ -28850,5 +28850,5 @@ namespace vw
 			return false;
 		}
 	}//namespace packets
-}//namespace vw
-#endif //GUARD_LIBVW_PACKETS_PACKETS_H_INCLUDED
+}//namespace omvtk
+#endif //GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED

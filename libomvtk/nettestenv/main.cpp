@@ -11,7 +11,7 @@ int main(int argc, char const ** argv)
         }
         
         boost::asio::io_service service;        
-        vw::testenv::HTTPTestServer server(service, atoi(argv[1]));
+        omvtk::testenv::HTTPTestServer server(service, atoi(argv[1]));
         
         service.run();
     }

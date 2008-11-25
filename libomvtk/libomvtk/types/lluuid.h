@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_TYPES_LLUUID_H_INCLUDED
-#define GUARD_LIBVW_TYPES_LLUUID_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_TYPES_LLUUID_H_INCLUDED
+#define GUARD_LIBOMVTK_TYPES_LLUUID_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -9,7 +9,7 @@
 #include "sub_range.h"
 #include <Poco/UUID.h>
 
-namespace vw
+namespace omvtk
 {
 	struct LLUUID
 	{
@@ -86,21 +86,21 @@ namespace vw
 
 namespace std
 {
-	inline std::ostream & operator<<(std::ostream & os, vw::LLUUID const & v)
+	inline std::ostream & operator<<(std::ostream & os, omvtk::LLUUID const & v)
 	{
 		return os << v.to_string();
 	}
 
-	inline std::istream & operator>>(std::istream & is, vw::LLUUID & v)
+	inline std::istream & operator>>(std::istream & is, omvtk::LLUUID & v)
 	{
 		char buffer[37] = {0};
 		if(is.read(buffer, 36))
 		{
 			try
 			{
-				v = vw::LLUUID(buffer);
+				v = omvtk::LLUUID(buffer);
 			}
-			catch (vw::Exception const &)
+			catch (omvtk::Exception const &)
 			{
 				is.setstate(std::ios::badbit);
 			}
@@ -109,4 +109,4 @@ namespace std
 	}
 }
 
-#endif //GUARD_LIBVW_TYPES_LLUUID_H_INCLUDED
+#endif //GUARD_LIBOMVTK_TYPES_LLUUID_H_INCLUDED

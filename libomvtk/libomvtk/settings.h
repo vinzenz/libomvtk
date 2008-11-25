@@ -1,10 +1,10 @@
-#ifndef GUARD_LIBVW_SETTINGS_H_INCLUDED
-#define GUARD_LIBVW_SETTINGS_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_SETTINGS_H_INCLUDED
+#define GUARD_LIBOMVTK_SETTINGS_H_INCLUDED
 
 #include "utils/locked_property.h"
 #include "types/base_types.h"
 
-namespace vw
+namespace omvtk
 {
 	struct GridClient;
 	struct Settings
@@ -34,5 +34,5 @@ namespace vw
 	};
 }
 
-#endif //GUARD_LIBVW_SETTINGS_H_INCLUDED
+#endif //GUARD_LIBOMVTK_SETTINGS_H_INCLUDED
 

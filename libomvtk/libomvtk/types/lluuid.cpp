@@ -3,16 +3,16 @@
 
 namespace // local visibility only so we can use an arbitary name
 {
-	Poco::UUID fromSubRange(vw::byte_sub_range const & b)
+	Poco::UUID fromSubRange(omvtk::byte_sub_range const & b)
 	{
 		Poco::UUID uuid;		
-		libvw_ensure(b.size() == 16);
+		libomvtk_ensure(b.size() == 16);
 		uuid.copyFrom(reinterpret_cast<char const*>(&b[0]));
 		return uuid;
 	}
 }
 
-namespace vw
+namespace omvtk
 {
 	/// static zero uuid instance
 	LLUUID const LLUUID::Zero = LLUUID();

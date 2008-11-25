@@ -1,7 +1,7 @@
 #include "http_response_header.h"
 #include <algorithm>
 
-namespace vw
+namespace omvtk
 {
 	HTTPResponseHeader::HTTPResponseHeader()
 	: HTTPHeader()

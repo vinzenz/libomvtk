@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_TYPES_EXCEPTIONS_H_INCLUDED
-#define GUARD_LIBVW_TYPES_EXCEPTIONS_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_TYPES_EXCEPTIONS_H_INCLUDED
+#define GUARD_LIBOMVTK_TYPES_EXCEPTIONS_H_INCLUDED
 
 #if _MSC_VER > 100
 #	pragma once
@@ -7,7 +7,7 @@
 
 #include <stdexcept>
 
-namespace vw
+namespace omvtk
 {
 	typedef std::runtime_error Exception;	
 
@@ -42,5 +42,5 @@ namespace vw
 	};
 }
 
-#endif //GUARD_LIBVW_TYPES_EXCEPTIONS_H_INCLUDED
+#endif //GUARD_LIBOMVTK_TYPES_EXCEPTIONS_H_INCLUDED
 

@@ -1,9 +1,9 @@
-#ifndef GUARD_LIBVW_NETWORK_CAPS_HANDLER_H_INCLUDED
-#define GUARD_LIBVW_NETWORK_CAPS_HANDLER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_NETWORK_CAPS_HANDLER_H_INCLUDED
+#define GUARD_LIBOMVTK_NETWORK_CAPS_HANDLER_H_INCLUDED
 
 #include "caps_handler_manager.h"
 
-namespace vw
+namespace omvtk
 {
 	template<CapsEvent event_id>
 	struct CapsHandler : CapsHandlerManager::ConnectionT
@@ -35,5 +35,5 @@ namespace vw
 	}
 }
 
-#endif //GUARD_LIBVW_NETWORK_CAPS_HANDLER_H_INCLUDED
+#endif //GUARD_LIBOMVTK_NETWORK_CAPS_HANDLER_H_INCLUDED
 

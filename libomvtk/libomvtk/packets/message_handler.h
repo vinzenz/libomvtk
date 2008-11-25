@@ -1,10 +1,10 @@
-#ifndef GUARD_LIBVW_PACKETS_MESSAGE_HANDLER_H_INCLUDED
-#define GUARD_LIBVW_PACKETS_MESSAGE_HANDLER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_PACKETS_MESSAGE_HANDLER_H_INCLUDED
+#define GUARD_LIBOMVTK_PACKETS_MESSAGE_HANDLER_H_INCLUDED
 
 #include <boost/function.hpp>
 #include "message_handler_manager.h"
 
-namespace vw
+namespace omvtk
 {
 	template<typename MessageT>
 	struct MessageHandler : MessageHandlerManager::ConnectionT
@@ -55,5 +55,5 @@ namespace vw
 }
 
 
-#endif //GUARD_LIBVW_PACKETS_MESSAGE_HANDLER_MANAGER_H_INCLUDED
+#endif //GUARD_LIBOMVTK_PACKETS_MESSAGE_HANDLER_MANAGER_H_INCLUDED
 

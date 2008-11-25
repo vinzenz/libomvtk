@@ -1,10 +1,10 @@
-#ifndef GUARD_LIBVW_LIBRARY_H_INCLUDED
-#define GUARD_LIBVW_LIBRARY_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_LIBRARY_H_INCLUDED
+#define GUARD_LIBOMVTK_LIBRARY_H_INCLUDED
 
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 
-namespace vw
+namespace omvtk
 {
 	struct Library
 	{
@@ -13,5 +13,5 @@ namespace vw
 	};
 }
 
-#endif //GUARD_LIBVW_LIBRARY_H_INCLUDED
+#endif //GUARD_LIBOMVTK_LIBRARY_H_INCLUDED
 

@@ -2,7 +2,7 @@
 #include "settings.h"
 #include "library.h"
 
-namespace vw
+namespace omvtk
 {
 	GridClient::GridClient()
 	: m_library()

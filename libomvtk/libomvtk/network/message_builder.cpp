@@ -7,7 +7,7 @@ namespace
 {
 	struct MessageBuilder
 	{
-		MessageBuilder(vw::Network & net, vw::Simulator & sim, vw::ByteBuffer & buf)
+		MessageBuilder(omvtk::Network & net, omvtk::Simulator & sim, omvtk::ByteBuffer & buf)
 			: m_net(&net)
 			, m_sim(&sim)
 			, m_buf(&buf)			
@@ -27,12 +27,12 @@ namespace
 		}	
 
 	protected:
-		vw::Network * m_net;
-		vw::Simulator * m_sim;
-		vw::ByteBuffer * m_buf;	
+		omvtk::Network * m_net;
+		omvtk::Simulator * m_sim;
+		omvtk::ByteBuffer * m_buf;	
 	};
 }	
-namespace vw
+namespace omvtk
 {
 	void build_message(Network & net, Simulator & sim, ByteBuffer & buf, UInt32 id)
 	{

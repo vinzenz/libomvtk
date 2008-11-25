@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_LOGGER_LOGGER_H_INCLUDED
-#define GUARD_LIBVW_LOGGER_LOGGER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_LOGGER_LOGGER_H_INCLUDED
+#define GUARD_LIBOMVTK_LOGGER_LOGGER_H_INCLUDED
 
 #include <boost/logging/format_fwd.hpp>
 #include <boost/logging/format/named_write_fwd.hpp>
@@ -10,7 +10,7 @@
   #define DEFAULT_LOG_LEVEL info
 #endif
 
-namespace vw
+namespace omvtk
 {
 	namespace logger
 	{
@@ -42,6 +42,6 @@ namespace vw
 	}
 }
 
-#endif //GUARD_LIBVW_LOGGER_LOGGER_H_INCLUDED
+#endif //GUARD_LIBOMVTK_LOGGER_LOGGER_H_INCLUDED
 
 

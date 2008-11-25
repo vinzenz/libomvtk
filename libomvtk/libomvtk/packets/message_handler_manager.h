@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_PACKETS_MESSAGE_MANAGER_H_INCLUDED
-#define GUARD_LIBVW_PACKETS_MESSAGE_MANAGER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_PACKETS_MESSAGE_MANAGER_H_INCLUDED
+#define GUARD_LIBOMVTK_PACKETS_MESSAGE_MANAGER_H_INCLUDED
 
 #include <map>
 
@@ -7,7 +7,7 @@
 #include "../types/base_types.h"
 #include "header.h"
 
-namespace vw
+namespace omvtk
 {
 	struct Simulator;
 	
@@ -69,8 +69,8 @@ namespace vw
 
 }
 
-#ifndef GUARD_LIBVW_PACKETS_MESSAGE_HANDLER_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_PACKETS_MESSAGE_HANDLER_H_INCLUDED
 #	include "message_handler.h"
 #endif
 
-#endif //GUARD_LIBVW_PACKETS_MESSAGE_MANAGER_H_INCLUDED
+#endif //GUARD_LIBOMVTK_PACKETS_MESSAGE_MANAGER_H_INCLUDED

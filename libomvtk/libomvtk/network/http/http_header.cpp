@@ -1,6 +1,6 @@
 #include "http_header.h"
 #include <boost/algorithm/string/predicate.hpp>
-namespace vw
+namespace omvtk
 {
 	bool str_iless::operator()(String const & rhs, String const & lhs) const
 	{

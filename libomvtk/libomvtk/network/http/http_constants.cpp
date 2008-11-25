@@ -1,7 +1,7 @@
 #include "http_constants.h"
 
 
-namespace vw
+namespace omvtk
 {
 	namespace HTTP
 	{

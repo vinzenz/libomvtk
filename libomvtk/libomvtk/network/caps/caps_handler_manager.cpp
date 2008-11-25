@@ -1,6 +1,6 @@
 #include "caps_handler_manager.h"
 
-namespace vw
+namespace omvtk
 {
 	CapsHandlerManager::CapsHandlerManager()
 	: m_handler_map()

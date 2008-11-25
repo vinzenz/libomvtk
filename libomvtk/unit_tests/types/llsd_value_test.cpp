@@ -1,12 +1,12 @@
 #include "../test_suite.h"
-#include "../../libvw/llsd/value.h"
+#include "../../libomvtk/llsd/value.h"
 #include <Poco/ByteOrder.h>
 namespace tut
 {
-	using vw::LLSDValue;
+	using omvtk::LLSDValue;
 	struct llsdvalue_data{};
 
-	DEFINE_TEST_GROUP(llsdvalue_data, "vw::LLSDValue test");
+	DEFINE_TEST_GROUP(llsdvalue_data, "omvtk::LLSDValue test");
 
 	DEF_TEST(1)
 	{
@@ -44,7 +44,7 @@ namespace tut
 	DEF_TEST(4)
 	{
 		set_test_name("integer test");
-		LLSDValue val = vw::Int32(100);
+		LLSDValue val = omvtk::Int32(100);
 		ensure_equals(val.type(),LLSDValue::VT_INTEGER);
 		ensure_equals(val.integer(), 100);
 		LLSDValue const cval = val;
@@ -53,9 +53,9 @@ namespace tut
 		ensure_equals(val.notation_encode(), "i100");
 		LLSDValue::Binary serializedBin;
 		serializedBin.push_back('i');
-		vw::Int32 integer = Poco::ByteOrder::toNetwork(val.integer());
-		vw::Byte * p = reinterpret_cast<vw::Byte*>(&integer);
-		serializedBin.insert(serializedBin.end(), p, p+sizeof(vw::Int32));
+		omvtk::Int32 integer = Poco::ByteOrder::toNetwork(val.integer());
+		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&integer);
+		serializedBin.insert(serializedBin.end(), p, p+sizeof(omvtk::Int32));
 		LLSDValue::Binary output;
 		val.binary_encode(output);
 		ensure(output == serializedBin);
@@ -73,9 +73,9 @@ namespace tut
 		ensure_equals(val.notation_encode(), "r123.456789");
 		LLSDValue::Binary serializedBin;
 		serializedBin.push_back('r');
-		vw::Real64 real = vw::Real64ByteOrder::convert(Poco::ByteOrder::toNetwork, val.real());
-		vw::Byte * p = reinterpret_cast<vw::Byte*>(&real);
-		serializedBin.insert(serializedBin.end(), p, p+sizeof(vw::Real64));
+		omvtk::Real64 real = omvtk::Real64ByteOrder::convert(Poco::ByteOrder::toNetwork, val.real());
+		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&real);
+		serializedBin.insert(serializedBin.end(), p, p+sizeof(omvtk::Real64));
 		LLSDValue::Binary output;
 		val.binary_encode(output);
 		ensure(output == serializedBin);
@@ -101,7 +101,7 @@ namespace tut
 	DEF_TEST(7)
 	{
 		set_test_name("uri test");
-		LLSDValue val = vw::LLURI("http://www.google.com");
+		LLSDValue val = omvtk::LLURI("http://www.google.com");
 		ensure_equals(val.type(), LLSDValue::VT_URI);
 		ensure_equals(val.uri().to_string(), "http://www.google.com");
 		LLSDValue const cval = val;
@@ -118,13 +118,13 @@ namespace tut
 	DEF_TEST(8)
 	{
 		set_test_name("uuid test");
-		LLSDValue val = vw::LLUUID();
+		LLSDValue val = omvtk::LLUUID();
 		ensure_equals(val.type(), LLSDValue::VT_UUID);
-		ensure_equals(val.uuid(), vw::LLUUID::Zero);
+		ensure_equals(val.uuid(), omvtk::LLUUID::Zero);
 		LLSDValue const cval = val;
-		ensure_equals(cval.uuid(), vw::LLUUID::Zero);
-		ensure_equals(val.xml_encode(),"<uuid>" + vw::LLUUID::Zero.to_string() + "</uuid>");
-		ensure_equals(val.notation_encode(),"u" + vw::LLUUID::Zero.to_string());
+		ensure_equals(cval.uuid(), omvtk::LLUUID::Zero);
+		ensure_equals(val.xml_encode(),"<uuid>" + omvtk::LLUUID::Zero.to_string() + "</uuid>");
+		ensure_equals(val.notation_encode(),"u" + omvtk::LLUUID::Zero.to_string());
 		LLSDValue::Binary serializedBin(17,0);
 		serializedBin[0] = 'u';
 		LLSDValue::Binary output;
@@ -135,7 +135,7 @@ namespace tut
 	DEF_TEST(9)
 	{
 		set_test_name("date test");
-		vw::LLDate date("2008-07-25T18:20:00Z");
+		omvtk::LLDate date("2008-07-25T18:20:00Z");
 		LLSDValue val = date;
 		ensure_equals(val.type(), LLSDValue::VT_DATE);
 		ensure_equals(val.date(), date);
@@ -145,9 +145,9 @@ namespace tut
 		ensure_equals(val.notation_encode(), "d\"2008-07-25T18:20:00Z\"");
 		LLSDValue::Binary serializedBin;
 		serializedBin.push_back('d');
-		vw::Real64 secs = vw::Real64ByteOrder::convert(Poco::ByteOrder::toNetwork, val.date().to_real());
-		vw::Byte * p = reinterpret_cast<vw::Byte*>(&secs);
-		serializedBin.insert(serializedBin.end(), p, p+sizeof(vw::Real64));
+		omvtk::Real64 secs = omvtk::Real64ByteOrder::convert(Poco::ByteOrder::toNetwork, val.date().to_real());
+		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&secs);
+		serializedBin.insert(serializedBin.end(), p, p+sizeof(omvtk::Real64));
 		LLSDValue::Binary output;
 		val.binary_encode(output);
 		ensure(output == serializedBin);
@@ -156,7 +156,7 @@ namespace tut
 	DEF_TEST(10)
 	{
 		set_test_name("binary test");
-		static vw::Byte const test_data[] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09};
+		static omvtk::Byte const test_data[] = {0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08,0x09};
 		LLSDValue::Binary bin(test_data,test_data+sizeof(test_data));
 		LLSDValue val = bin;
 		ensure_equals(val.type(), LLSDValue::VT_BINARY);

@@ -323,10 +323,10 @@ struct Builder
 
 	void write(std::ostream & os)
 	{
-		os << "#ifndef GUARD_LIBVW_PACKETS_PACKETS_H_INCLUDED\n#define GUARD_LIBVW_PACKETS_PACKETS_H_INCLUDED\n";
+		os << "#ifndef GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED\n#define GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED\n";
 		os << "\n\n#if _MSC_VER > 1200\n#	pragma once\n#endif\n\n";
 		os << "#include \"../packets/processors.h\"\n";
-		os << "namespace vw\n{\n";
+		os << "namespace omvtk\n{\n";
 		os << "\tnamespace packets\n\t{\n";
 		std::map<boost::uint32_t, std::string> message_types;
 		write(os,m_parser.LowMessages,message_types);		
@@ -352,8 +352,8 @@ struct Builder
 		os << "\t\t\treturn false;\n";
 		os << "\t\t}\n";
 		os << "\t}//namespace packets\n";
-		os << "}//namespace vw\n";
-		os << "#endif //GUARD_LIBVW_PACKETS_PACKETS_H_INCLUDED\n";
+		os << "}//namespace omvtk\n";
+		os << "#endif //GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED\n";
 	}
 
 	template<size_t N>

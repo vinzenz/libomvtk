@@ -1,4 +1,4 @@
-project.name = "libvw++"
+project.name = "libomvtk"
 
 project.config["Debug"].bindir = "bin/debug"
 project.config["Release"].bindir = "bin/release"
@@ -10,7 +10,7 @@ addoption("compiler_flags", "Additional C++ Compiler flags (like alternative Inc
 addoption("linker_flags", "Additional Linker flags (like alternative Library paths")
 
 dopackage("scripts/unit_tests.lua")
-dopackage("scripts/libvw.lua")
+dopackage("scripts/libomvtk.lua")
 dopackage("scripts/packetgen.lua")
 dopackage("scripts/nettestenv.lua")
 

@@ -1,9 +1,9 @@
 
-package.name = "vw++"
+package.name = "omvtk"
 package.kind = "lib"
 package.language = "c++"
-package.config["Debug"].objdir = "obj/debug/libvw"
-package.config["Release"].objdir = "obj/release/libvw"
+package.config["Debug"].objdir = "obj/debug/libomvtk"
+package.config["Release"].objdir = "obj/release/libomvtk"
 package.buildflags = { "optimize-speed"}
 
 
@@ -33,6 +33,6 @@ if (windows) then
 end
 
 package.files = { 
-    matchrecursive("../libvw/*.cpp", "../libvw/*.h" )
+    matchrecursive("../libomvtk/*.cpp", "../libomvtk/*.h" )
 }
 

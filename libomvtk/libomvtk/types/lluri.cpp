@@ -1,6 +1,6 @@
 #include "lluri.h"
 
-namespace vw
+namespace omvtk
 {
 	LLURI::LLURI()
 	{

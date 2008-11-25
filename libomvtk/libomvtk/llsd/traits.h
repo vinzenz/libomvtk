@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_LLSD_LLSD_TRAITS_H_INCLUDED
-#define GUARD_LIBVW_LLSD_LLSD_TRAITS_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_LLSD_LLSD_TRAITS_H_INCLUDED
+#define GUARD_LIBOMVTK_LLSD_LLSD_TRAITS_H_INCLUDED
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 #if _MSC_VER > 1200
@@ -25,7 +25,7 @@
 #include <boost/archive/iterators/base64_from_binary.hpp>
 #include <boost/archive/iterators/transform_width.hpp>
 
-namespace vw
+namespace omvtk
 {
 	namespace detail
 	{
@@ -270,7 +270,7 @@ namespace vw
 			static inline Type xml_decode(Iterator iter, Iterator end)
 			{
 				String s(iter, end);
-				libvw_ensure(s.size() >= 1);
+				libomvtk_ensure(s.size() >= 1);
 				if(s == "true" || s == "1")
 					return Type(true);
 				else if(s == "false" || s == "0")
@@ -1036,7 +1036,7 @@ namespace vw
 			template<typename Iterator>
 			static inline Type xml_decode(Iterator it, Iterator end)
 			{				
-				libvw_ensure(it == end);
+				libomvtk_ensure(it == end);
 				return Type();
 			}
 
@@ -1049,20 +1049,20 @@ namespace vw
 			static inline Type notation_decode(Iterator iter, Iterator end)
 			{
 				byte_sub_range sr(iter, end);
-				libvw_ensure(sr.size() == 1 && char(*iter) == '!');
+				libomvtk_ensure(sr.size() == 1 && char(*iter) == '!');
 				return Type();
 			}
 
 			static inline void binary_encode(LLSDValue::Binary & out, Type const &)
 			{
-				out.push_back(vw::Byte('!'));
+				out.push_back(omvtk::Byte('!'));
 			}
 
 			template<typename Iterator>
 			static inline Type binary_decode(Iterator iter, Iterator end)
 			{
 				byte_sub_range sr(iter, end);
-				libvw_ensure(sr.size() == 1 && char(*iter) == '!');
+				libomvtk_ensure(sr.size() == 1 && char(*iter) == '!');
 				return Type();
 			}
 
@@ -1228,4 +1228,4 @@ namespace vw
 	}
 }
 #endif //DOXYGEN_SHOULD_SKIP_THIS
-#endif //GUARD_LIBVW_LLSD_LLSD_TRAITS_H_INCLUDED
+#endif //GUARD_LIBOMVTK_LLSD_LLSD_TRAITS_H_INCLUDED

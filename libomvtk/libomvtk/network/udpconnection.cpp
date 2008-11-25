@@ -2,7 +2,7 @@
 #include "../logger/logger.h"
 #include <boost/bind.hpp>
 
-namespace vw
+namespace omvtk
 {
 	UDPConnection::UDPConnection(ServiceType & ios, PacketReceivedCallback cb, Endpoint const & ep)
 		: m_ios(ios)

@@ -1,13 +1,13 @@
 #include "../test_suite.h"
-#include "../../libvw/types/lluri.h"
+#include "../../libomvtk/types/lluri.h"
 
 namespace tut
 {
-	using vw::LLURI;
-	using vw::String;
+	using omvtk::LLURI;
+	using omvtk::String;
 	struct lluri_data{};
 
-	DEFINE_TEST_GROUP(lluri_data, "vw::LLURI test");
+	DEFINE_TEST_GROUP(lluri_data, "omvtk::LLURI test");
 
 	DEF_TEST(1)
 	{

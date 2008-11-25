@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_TYPES_LLURI_H_INCLUDED
-#define GUARD_LIBVW_TYPES_LLURI_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_TYPES_LLURI_H_INCLUDED
+#define GUARD_LIBOMVTK_TYPES_LLURI_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -9,7 +9,7 @@
 #include "sub_range.h"
 #include <Poco/URI.h>
 
-namespace vw
+namespace omvtk
 {
 	struct LLURI
 	{
@@ -68,21 +68,21 @@ namespace vw
 
 namespace std
 {
-	inline ostream & operator<<(ostream & os, vw::LLURI const & v)
+	inline ostream & operator<<(ostream & os, omvtk::LLURI const & v)
 	{
 		return os << v.to_string();
 	}
 
-	inline istream & operator>>(istream & is, vw::LLURI & v)
+	inline istream & operator>>(istream & is, omvtk::LLURI & v)
 	{
-		vw::String s;
+		omvtk::String s;
 		if(is >> s)
 		{
 			try
 			{
-				v = vw::LLURI(s);
+				v = omvtk::LLURI(s);
 			}
-			catch (vw::Exception const &)
+			catch (omvtk::Exception const &)
 			{
 				is.setstate(ios_base::badbit);
 			}			
@@ -91,4 +91,4 @@ namespace std
 	}
 }
 
-#endif //GUARD_LIBVW_TYPES_LLURI_H_INCLUDED
+#endif //GUARD_LIBOMVTK_TYPES_LLURI_H_INCLUDED

@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_NETWORK_HTTPS_CLIENT_H_INCLUDED
-#define GUARD_LIBVW_NETWORK_HTTPS_CLIENT_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_NETWORK_HTTPS_CLIENT_H_INCLUDED
+#define GUARD_LIBOMVTK_NETWORK_HTTPS_CLIENT_H_INCLUDED
 
 #include <boost/bind.hpp>
 #include <boost/asio.hpp>
@@ -10,7 +10,7 @@
 #include "http_response.h"
 #include "../../types/base_types.h"
 
-namespace vw
+namespace omvtk
 {
 	struct HTTPSClient
 		: boost::enable_shared_from_this<HTTPSClient>
@@ -61,5 +61,5 @@ namespace vw
 	};	
 }
 
-#endif //GUARD_LIBVW_NETWORK_HTTPS_CLIENT_H_INCLUDED
+#endif //GUARD_LIBOMVTK_NETWORK_HTTPS_CLIENT_H_INCLUDED
 

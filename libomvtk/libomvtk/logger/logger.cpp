@@ -1,7 +1,7 @@
 #include "logger.h"
 #include <boost/logging/format/named_write.hpp>
 
-namespace vw
+namespace omvtk
 {
 	namespace logger
 	{
@@ -28,7 +28,7 @@ namespace vw
 		  
 		void init(log_level level)
 		{
-			g_logger()->writer().write("[%idx%] %time%($yyyy-$MM-$dd $hh:$mm.$ss) %thread_id% |\n", "file(libvw.log) debug");
+			g_logger()->writer().write("[%idx%] %time%($yyyy-$MM-$dd $hh:$mm.$ss) %thread_id% |\n", "file(libomvtk.log) debug");
 			g_logger()->mark_as_initialized();    
 			LOG_APP << "Logger Subsystem initialized";
 			set_log_level(level);

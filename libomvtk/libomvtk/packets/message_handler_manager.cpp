@@ -1,7 +1,7 @@
 #include "message_handler_manager.h"
 #include <list>
 
-namespace vw
+namespace omvtk
 {
 	MessageHandlerManager::MessageHandlerManager()
 	{

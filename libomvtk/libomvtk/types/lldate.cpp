@@ -7,16 +7,16 @@
 
 namespace 
 {
-	vw::LLDate::value_type FromByteSubRange(vw::byte_sub_range const & sr)
+	omvtk::LLDate::value_type FromByteSubRange(omvtk::byte_sub_range const & sr)
 	{
-		libvw_ensure(sr.size() == sizeof(vw::Real64));
-		vw::Real64 r = *(vw::Real64*)&sr[0];
-		r = vw::Real64ByteOrder::convert(Poco::ByteOrder::fromNetwork, r);
-		return vw::LLDate(r).get();
+		libomvtk_ensure(sr.size() == sizeof(omvtk::Real64));
+		omvtk::Real64 r = *(omvtk::Real64*)&sr[0];
+		r = omvtk::Real64ByteOrder::convert(Poco::ByteOrder::fromNetwork, r);
+		return omvtk::LLDate(r).get();
 	}
 }
 
-namespace vw
+namespace omvtk
 {
 	String const & LLDate::DateFormat = Poco::DateTimeFormat::ISO8601_FORMAT;
 
@@ -122,9 +122,9 @@ namespace vw
 
 namespace std
 {
-	istream & operator>>(istream & is, vw::LLDate & d)
+	istream & operator>>(istream & is, omvtk::LLDate & d)
 	{
-		if(Poco::DateTimeParser::tryParseFromStream(vw::LLDate::DateFormat, is, d.get()))
+		if(Poco::DateTimeParser::tryParseFromStream(omvtk::LLDate::DateFormat, is, d.get()))
 			return is;
 		is.setstate(std::ios_base::badbit);
 		return is;

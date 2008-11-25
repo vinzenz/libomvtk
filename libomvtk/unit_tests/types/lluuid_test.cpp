@@ -1,15 +1,15 @@
 #include "../test_suite.h"
-#include "../../libvw/types/lluuid.h"
+#include "../../libomvtk/types/lluuid.h"
 
 namespace tut
 {
-	using vw::LLUUID;
-	using vw::ByteBuffer;
-	using vw::String;
+	using omvtk::LLUUID;
+	using omvtk::ByteBuffer;
+	using omvtk::String;
 	
 	struct lluuid_data{};
 
-	DEFINE_TEST_GROUP(lluuid_data,"vw::LLUUID test");
+	DEFINE_TEST_GROUP(lluuid_data,"omvtk::LLUUID test");
 
 	DEF_TEST(1)
 	{
@@ -35,7 +35,7 @@ namespace tut
 	DEF_TEST(4)
 	{
 		set_test_name("UUID from and to string check");
-		vw::String uuid_str = "d7f4aeca-88f1-42a1-b385-b9db18abb255";
+		omvtk::String uuid_str = "d7f4aeca-88f1-42a1-b385-b9db18abb255";
 		LLUUID uuid(uuid_str);
 		ensure("uuid shall not be zero", !uuid.is_zero());
 		ensure_equals("uuid strings have to be equal", uuid_str, uuid.to_string());		
@@ -141,7 +141,7 @@ namespace tut
 		set_test_name("byte_sub_range initialization test");
 		static char const * data = "\xd7\xf4\xae\xca\x88\xf1\x42\xa1\xb3\x85\xb9\xdb\x18\xab\xb2\x55";
 		static String const uuid_str = "d7f4aeca-88f1-42a1-b385-b9db18abb255";
-		vw::byte_sub_range sr(data, data + 16);
+		omvtk::byte_sub_range sr(data, data + 16);
 		LLUUID uuid(sr);
 		uuid = uuid;
 		ensure_equals("has to be equal", uuid.to_string(), uuid_str);

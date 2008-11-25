@@ -1,5 +1,5 @@
-#ifndef LIBVW_NETWORK_UDP_CONNECTION_H_INCLUDED
-#define LIBVW_NETWORK_UDP_CONNECTION_H_INCLUDED
+#ifndef LIBOMVTK_NETWORK_UDP_CONNECTION_H_INCLUDED
+#define LIBOMVTK_NETWORK_UDP_CONNECTION_H_INCLUDED
 
 #include "../types/base_types.h"
 #include "../packets/header.h"
@@ -7,7 +7,7 @@
 #include <boost/asio.hpp>
 #include <boost/function.hpp>
 
-namespace vw
+namespace omvtk
 {
 	struct UDPConnection
 		: boost::noncopyable
@@ -56,4 +56,4 @@ namespace vw
 	};
 }
 
-#endif //LIBVW_NETWORK_UDP_CONNECTION_H_INCLUDED
+#endif //LIBOMVTK_NETWORK_UDP_CONNECTION_H_INCLUDED

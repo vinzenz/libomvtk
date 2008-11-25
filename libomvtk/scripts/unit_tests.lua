@@ -57,6 +57,6 @@ end
 
 
 
-package.config["Debug"].links = { "vw++", "PocoFoundationd", "boost_system-mt", "ticppd", "boost_thread-mt", "boost_filesystem-mt", SSLLIB1D, SSLLIB2D }
-package.config["Release"].links = { "vw++", "PocoFoundation", "boost_system-mt", "ticpp", "boost_thread-mt", "boost_filesystem-mt" , SSLLIB1, SSLLIB2 }
+package.config["Debug"].links = { "omvtk", "PocoFoundationd", "boost_system-mt", "ticppd", "boost_thread-mt", "boost_filesystem-mt", SSLLIB1D, SSLLIB2D }
+package.config["Release"].links = { "omvtk", "PocoFoundation", "boost_system-mt", "ticpp", "boost_thread-mt", "boost_filesystem-mt" , SSLLIB1, SSLLIB2 }
 

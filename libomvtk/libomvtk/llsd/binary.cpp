@@ -9,7 +9,7 @@
 #include "../types/exceptions.h"
 #include "../types/assert.h"
 
-namespace vw
+namespace omvtk
 {
 	namespace detail
 	{

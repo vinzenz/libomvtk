@@ -1,10 +1,10 @@
-#ifndef GUARD_LIBVW_TYPES_RAW_TYPES_H_INCLUDED
-#define GUARD_LIBVW_TYPES_RAW_TYPES_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_TYPES_RAW_TYPES_H_INCLUDED
+#define GUARD_LIBOMVTK_TYPES_RAW_TYPES_H_INCLUDED
 
 
 #include <boost/array.hpp>
 
-namespace vw
+namespace omvtk
 {
 	namespace raw
 	{
@@ -50,5 +50,5 @@ namespace vw
 	}
 }
 
-#endif //GUARD_LIBVW_TYPES_RAW_TYPES_H_INCLUDED
+#endif //GUARD_LIBOMVTK_TYPES_RAW_TYPES_H_INCLUDED
 

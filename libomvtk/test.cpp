@@ -4,7 +4,7 @@
 #include <boost/lexical_cast.hpp>
 #include "llsd/value.h"
 #include <Poco/MD5Engine.h>
-using namespace vw;
+using namespace omvtk;
 
 void on_received(HTTPResponse const  & res)
 {

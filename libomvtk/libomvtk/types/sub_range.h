@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_TYPES_BYTE_SUB_RANGE_H_INCLUDED
-#define GUARD_LIBVW_TYPES_BYTE_SUB_RANGE_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_TYPES_BYTE_SUB_RANGE_H_INCLUDED
+#define GUARD_LIBOMVTK_TYPES_BYTE_SUB_RANGE_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -13,7 +13,7 @@
 #include <boost/static_assert.hpp>
 #include <boost/type_traits/is_same.hpp>
 
-namespace vw
+namespace omvtk
 {
 	template<BOOST_DEDUCED_TYPENAME T>
 	struct always_true : boost::mpl::true_
@@ -129,7 +129,7 @@ namespace vw
 		{
 			if(it == end)
 				return base(_iter_t(0),_iter_t(0));
-			libvw_ensure(it < end);
+			libomvtk_ensure(it < end);
 			return base(Cast(&(*it)), Cast((&(*(it + (end - it) - 1))) + 1));
 		}
 	};
@@ -140,4 +140,4 @@ namespace vw
 	> byte_sub_range;
 }
 
-#endif //GUARD_LIBVW_TYPES_BYTE_SUB_RANGE_H_INCLUDED
+#endif //GUARD_LIBOMVTK_TYPES_BYTE_SUB_RANGE_H_INCLUDED

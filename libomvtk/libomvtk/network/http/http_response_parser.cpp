@@ -13,7 +13,7 @@
 #include <list>
 #include <vector>
 
-namespace vw
+namespace omvtk
 {
 	HTTPResponseParser::HTTPResponseParser(ByteBuffer const & buf)
 	: m_buffer(buf)

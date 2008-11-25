@@ -1,14 +1,14 @@
 #include "../test_suite.h"
 #include <Poco/ByteOrder.h>
-#include "../../libvw/types/lldate.h"
+#include "../../libomvtk/types/lldate.h"
 
 namespace tut
 {
-	using vw::LLDate;
-	using vw::String;
+	using omvtk::LLDate;
+	using omvtk::String;
 	struct lldate_data{};
 
-	DEFINE_TEST_GROUP(lldate_data, "vw::LLDate test");
+	DEFINE_TEST_GROUP(lldate_data, "omvtk::LLDate test");
 
 	DEF_TEST(1)
 	{
@@ -56,9 +56,9 @@ namespace tut
 	DEF_TEST(4)
 	{
 		set_test_name("Binary parsing test");
-		double r = vw::Real64ByteOrder::convert(&Poco::ByteOrder::toNetwork, 1.);
-		vw::Byte * p = reinterpret_cast<vw::Byte*>(&r);
-		vw::byte_sub_range br(p,p+8);
+		double r = omvtk::Real64ByteOrder::convert(&Poco::ByteOrder::toNetwork, 1.);
+		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&r);
+		omvtk::byte_sub_range br(p,p+8);
 		LLDate date(br);
 		ensure_equals(date.to_string(), "1970-01-01T00:00:01Z");
 	}
@@ -74,7 +74,7 @@ namespace tut
 	DEF_TEST(6)
 	{
 		set_test_name("UInt32 initialization test");		
-		vw::Int32 u = 1;
+		omvtk::Int32 u = 1;
 		LLDate date(u);
 		ensure_equals(date.to_string(), "1970-01-01T00:00:01Z");
 	}

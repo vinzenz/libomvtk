@@ -1,11 +1,11 @@
-#ifndef GUARD_LIBVW_NETWORK_HTTP_BYTE_BUFFER_STREAM_SOURCE_H
-#define GUARD_LIBVW_NETWORK_HTTP_BYTE_BUFFER_STREAM_SOURCE_H
+#ifndef GUARD_LIBOMVTK_NETWORK_HTTP_BYTE_BUFFER_STREAM_SOURCE_H
+#define GUARD_LIBOMVTK_NETWORK_HTTP_BYTE_BUFFER_STREAM_SOURCE_H
 
 #include "../../types/base_types.h"
 #include <boost/iostreams/categories.hpp>
 #include <boost/iostreams/stream_buffer.hpp>
 
-namespace vw
+namespace omvtk
 {
 
 	template<typename CharT>
@@ -90,5 +90,5 @@ namespace vw
 			> ByteStreamByteBuffer;
 }
 
-#endif //GUARD_LIBVW_NETWORK_HTTP_BYTE_BUFFER_STREAM_SOURCE_H
+#endif //GUARD_LIBOMVTK_NETWORK_HTTP_BYTE_BUFFER_STREAM_SOURCE_H
 

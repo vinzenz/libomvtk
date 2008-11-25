@@ -7,7 +7,7 @@
 #include "value.h"
 #include "traits.h"
 
-namespace vw
+namespace omvtk
 {
 	LLSDValue::LLSDValue()
 		: m_value(Undef())

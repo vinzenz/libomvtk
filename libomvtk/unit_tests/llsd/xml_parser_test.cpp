@@ -1,7 +1,7 @@
 #include "../test_suite.h"
-#include "../../libvw/llsd/xml.h"
+#include "../../libomvtk/llsd/xml.h"
 
-vw::String XML_PARSER_TEST_STRING1 = 
+omvtk::String XML_PARSER_TEST_STRING1 = 
 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 "<llsd>"
 "<map>"
@@ -44,17 +44,17 @@ namespace tut
 
 	DEF_TEST(1)
 	{
-		vw::LLSDValue value = vw::detail::XML::Parser::Parse(XML_PARSER_TEST_STRING1.begin(),XML_PARSER_TEST_STRING1.end());
-		vw::String encoded = value.xml_encode();
-		ensure_equals(vw::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
+		omvtk::LLSDValue value = omvtk::detail::XML::Parser::Parse(XML_PARSER_TEST_STRING1.begin(),XML_PARSER_TEST_STRING1.end());
+		omvtk::String encoded = value.xml_encode();
+		ensure_equals(omvtk::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
 	}
 
 	DEF_TEST(2)
 	{
-		vw::String empty;
-		vw::LLSDValue value = vw::detail::XML::Parser::Parse(empty.begin(),empty.end());
-		vw::String encoded = value.xml_encode();
-		ensure_equals(vw::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
+		omvtk::String empty;
+		omvtk::LLSDValue value = omvtk::detail::XML::Parser::Parse(empty.begin(),empty.end());
+		omvtk::String encoded = value.xml_encode();
+		ensure_equals(omvtk::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
 	}
 }
 

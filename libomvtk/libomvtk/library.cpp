@@ -2,7 +2,7 @@
 #include "logger/logger.h"
 #include <boost/pool/detail/singleton.hpp>
 
-namespace vw
+namespace omvtk
 {
 	namespace detail
 	{

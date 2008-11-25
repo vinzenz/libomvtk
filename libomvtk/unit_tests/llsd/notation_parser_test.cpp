@@ -1,7 +1,7 @@
 #include "../test_suite.h"
-#include "../../libvw/llsd/notation.h"
+#include "../../libomvtk/llsd/notation.h"
 
-vw::String NOTATION_PARSER_TEST_STRING1 = 
+omvtk::String NOTATION_PARSER_TEST_STRING1 = 
 "["
 "{'destination':'http://secondlife.com'}, "
 "{'version':i1}, "
@@ -30,7 +30,7 @@ vw::String NOTATION_PARSER_TEST_STRING1 =
 "}"
 "]";
 
-vw::String NOTATION_PARSER_TEST_STRING2 = 
+omvtk::String NOTATION_PARSER_TEST_STRING2 = 
 "["
 "{"
 "	'creation-date':d\"2007-03-15T18:30:18Z\", "
@@ -68,9 +68,9 @@ namespace tut
 	{
 		try
 		{
-			vw::LLSDValue value = vw::detail::Notation::Parser::Parse(NOTATION_PARSER_TEST_STRING1.begin(),NOTATION_PARSER_TEST_STRING1.end());
-			vw::String encoded = value.notation_encode();
-			ensure_equals(vw::detail::Notation::Parser::Parse(encoded.begin(), encoded.end()).notation_encode(),encoded);
+			omvtk::LLSDValue value = omvtk::detail::Notation::Parser::Parse(NOTATION_PARSER_TEST_STRING1.begin(),NOTATION_PARSER_TEST_STRING1.end());
+			omvtk::String encoded = value.notation_encode();
+			ensure_equals(omvtk::detail::Notation::Parser::Parse(encoded.begin(), encoded.end()).notation_encode(),encoded);
         	}
         	catch(Poco::Exception const & e)
 	        {
@@ -83,9 +83,9 @@ namespace tut
 	{
 		try
 	        {
-		    vw::LLSDValue value = vw::detail::Notation::Parser::Parse(NOTATION_PARSER_TEST_STRING2.begin(),NOTATION_PARSER_TEST_STRING2.end());
-		    vw::String encoded = value.notation_encode();
-		    ensure_equals(vw::detail::Notation::Parser::Parse(encoded.begin(), encoded.end()).notation_encode(),encoded);
+		    omvtk::LLSDValue value = omvtk::detail::Notation::Parser::Parse(NOTATION_PARSER_TEST_STRING2.begin(),NOTATION_PARSER_TEST_STRING2.end());
+		    omvtk::String encoded = value.notation_encode();
+		    ensure_equals(omvtk::detail::Notation::Parser::Parse(encoded.begin(), encoded.end()).notation_encode(),encoded);
         	}
 	        catch(Poco::Exception const & e)
         	{

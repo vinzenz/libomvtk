@@ -16,7 +16,7 @@
 #include "traits.h"
 #include "value.h"
 
-namespace vw
+namespace omvtk
 {
 	namespace detail
 	{

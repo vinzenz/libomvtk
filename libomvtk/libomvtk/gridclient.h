@@ -1,12 +1,12 @@
-#ifndef GUARD_LIBVW_GRID_CLIENT_H_INCLUDED
-#define GUARD_LIBVW_GRID_CLIENT_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_GRID_CLIENT_H_INCLUDED
+#define GUARD_LIBOMVTK_GRID_CLIENT_H_INCLUDED
 
 #include "types/base_types.h"
 #include "network/network.h"
 #include "settings.h"
 #include "library.h"
 
-namespace vw
+namespace omvtk
 {
 
 	struct GridClient
@@ -27,5 +27,5 @@ namespace vw
 	};
 }
 
-#endif //GUARD_LIBVW_GRID_CLIENT_H_INCLUDED
+#endif //GUARD_LIBOMVTK_GRID_CLIENT_H_INCLUDED
 

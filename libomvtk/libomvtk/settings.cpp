@@ -1,7 +1,7 @@
 #include "settings.h"
 #include "gridclient.h"
 
-namespace vw
+namespace omvtk
 {
 	Settings::Settings(GridClient & gc)
 	: boost::noncopyable()

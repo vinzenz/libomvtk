@@ -1,6 +1,6 @@
 #include "http_response.h"
 
-namespace vw
+namespace omvtk
 {
 	HTTPResponse::HTTPResponse()
 	: m_header()

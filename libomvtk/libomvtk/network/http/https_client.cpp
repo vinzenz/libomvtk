@@ -2,7 +2,7 @@
 #include "http_response_parser.h"
 #include "../../logger/logger.h"
 
-namespace vw
+namespace omvtk
 {
 	HTTPSClient::Pointer HTTPSClient::create(Context & ctx, Service & ios)
 	{

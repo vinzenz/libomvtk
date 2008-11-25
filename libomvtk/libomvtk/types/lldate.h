@@ -1,5 +1,5 @@
-#ifndef GUARD_LIBVW_TYPES_LLDATE_H_INCLUDED
-#define GUARD_LIBVW_TYPES_LLDATE_H_INCLUDED
+#ifndef GUARD_LIBOMVTK_TYPES_LLDATE_H_INCLUDED
+#define GUARD_LIBOMVTK_TYPES_LLDATE_H_INCLUDED
 
 #if _MSC_VER > 1200
 #	pragma once
@@ -9,7 +9,7 @@
 #include "sub_range.h"
 #include <Poco/DateTime.h>
 
-namespace vw
+namespace omvtk
 {
 	struct LLDate
 	{
@@ -47,12 +47,12 @@ namespace vw
 
 namespace std
 {
-	inline ostream & operator<<(ostream & os, vw::LLDate const & d)
+	inline ostream & operator<<(ostream & os, omvtk::LLDate const & d)
 	{
 		return os << d.to_string();
 	}
 
-	istream & operator>>(istream & is, vw::LLDate & d);
+	istream & operator>>(istream & is, omvtk::LLDate & d);
 }
 
-#endif //GUARD_LIBVW_TYPES_LLDATE_H_INCLUDED
+#endif //GUARD_LIBOMVTK_TYPES_LLDATE_H_INCLUDED

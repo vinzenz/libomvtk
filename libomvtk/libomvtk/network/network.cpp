@@ -2,7 +2,7 @@
 #include "../packets/packets.h"
 #include "../gridclient.h"
 
-namespace vw
+namespace omvtk
 {
 
 	Network::Network(GridClient & client)

@@ -4,11 +4,11 @@
 
 namespace 
 {
-	vw::String generate_random_mac()
+	omvtk::String generate_random_mac()
 	{
 		Poco::Random rnd;
 		std::ostringstream ostr;
-		for(vw::UInt8 i = 0; i < 6; ++i)
+		for(omvtk::UInt8 i = 0; i < 6; ++i)
 		{
 			switch(i)
 			{
@@ -25,10 +25,10 @@ namespace
 	}
 
 
-	void fmt_bytes(vw::UInt8 * bytes, vw::UInt32 size, vw::String & out)
+	void fmt_bytes(omvtk::UInt8 * bytes, omvtk::UInt32 size, omvtk::String & out)
 	{
 		std::ostringstream ostr;
-		for(vw::UInt8 i = 0; i < size; ++i)
+		for(omvtk::UInt8 i = 0; i < size; ++i)
 		{
 			switch(i)
 			{
@@ -45,7 +45,7 @@ namespace
 	}
 }
 
-#ifdef LIBVW_LINUX
+#ifdef LIBOMVTK_LINUX
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -69,7 +69,7 @@ namespace
 				sockaddr_ll * sal = reinterpret_cast<sockaddr_ll*>(iter->ifa_addr);
 				if(sal->sll_family == AF_PACKET)
 				{
-					vw::String mac;
+					omvtk::String mac;
 					fmt_bytes(&sal->sll_addr[0], sal->sll_halen, mac);
 					if(mac.size() == 17)
 					{
@@ -83,7 +83,7 @@ namespace
 	}
 }
 
-#elif defined(LIBVW_WINDOWS)
+#elif defined(LIBOMVTK_WINDOWS)
 
 #	include <winsock2.h>
 #	include <iphlpapi.h>
@@ -93,7 +93,7 @@ namespace
 	template<typename Container>
 	void get_all_mac_addresses(Container & macs)
 	{
-		vw::ByteBuffer buf;
+		omvtk::ByteBuffer buf;
 		DWORD bufLen = 0;
 		GetAdaptersAddresses(0, 0, 0, 0, &bufLen);
 		if(!bufLen)
@@ -109,7 +109,7 @@ namespace
 			{
 				if(ptr->PhysicalAddressLength)
 				{
-					vw::String mac;
+					omvtk::String mac;
 					fmt_bytes(&ptr->PhysicalAddress[0], ptr->PhysicalAddressLength, mac);
 					if(mac.size() == 17)
 					{
@@ -134,7 +134,7 @@ namespace
 
 #include <vector>
 
-namespace vw
+namespace omvtk
 {
 	String get_mac()
 	{
