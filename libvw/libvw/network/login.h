@@ -1,0 +1,13 @@
+#ifndef GUARD_LIBVW_NETWORK_LOGIN_H_INCLUDED
+#define GUARD_LIBVW_NETWORK_LOGIN_H_INCLUDED
+
+namespace vw
+{
+	struct Login
+	{
+		Login();
+	};
+}
+
+#endif //GUARD_LIBVW_NETWORK_LOGIN_H_INCLUDED
+

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<llsd>
+  <map>
+    <key>
+      check_name
+    </key>
+    <string>
+      https://cap.secondlife.com/cap/0/0088a1a8-5300-4122-8481-d45712812a56
+    </string>
+    <key>
+      create_user
+    </key>
+    <string>
+      https://cap.secondlife.com/cap/0/e99c7c2e-b299-45f0-a5dd-a887f708b835
+    </string>
+    <key>
+      get_last_names
+    </key>
+    <string>
+      https://cap.secondlife.com/cap/0/506bd711-c835-4df4-b257-3eb5b73cb091
+    </string>
+    <key>
+      get_error_codes
+    </key>
+    <string>
+      https://cap.secondlife.com/cap/0/d629aee4-ab0a-4e9f-a20f-cfd8fd7caf23
+    </string>
+    </map>
+</llsd>
