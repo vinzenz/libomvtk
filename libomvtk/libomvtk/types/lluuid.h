@@ -7,7 +7,7 @@
 
 #include "base_types.h"
 #include "sub_range.h"
-#include <Poco/UUID.h>
+#include <boost/uuid.hpp>
 
 namespace omvtk
 {
@@ -16,7 +16,7 @@ namespace omvtk
 		/// static zero uuid instance
 		static LLUUID const Zero;
 
-		typedef Poco::UUID value_type;
+		typedef boost::uuid value_type;
 
 		/// Default constructor initializes Zero LLUUID
 		LLUUID();
