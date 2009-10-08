@@ -1,15 +1,24 @@
 #include "lluuid.h"
 #include "assert.h"
+#include <sstream>
 
 namespace // local visibility only so we can use an arbitary name
 {
-	Poco::UUID fromSubRange(omvtk::byte_sub_range const & b)
+	boost::uuid fromSubRange(omvtk::byte_sub_range const & b)
 	{
-		Poco::UUID uuid;		
+		boost::uuid uuid;		
 		libomvtk_ensure(b.size() == 16);
-		uuid.copyFrom(reinterpret_cast<char const*>(&b[0]));
+		uuid.assign(b.begin(), b.end());
 		return uuid;
 	}
+
+    boost::uuid fromString(omvtk::String const & str)
+    {
+        std::istringstream istr(str);
+        boost::uuid u;
+        istr >> u;
+        return u;
+    }
 }
 
 namespace omvtk
@@ -33,7 +42,7 @@ namespace omvtk
 
 	/// Initialize from string representation
 	LLUUID::LLUUID(String const & str)
-		: m_data(str)
+		: m_data(fromString(str))
 	{
 	}
 
@@ -121,23 +130,23 @@ namespace omvtk
 	/// Whether the current instance is a zero uuid
 	bool LLUUID::is_zero() const
 	{
-		return m_data.isNil();
+		return m_data.is_nil();
 	}
 
 
 	/// Converts to string representation
 	String LLUUID::to_string() const
 	{
-		return m_data.toString();
+		std::ostringstream str;
+        str << m_data;
+        return str.str();
 	}
 
 
 	/// Converts to binary buffer
 	ByteBuffer LLUUID::to_binary() const
 	{
-		ByteBuffer buffer(16,0);
-		m_data.copyTo(reinterpret_cast<char*>(&buffer[0]));
-		return buffer;
+		return ByteBuffer(m_data.begin(), m_data.end());		
 	}
 
 

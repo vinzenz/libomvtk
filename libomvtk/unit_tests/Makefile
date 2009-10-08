@@ -1,7 +1,12 @@
-CPPFLAGS+= -I../../3rdparty/tut-framework/
-CXXFLAGS+=
+CPPFLAGS?=-I../../3rdparty/tut-framework/ -I../../3rdparty/uuid/ -g3
+CXXFLAGS?=
 
-OBJECTS = main.o types/lldate_test.o  ../libomvtk/types/lldate.o
+OBJECTS = \
+    main.o \
+    types/lldate_test.o  \
+    types/lluuid_test.o \
+    ../libomvtk/types/lldate.o \
+    ../libomvtk/types/lluuid.o
 
 OBJ_o=$(foreach ob,$(OBJECTS),.obj/$(ob))
 

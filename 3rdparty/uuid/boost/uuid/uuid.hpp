@@ -152,28 +152,28 @@ inline void swap(uuid &x, uuid &y)
     x.swap(y);
 }
 
-bool operator==(uuid const& lhs, uuid const& rhs) /* throw() */
+inline bool operator==(uuid const& lhs, uuid const& rhs) /* throw() */
 {
     return (lhs.data_ == rhs.data_);
 }
-bool operator!=(uuid const& lhs, uuid const& rhs) /* throw() */
+inline bool operator!=(uuid const& lhs, uuid const& rhs) /* throw() */
 {
     return !(lhs == rhs);
 }
 
-bool operator<(uuid const& lhs, uuid const& rhs) /* throw() */
+inline bool operator<(uuid const& lhs, uuid const& rhs) /* throw() */
 {
     return (lhs.data_ < rhs.data_);
 }
-bool operator>(uuid const& lhs, uuid const& rhs) /* throw() */
+inline bool operator>(uuid const& lhs, uuid const& rhs) /* throw() */
 {
     return rhs < lhs;
 }
-bool operator<=(uuid const& lhs, uuid const& rhs) /* throw() */
+inline bool operator<=(uuid const& lhs, uuid const& rhs) /* throw() */
 {
     return !(lhs > rhs);
 }
-bool operator>=(uuid const& lhs, uuid const& rhs) /* throw() */
+inline bool operator>=(uuid const& lhs, uuid const& rhs) /* throw() */
 {
     return !(lhs < rhs);
 }
@@ -191,7 +191,7 @@ inline std::size_t hash_value(uuid const& u)
 }
 
 // As named in RFC 4122, 4.1.7 
-uuid nil() {
+inline uuid nil() {
     uuid u = uuid();
     return u;
 }
