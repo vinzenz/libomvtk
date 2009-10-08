@@ -1,7 +1,7 @@
 #ifndef GUARD_LIBOMVTK_TYPES_RAW_TYPES_H_INCLUDED
 #define GUARD_LIBOMVTK_TYPES_RAW_TYPES_H_INCLUDED
 
-
+#include "base_types.h"
 #include <boost/array.hpp>
 
 namespace omvtk

@@ -7,23 +7,23 @@
 
 #include <string>
 #include <vector>
-#include <Poco/Types.h>
 #include <boost/range.hpp>
 #include <boost/foreach.hpp>
+#include <boost/cstdint.hpp>
 #include <ostream>
 #include <istream>
 
 namespace omvtk
 {
-	typedef Poco::Int8  Int8;
-	typedef Poco::Int16 Int16;
-	typedef Poco::Int32 Int32;
-	typedef Poco::Int64 Int64;
+	typedef boost::int8_t  Int8;
+	typedef boost::int16_t Int16;
+	typedef boost::int32_t Int32;
+	typedef boost::int64_t Int64;
 
-	typedef Poco::UInt8  UInt8;
-	typedef Poco::UInt16 UInt16;
-	typedef Poco::UInt32 UInt32;
-	typedef Poco::UInt64 UInt64;
+	typedef boost::uint8_t  UInt8;
+	typedef boost::uint16_t UInt16;
+	typedef boost::uint32_t UInt32;
+	typedef boost::uint64_t UInt64;
 
 	typedef UInt8  Byte;
 	typedef UInt16 Word;
