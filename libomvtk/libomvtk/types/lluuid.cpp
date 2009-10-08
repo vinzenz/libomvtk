@@ -1,6 +1,5 @@
 #include "lluuid.h"
 #include "assert.h"
-#include <boost/uuid/uuid_io.hpp>
 #include <sstream>
 
 namespace // local visibility only so we can use an arbitary name

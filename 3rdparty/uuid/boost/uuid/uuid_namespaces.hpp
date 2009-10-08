@@ -42,7 +42,7 @@ namespace uuids {
 namespace namespaces {
 
 /* Name string is a fully-qualified domain name */
-uuid dns() {
+inline uuid dns() {
     uuid u = { /* 6ba7b810-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x10,
        0x9d, 0xad,
@@ -53,7 +53,7 @@ uuid dns() {
 }
 
 /* Name string is a URL */
-uuid url() {
+inline uuid url() {
     uuid u = { /* 6ba7b811-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x11,
        0x9d, 0xad,
@@ -64,7 +64,7 @@ uuid url() {
 }
 
 /* Name string is an ISO OID */
-uuid oid() {
+inline uuid oid() {
     uuid u = { /* 6ba7b812-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x12,
        0x9d, 0xad,
@@ -75,7 +75,7 @@ uuid oid() {
 }
 
 /* Name string is an X.500 DN (in DER or a text output format) */
-uuid x500() {
+inline uuid x500() {
     uuid u = { /* 6ba7b814-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x14,
        0x9d, 0xad,

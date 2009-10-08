@@ -22,7 +22,7 @@ namespace uuids {
 
 namespace detail {
 
-int get_showbraces_index()
+inline int get_showbraces_index()
 {
     static int index = std::ios_base::xalloc();
     return index;
