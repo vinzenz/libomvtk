@@ -1,0 +1,49 @@
+[/
+  (C) Copyright 2008 Glyn Matthews.
+  Distributed under the Boost Software License, Version 1.0.
+  (See accompanying file LICENSE_1_0.txt or copy at
+  http://www.boost.org/LICENSE_1_0.txt).
+]
+
+
+[section:template The Message Template]
+The initial concept behind the __cnl__ is the message template. The message template represents common message type used by protocol implementations.  It can therefore be specialized to support different data structures or different string types.
+
+[note Add more detailed information about the message template.]
+
+The message template interface is presented below:
+
+ namespace boost { namespace network {
+ template <
+     class Tag
+    >
+ class basic_message {
+ public:
+     typedef typename headers_container<Tag>::type headers_container_type;
+     typedef typename string<Tag>::type string_type;
+
+     basic_message(const basic_message &);
+     basic_message &operator = (const basic_message &);
+     void swap(basic_message &);
+
+     headers_container_type & headers() const;
+     string_type & body() const;
+     string_type & source() const;
+     string_type & destination() const;
+ };
+
+ typedef basic_message<tags::default_> message; // default message type
+ }}
+
+The __message__ template has a single argument (Tag).  Tags are useful because:
+
+# It's possible to specialize the message for different storage requirements;
+# It's possible to extend the message to support different network protocols.
+
+The use of tags is discussed in further detail in the next section.
+
+[h4 Concepts]
+__message__ supports the CopyConstructible, Assignable and Swappable concepts, as do all its derivatives.
+
+
+[endsect]
