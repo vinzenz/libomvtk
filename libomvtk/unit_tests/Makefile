@@ -1,18 +1,15 @@
-CPPFLAGS=-I../../3rdparty/tut-framework/
-CXXFLAGS=
-LDFLAGS=
+CPPFLAGS?=-I../../3rdparty/tut-framework/
+CXXFLAGS?=
 
-OBJECTS = main.o types/lldate_test.o
+OBJECTS = main.o types/lldate_test.o  ../libomvtk/types/lldate.o
 
 OBJ_o=$(foreach ob,$(OBJECTS),.obj/$(ob))
 
 all: test
 
-
-
 .obj/%.o : %.cpp .obj
 	mkdir -p $$(dirname $@)
-	$(CXX) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+	$(CXX) -c $(CPPFLAGS) $< -o $@
 
 .obj: 
 	mkdir .obj

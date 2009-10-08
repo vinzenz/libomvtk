@@ -5,9 +5,9 @@
 #	pragma once
 #endif
 
-#include <Poco/Bugcheck.h>
+#include <cassert>
 
-#define libomvtk_ensure(x)				poco_assert(x)
+#define libomvtk_ensure(x)				assert(x)
 #define libomvtk_assert(x)				poco_assert_dbg(x)
 #define libomvtk_bugcheck_msg(x)		poco_bugcheck_msg(x)
 #define libomvtk_bugcheck()			poco_bugcheck()

@@ -14,7 +14,7 @@ namespace tut
 	{
 		set_test_name("default initialization test");
 		LLDate date;
-		ensure(date.get() == LLDate::value_type(Poco::Timestamp(0)));
+		ensure(date.get() == LLDate::value_type(boost::posix_time::from_time_t(0)));
 	}
 
 	DEF_TEST(2)

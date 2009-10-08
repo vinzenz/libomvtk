@@ -7,13 +7,14 @@
 
 #include "base_types.h"
 #include "sub_range.h"
-#include <Poco/DateTime.h>
+#include <boost/date_time/posix_time/posix_time.hpp>
+
 
 namespace omvtk
 {
 	struct LLDate
 	{
-		typedef Poco::DateTime value_type;
+		typedef boost::posix_time::ptime value_type;
 		static String const & DateFormat;
 
 		LLDate();
@@ -47,11 +48,7 @@ namespace omvtk
 
 namespace std
 {
-	inline ostream & operator<<(ostream & os, omvtk::LLDate const & d)
-	{
-		return os << d.to_string();
-	}
-
+    ostream & operator<<(ostream & os, omvtk::LLDate const & d);
 	istream & operator>>(istream & is, omvtk::LLDate & d);
 }
 
