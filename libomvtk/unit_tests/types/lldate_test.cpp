@@ -20,6 +20,9 @@ namespace tut
 	DEF_TEST(2)
 	{
 		set_test_name("serialization to std::ostream and back via std::istream with default initialization");
+
+        std::cout<<"\n\n\n"<<LLDate(1191238220)<<"\n\n\n";
+
 		std::ostringstream output;
 		output << LLDate();
 		ensure_not(output.bad());

@@ -1,5 +1,5 @@
-CPPFLAGS?=-I../../3rdparty/tut-framework/
-CXXFLAGS?=
+CPPFLAGS+= -I../../3rdparty/tut-framework/
+CXXFLAGS+=
 
 OBJECTS = main.o types/lldate_test.o  ../libomvtk/types/lldate.o
 

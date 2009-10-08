@@ -12,12 +12,14 @@
 
 namespace omvtk
 {
+    struct LLDate_P;
 	struct LLDate
 	{
 		typedef boost::posix_time::ptime value_type;
 		static String const & DateFormat;
 
 		LLDate();
+        ~LLDate();
 		
 		// the byte sub range represented must be Real64 in network byte order!
 		LLDate(byte_sub_range const & sr);
@@ -26,7 +28,7 @@ namespace omvtk
 		LLDate(String const & fromString);
 		LLDate(LLDate const &);
 
-		LLDate & operator=(LLDate);
+		LLDate & operator=(const LLDate & );
 
 		bool operator == (LLDate const & dateTime) const;	
 		bool operator != (LLDate const & dateTime) const;	
@@ -41,8 +43,7 @@ namespace omvtk
 		Real64 to_real() const;
 		value_type const & get() const;
 		value_type & get();
-	protected:
-		value_type m_data;
+        LLDate_P * d;
 	};
 }
 

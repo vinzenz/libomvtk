@@ -22,88 +22,115 @@ namespace
 
 namespace omvtk
 {
-	String const & LLDate::DateFormat = "%Y-%m-%dT%H:%M:%S%F%z";
+
+    struct LLDate_P{
+        LLDate_P(boost::posix_time::ptime d = boost::posix_time::ptime() ) :m_data(d){
+            input_facet = new  boost::local_time::local_time_input_facet();
+            output_facet = new  boost::local_time::local_time_facet();   
+
+            input_facet->format( omvtk::LLDate::DateFormat.c_str());     
+            output_facet->format( omvtk::LLDate::DateFormat.c_str());     
+
+            ss.imbue(std::locale(std::locale::classic(), output_facet));
+            ss.imbue(std::locale(ss.getloc(), input_facet));
+        }
+        ~LLDate_P(){
+//            delete input_facet;
+//            delete output_facet;
+        }
+        boost::local_time::local_time_input_facet * input_facet;
+        boost::local_time::local_time_facet * output_facet;
+		boost::posix_time::ptime m_data;
+        std::stringstream ss;
+    };
+
+	String const & LLDate::DateFormat = "%Y";
 
 	LLDate::LLDate()
-		: m_data(boost::posix_time::from_time_t(0))
+		: d(new LLDate_P(boost::posix_time::from_time_t(0)))
 	{		
 	}
 
 	LLDate::LLDate(byte_sub_range const & sr)
-		: m_data(FromByteSubRange(sr))
+		: d(new LLDate_P(FromByteSubRange(sr)))
 	{		
 	}
 
 	LLDate::LLDate(Int32 secondsSinceEpoch)
-		: m_data(boost::posix_time::from_time_t(secondsSinceEpoch))
-	{		
+		: d(new LLDate_P(boost::posix_time::from_time_t(secondsSinceEpoch)))
+	{	
 	}
 
 	LLDate::LLDate(double secondsSinceEpoch)
-		: m_data(boost::posix_time::from_time_t(secondsSinceEpoch))
-	{		
+		: d(new LLDate_P(boost::posix_time::from_time_t(secondsSinceEpoch)))
+	{	
 	}
 
 	LLDate::LLDate(String const & fromString)
-		: m_data(boost::posix_time::from_time_t(0))
+		: d(new LLDate_P())
 	{
         std::stringstream ss(fromString);
         ss>>(*this);
 	}
 
 	LLDate::LLDate(LLDate const & o)
-		: m_data(o.m_data)
+        : d(new LLDate_P(o.d->m_data))
 	{
+        d=new LLDate_P();
 	}
 
+    LLDate::~LLDate()
+    {
+        delete d;
+    }
 
-	LLDate & LLDate::operator=(LLDate o)
+
+	LLDate & LLDate::operator=(const LLDate & o)
 	{
-		swap(o);
+        d->m_data=o.d->m_data;
 		return *this;
 	}
 
 
 	bool LLDate::operator == (LLDate const & o) const
 	{
-		return m_data == o.m_data;
+		return d->m_data == o.d->m_data;
 	}
 	
 	bool LLDate::operator != (LLDate const & o) const
 	{
-		return m_data != o.m_data;
+		return d->m_data != o.d->m_data;
 	}
 	
 	bool LLDate::operator <  (LLDate const & o) const
 	{
-		return m_data < o.m_data;
+		return d->m_data < o.d->m_data;
 	}
 	
 	bool LLDate::operator <= (LLDate const & o) const
 	{
-		return m_data <= o.m_data;
+		return d->m_data <= o.d->m_data;
 	}
 	
 	bool LLDate::operator >  (LLDate const & o) const
 	{
-		return m_data > o.m_data;
+		return d->m_data > o.d->m_data;
 	}
 	
 	bool LLDate::operator >= (LLDate const & o) const
 	{
-		return m_data >= o.m_data;
+		return d->m_data >= o.d->m_data;
 	}
 	
 	void LLDate::swap(LLDate & other)
 	{
-        std::swap(other.m_data,this->m_data);
+        std::swap(other.d->m_data,this->d->m_data);
 	}
 	
 	String LLDate::to_string() const
 	{
-        std::stringstream ss;
-        ss<<(*this);
-        return ss.str();
+        d->ss<<d->m_data;
+        return d->ss.str();
 	}
 
 	Int32 LLDate::to_integer() const {
@@ -112,45 +139,43 @@ namespace omvtk
 
 	Real64 LLDate::to_real() const{
         //if ptime is not_a_date_time or an infinity there's no conversion 
-        if (m_data.is_special()) { 
+        if (d->m_data.is_special()) { 
             throw new std::runtime_error("conversion undefined"); 
         }
 
         boost::posix_time::ptime time_t_epoch(boost::gregorian::date(1970,1,1)); 
         //if ptime is less than 1970-1-1 conversion will fail 
-        if (m_data < time_t_epoch) { 
+        if (d->m_data < time_t_epoch) { 
             throw new std::runtime_error("conversion undefined"); 
         } 
-        boost::posix_time::time_duration td = m_data - time_t_epoch; 
+        boost::posix_time::time_duration td = d->m_data - time_t_epoch; 
         return static_cast<std::time_t>(td.total_seconds()); 
 	}
 
 	LLDate::value_type const & LLDate::get() const
 	{
-		return m_data;
+		return d->m_data;
 	}
 
 	LLDate::value_type & LLDate::get()
 	{
-		return m_data;
+		return d->m_data;
 	}
 }
 
 namespace std{
 
     istream & operator>>(istream & is, omvtk::LLDate & d){
-        boost::local_time::local_time_input_facet  * input_facet = new  boost::local_time::local_time_input_facet();
-        input_facet->format( omvtk::LLDate::DateFormat.c_str());
-        std::locale oldloc=is.imbue(std::locale(is.getloc(), input_facet));
-        is>>d;
+        std::locale oldloc=is.imbue(std::locale(is.getloc(), d.d->input_facet));
+        is>>d.get();
         is.imbue(oldloc);
+        return is;
 	}
     ostream & operator<<(ostream & os, omvtk::LLDate const & d){
-        boost::local_time::local_time_facet  * output_facet = new  boost::local_time::local_time_facet();
-        output_facet->format( omvtk::LLDate::DateFormat.c_str());
-        std::locale oldloc=os.imbue(std::locale(std::locale::classic(), output_facet));
-        os<<d;
+        std::locale oldloc=os.imbue(std::locale(std::locale::classic(), d.d->output_facet));
+        os<<d.get();
         os.imbue(oldloc);
+        return os;
     }
 }
 
