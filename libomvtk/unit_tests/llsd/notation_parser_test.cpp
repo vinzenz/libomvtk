@@ -72,9 +72,9 @@ namespace tut
 			omvtk::String encoded = value.notation_encode();
 			ensure_equals(omvtk::detail::Notation::Parser::Parse(encoded.begin(), encoded.end()).notation_encode(),encoded);
         	}
-        	catch(Poco::Exception const & e)
+        	catch(std::exception const & e)
 	        {
-        	    std::cout << e.displayText() << std::endl;
+        	    std::cout << e.what() << std::endl;
 	            throw;
         	}
 	}
@@ -87,9 +87,9 @@ namespace tut
 		    omvtk::String encoded = value.notation_encode();
 		    ensure_equals(omvtk::detail::Notation::Parser::Parse(encoded.begin(), encoded.end()).notation_encode(),encoded);
         	}
-	        catch(Poco::Exception const & e)
+	        catch(std::exception const & e)
         	{
-	            std::cout << e.displayText() << std::endl;
+	            std::cout << e.what() << std::endl;
         	    throw;
 	        }
 	}

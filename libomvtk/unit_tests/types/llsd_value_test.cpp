@@ -1,6 +1,7 @@
 #include "../test_suite.h"
 #include "../../libomvtk/llsd/value.h"
-#include <Poco/ByteOrder.h>
+#include "../../libomvtk/types/byte_order.h"
+
 namespace tut
 {
 	using omvtk::LLSDValue;
@@ -53,7 +54,7 @@ namespace tut
 		ensure_equals(val.notation_encode(), "i100");
 		LLSDValue::Binary serializedBin;
 		serializedBin.push_back('i');
-		omvtk::Int32 integer = Poco::ByteOrder::toNetwork(val.integer());
+		omvtk::Int32 integer = omvtk::to_network(val.integer());
 		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&integer);
 		serializedBin.insert(serializedBin.end(), p, p+sizeof(omvtk::Int32));
 		LLSDValue::Binary output;
@@ -73,7 +74,7 @@ namespace tut
 		ensure_equals(val.notation_encode(), "r123.456789");
 		LLSDValue::Binary serializedBin;
 		serializedBin.push_back('r');
-		omvtk::Real64 real = omvtk::Real64ByteOrder::convert(Poco::ByteOrder::toNetwork, val.real());
+		omvtk::Real64 real = omvtk::to_network( val.real() );
 		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&real);
 		serializedBin.insert(serializedBin.end(), p, p+sizeof(omvtk::Real64));
 		LLSDValue::Binary output;
@@ -145,7 +146,7 @@ namespace tut
 		ensure_equals(val.notation_encode(), "d\"2008-07-25T18:20:00Z\"");
 		LLSDValue::Binary serializedBin;
 		serializedBin.push_back('d');
-		omvtk::Real64 secs = omvtk::Real64ByteOrder::convert(Poco::ByteOrder::toNetwork, val.date().to_real());
+		omvtk::Real64 secs = omvtk::to_network( val.date().to_real() );
 		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&secs);
 		serializedBin.insert(serializedBin.end(), p, p+sizeof(omvtk::Real64));
 		LLSDValue::Binary output;
