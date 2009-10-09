@@ -10,17 +10,11 @@ package.config["Debug"].objdir = "obj/debug/unit_tests"
 package.config["Release"].objdir = "obj/release/unit_tests"
 package.buildflags = { "optimize-speed"}
 package.includepaths = { 
-    "../../3rdparty/poco-1.3.2-ssl/Foundation/include", 
-    "../../3rdparty/poco-1.3.2-ssl/XML/include", 
-    "../../3rdparty/poco-1.3.2-ssl/Util/include",
-    "../../3rdparty/poco-1.3.2-ssl/Net/include", 
-    "../../3rdparty/poco-1.3.2-ssl/NetSSL_OpenSSL/include",
 	"../../3rdparty/logging",
     "../../3rdparty/tut-framework"
 } 
 
 package.libpaths =  {
-	"../../3rdparty/poco-1.3.2-ssl/lib",
     "../../3rdparty/lib"
 }
 
@@ -57,6 +51,6 @@ end
 
 
 
-package.config["Debug"].links = { "omvtk", "PocoFoundationd", "boost_system-mt", "ticppd", "boost_thread-mt", "boost_filesystem-mt", SSLLIB1D, SSLLIB2D }
-package.config["Release"].links = { "omvtk", "PocoFoundation", "boost_system-mt", "ticpp", "boost_thread-mt", "boost_filesystem-mt" , SSLLIB1, SSLLIB2 }
+package.config["Debug"].links = { "omvtk", "boost_system-mt", "ticppd", "boost_thread-mt", "boost_filesystem-mt", SSLLIB1D, SSLLIB2D }
+package.config["Release"].links = { "omvtk","boost_system-mt", "ticpp", "boost_thread-mt", "boost_filesystem-mt" , SSLLIB1, SSLLIB2 }
 
