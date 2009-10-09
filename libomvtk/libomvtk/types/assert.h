@@ -33,12 +33,12 @@
 #include <cassert>
 
 #define libomvtk_ensure(x)				assert(x)
-#define libomvtk_assert(x)				poco_assert_dbg(x)
-#define libomvtk_bugcheck_msg(x)		poco_bugcheck_msg(x)
-#define libomvtk_bugcheck()			poco_bugcheck()
-#define libomvtk_check_ptr(x)			poco_check_ptr(x)
-#define libomvtk_debugger()			poco_debugger()
-#define libomvtk_debugger_msg(x)		poco_debugger_msg(x)
+#define libomvtk_assert(x)				assert(x)
+#define libomvtk_bugcheck_msg(x)		assert(x)
+#define libomvtk_bugcheck()			    assert(false)
+#define libomvtk_check_ptr(x)			assert(x != 0)
+#define libomvtk_debugger()			    assert(!"Call the debugger")
+#define libomvtk_debugger_msg(x)		assert(!"Call the debugger: " x)
 
 
 #endif //GUARD_LIBOMVTK_TYPES_ASSERT_H_INCLUDED
