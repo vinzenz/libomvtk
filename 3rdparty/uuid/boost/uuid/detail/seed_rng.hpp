@@ -25,6 +25,7 @@
 #include <limits>
 #include <memory.h>
 #include <ctime>
+#include <cstdio>
 #include <cstdlib>
 #include <boost/uuid/detail/sha1.hpp>
 //#include <boost/nondet_random.hpp> //forward declare boost::random_device
