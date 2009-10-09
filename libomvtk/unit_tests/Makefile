@@ -6,6 +6,7 @@ OBJECTS = \
     types/lldate_test.o  \
     types/lluuid_test.o \
     ../libomvtk/types/lldate.o \
+    ../libomvtk/types/byte_order.o \
     ../libomvtk/types/lluuid.o
 
 OBJ_o=$(foreach ob,$(OBJECTS),.obj/$(ob))

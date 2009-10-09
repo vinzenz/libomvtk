@@ -16,7 +16,7 @@ namespace omvtk
 	struct LLDate
 	{
 		typedef boost::posix_time::ptime value_type;
-		static String const & DateFormat;
+		static String const DateFormat;
 
 		LLDate();
         ~LLDate();
@@ -28,7 +28,7 @@ namespace omvtk
 		LLDate(String const & fromString);
 		LLDate(LLDate const &);
 
-		LLDate & operator=(const LLDate & );
+		LLDate & operator=(LLDate);
 
 		bool operator == (LLDate const & dateTime) const;	
 		bool operator != (LLDate const & dateTime) const;	
@@ -43,7 +43,9 @@ namespace omvtk
 		Real64 to_real() const;
 		value_type const & get() const;
 		value_type & get();
-        LLDate_P * d;
+
+    protected:
+        value_type m_data;
 	};
 }
 

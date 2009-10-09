@@ -40,7 +40,20 @@ namespace omvtk
 		{}
 
 	};
+
+    struct BadCastException : Exception
+    {
+		BadCastException()
+			: Exception("BadCastException")
+		{}
+		
+		BadCastException(std::string const & msg)
+			: Exception("BadCastException: " + msg)
+		{}
+	};
+
 }
+
 
 #endif //GUARD_LIBOMVTK_TYPES_EXCEPTIONS_H_INCLUDED
 

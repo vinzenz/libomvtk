@@ -1,136 +1,125 @@
 #include "lldate.h"
+#include "byte_order.h"
 #include <iostream>
 #include <locale>
 #include <iostream>
 #include <boost/date_time/gregorian/gregorian.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/date_time/local_time/local_time.hpp>
+#include <boost/lexical_cast.hpp>
+#include <cstring>
 #include <ctime>
 #include <cassert>
 
 
 namespace 
 {
+    using namespace boost::posix_time;
+
 	omvtk::LLDate::value_type FromByteSubRange(omvtk::byte_sub_range const & sr)
 	{
 		libomvtk_ensure(sr.size() == sizeof(omvtk::Real64));
 		omvtk::Real64 r = *(omvtk::Real64*)&sr[0];
-//		r = omvtk::Real64ByteOrder::convert(Poco::ByteOrder::fromNetwork, r);
-		return boost::posix_time::from_time_t(r);
+		return from_time_t( omvtk::to_host(r) );
 	}
+
+	omvtk::LLDate::value_type FromString(omvtk::String const & s)
+	{
+        std::istringstream istr(s);
+        omvtk::LLDate d;
+        istr >> d;
+		return d.get();
+	}
+
+    
 }
 
 namespace omvtk
 {
-
-    struct LLDate_P{
-        LLDate_P(boost::posix_time::ptime d = boost::posix_time::ptime() ) :m_data(d){
-            input_facet = new  boost::local_time::local_time_input_facet();
-            output_facet = new  boost::local_time::local_time_facet();   
-
-            input_facet->format( omvtk::LLDate::DateFormat.c_str());     
-            output_facet->format( omvtk::LLDate::DateFormat.c_str());     
-
-            ss.imbue(std::locale(std::locale::classic(), output_facet));
-            ss.imbue(std::locale(ss.getloc(), input_facet));
-        }
-        ~LLDate_P(){
-//            delete input_facet;
-//            delete output_facet;
-        }
-        boost::local_time::local_time_input_facet * input_facet;
-        boost::local_time::local_time_facet * output_facet;
-		boost::posix_time::ptime m_data;
-        std::stringstream ss;
-    };
-
-	String const & LLDate::DateFormat = "%Y";
+	String const LLDate::DateFormat = "%Y-%m-%dT%H:%M:%S";
 
 	LLDate::LLDate()
-		: d(new LLDate_P(boost::posix_time::from_time_t(0)))
+		: m_data(from_time_t(0))
 	{		
 	}
 
 	LLDate::LLDate(byte_sub_range const & sr)
-		: d(new LLDate_P(FromByteSubRange(sr)))
-	{		
+		: m_data(FromByteSubRange(sr))
+    {	
 	}
 
 	LLDate::LLDate(Int32 secondsSinceEpoch)
-		: d(new LLDate_P(boost::posix_time::from_time_t(secondsSinceEpoch)))
+		: m_data(from_time_t(secondsSinceEpoch))
 	{	
 	}
 
 	LLDate::LLDate(double secondsSinceEpoch)
-		: d(new LLDate_P(boost::posix_time::from_time_t(secondsSinceEpoch)))
+		: m_data(from_time_t(secondsSinceEpoch))
 	{	
 	}
 
 	LLDate::LLDate(String const & fromString)
-		: d(new LLDate_P())
+		: m_data(FromString(fromString))
 	{
-        std::stringstream ss(fromString);
-        ss>>(*this);
 	}
 
 	LLDate::LLDate(LLDate const & o)
-        : d(new LLDate_P(o.d->m_data))
+        : m_data(o.m_data)
 	{
-        d=new LLDate_P();
 	}
 
     LLDate::~LLDate()
     {
-        delete d;
     }
 
 
-	LLDate & LLDate::operator=(const LLDate & o)
-	{
-        d->m_data=o.d->m_data;
+	LLDate & LLDate::operator=(LLDate o)
+	{                
+        swap(o);
 		return *this;
 	}
 
 
 	bool LLDate::operator == (LLDate const & o) const
 	{
-		return d->m_data == o.d->m_data;
+		return m_data == o.m_data;
 	}
 	
 	bool LLDate::operator != (LLDate const & o) const
 	{
-		return d->m_data != o.d->m_data;
+		return m_data != o.m_data;
 	}
 	
 	bool LLDate::operator <  (LLDate const & o) const
 	{
-		return d->m_data < o.d->m_data;
+		return m_data < o.m_data;
 	}
 	
 	bool LLDate::operator <= (LLDate const & o) const
 	{
-		return d->m_data <= o.d->m_data;
+		return m_data <= o.m_data;
 	}
 	
 	bool LLDate::operator >  (LLDate const & o) const
-	{
-		return d->m_data > o.d->m_data;
+    {
+		return m_data > o.m_data;
 	}
 	
 	bool LLDate::operator >= (LLDate const & o) const
 	{
-		return d->m_data >= o.d->m_data;
+		return m_data >= o.m_data;
 	}
 	
 	void LLDate::swap(LLDate & other)
 	{
-        std::swap(other.d->m_data,this->d->m_data);
+        std::swap( m_data, other.m_data );
 	}
 	
 	String LLDate::to_string() const
 	{
-        d->ss<<d->m_data;
-        return d->ss.str();
+        std::ostringstream ostr;        
+        ostr << *this;
+        return ostr.str();
 	}
 
 	Int32 LLDate::to_integer() const {
@@ -139,43 +128,94 @@ namespace omvtk
 
 	Real64 LLDate::to_real() const{
         //if ptime is not_a_date_time or an infinity there's no conversion 
-        if (d->m_data.is_special()) { 
-            throw new std::runtime_error("conversion undefined"); 
+        if (m_data.is_special()) { 
+            throw std::runtime_error("conversion undefined"); 
         }
 
-        boost::posix_time::ptime time_t_epoch(boost::gregorian::date(1970,1,1)); 
+        ptime time_t_epoch(boost::gregorian::date(1970,1,1)); 
         //if ptime is less than 1970-1-1 conversion will fail 
-        if (d->m_data < time_t_epoch) { 
-            throw new std::runtime_error("conversion undefined"); 
+        if (m_data < time_t_epoch) { 
+            throw std::runtime_error("conversion undefined"); 
         } 
-        boost::posix_time::time_duration td = d->m_data - time_t_epoch; 
+        time_duration td = m_data - time_t_epoch; 
         return static_cast<std::time_t>(td.total_seconds()); 
 	}
 
 	LLDate::value_type const & LLDate::get() const
 	{
-		return d->m_data;
+		return m_data;
 	}
 
 	LLDate::value_type & LLDate::get()
 	{
-		return d->m_data;
+		return m_data;
 	}
 }
 
 namespace std{
 
-    istream & operator>>(istream & is, omvtk::LLDate & d){
-        std::locale oldloc=is.imbue(std::locale(is.getloc(), d.d->input_facet));
-        is>>d.get();
-        is.imbue(oldloc);
-        return is;
+    istream & operator>>(istream & is, omvtk::LLDate & d)
+    {
+        std::locale old = is.imbue(
+            std::locale(
+                is.getloc(),
+                new time_input_facet( (omvtk::LLDate::DateFormat).c_str() )
+            )
+        );
+        is >> d.get();
+        is.imbue( old );
+        
+        if( !d.get().is_special() )
+        {
+            switch( is.peek() ) {
+                
+                case 'Z':
+                    is.get();
+                    break;
+                case '.':                
+                    is.get();
+                    {
+                        std::string frac;
+                        while( is.peek() != -1 ) {
+                            char next = is.peek();
+                            if( std::isdigit( next ) ) {
+                                frac += is.get();
+                                continue;
+                            }
+                            else if( next == 'Z' ) {
+                                is.get();
+                                if( !frac.empty() ){
+                                    d.get() = d.get() + time_duration(0, 0, 0, boost::lexical_cast<omvtk::UInt64>( frac ) );
+                                }
+                                break;  
+                            }
+                            break;
+                        }
+                    }
+                    break;
+            }
+        }
+        return is;        
 	}
-    ostream & operator<<(ostream & os, omvtk::LLDate const & d){
-        std::locale oldloc=os.imbue(std::locale(std::locale::classic(), d.d->output_facet));
-        os<<d.get();
-        os.imbue(oldloc);
-        return os;
+    
+    ostream & operator<<(ostream & os, omvtk::LLDate const & d)
+    {
+        std::locale old = os.imbue(
+            std::locale(
+                os.getloc(),
+                new time_facet( omvtk::LLDate::DateFormat.c_str() )
+            )
+        );
+        os << d.get();
+        os.imbue( old );
+
+        if( !d.get().is_special() ) {
+            if( d.get().time_of_day().fractional_seconds() ) {
+                os << "." << d.get().time_of_day().fractional_seconds();
+            }
+            os << "Z";
+        }
+        return os;        
     }
 }
 

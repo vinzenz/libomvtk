@@ -1,6 +1,6 @@
 #include "../test_suite.h"
-#include <Poco/ByteOrder.h>
 #include "../../libomvtk/types/lldate.h"
+#include "../../libomvtk/types/byte_order.h"
 
 namespace tut
 {
@@ -21,7 +21,7 @@ namespace tut
 	{
 		set_test_name("serialization to std::ostream and back via std::istream with default initialization");
 
-        std::cout<<"\n\n\n"<<LLDate(1191238220)<<"\n\n\n";
+//        std::cout<<"\n\n\n"<<LLDate(1191238220)<<"\n\n\n";
 
 		std::ostringstream output;
 		output << LLDate();
@@ -59,7 +59,7 @@ namespace tut
 	DEF_TEST(4)
 	{
 		set_test_name("Binary parsing test");
-		double r = omvtk::Real64ByteOrder::convert(&Poco::ByteOrder::toNetwork, 1.);
+		double r = omvtk::to_network(1.); 
 		omvtk::Byte * p = reinterpret_cast<omvtk::Byte*>(&r);
 		omvtk::byte_sub_range br(p,p+8);
 		LLDate date(br);

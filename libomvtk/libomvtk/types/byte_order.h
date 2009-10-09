@@ -26,6 +26,45 @@ namespace omvtk
 
     UInt64  to_network(UInt64 value);
     Int64   to_network(Int64 value);
+
+    namespace detail {
+        union Real64ConvHelper {
+            Real64 r;
+            UInt64 u;
+        };
+        union Real32ConvHelper {
+            Real32 r;
+            UInt32 u;
+        };
+    }
+
+    inline Real32  to_host(Real32 value){
+        detail::Real32ConvHelper c;
+        c.r = value;
+        c.u = to_host(c.u);
+        return c.r;
+    }    
+
+    inline Real64  to_host(Real64 value){
+        detail::Real64ConvHelper c;
+        c.r = value;
+        c.u = to_host(c.u);
+        return c.r;
+    }    
+
+    inline Real32  to_network(Real32 value){
+        detail::Real32ConvHelper c;
+        c.r = value;
+        c.u = to_network(c.u);
+        return c.r;
+    }    
+
+    inline Real64  to_network(Real64 value){
+        detail::Real64ConvHelper c;
+        c.r = value;
+        c.u = to_network(c.u);
+        return c.r;
+    }    
 }
 
 
