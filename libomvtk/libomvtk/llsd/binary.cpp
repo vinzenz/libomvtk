@@ -33,6 +33,7 @@
 #include "traits.h"
 #include "../types/exceptions.h"
 #include "../types/assert.h"
+#include "../types/byte_order.h"
 
 namespace omvtk
 {
@@ -50,7 +51,7 @@ namespace omvtk
 			template<typename ValT>
 			inline ValT MakeVal(iterator iter)
 			{
-				return Poco::ByteOrder::fromNetwork(*reinterpret_cast<ValT const*>(&*iter));
+				return to_host(*reinterpret_cast<ValT const*>(&*iter));
 			}
 
 			template<typename Ret, typename Cont, typename Val>

@@ -32,20 +32,16 @@
 
 #include "base_types.h"
 #include "sub_range.h"
-#include <boost/network/url.hpp>
 
 namespace omvtk
 {
 	struct LLURI
 	{
-		typedef boost::network::url::http::url value_type;
+		typedef String value_type;
 		
 		/// Create an empty URI
 		LLURI();
 		
-		/// Initialize the LLURI with a Poco::URI object
-		LLURI(value_type const &);
-
 		/// Copy constructor
 		LLURI(LLURI const &);
 
