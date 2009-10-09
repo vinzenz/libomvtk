@@ -105,12 +105,31 @@ namespace uripp {
         const_iterator begin() const {return segments_.begin();} ///< Get iterator at beginning.
         const_iterator end() const {return segments_.end();} ///< Get iterator at end.
         static const char SEPARATOR_CHAR; ///< separator ('/')
+        path(path const & o)
+        : absolute_(o.absolute_)
+        , is_directory_(o.is_directory_)
+        , segments_(o.segments_)
+        {
+        }
+        void swap(path & o){
+            segments_.swap(o.segments_);
+        }
+
+        path & operator=(path o){
+            swap(o);
+            return *this;
+        } 
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, path& v, std::string* errs);
         bool absolute_;
         bool is_directory_;
         segments_type segments_;
     };
+    
+    void swap(path & a, path & b){
+        a.swap(b);
+    }
+
     /// Parse URI path, returning whether found or not
     /// and advancing first and setting path if found.
     /// Does not skip leading space.

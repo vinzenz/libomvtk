@@ -45,10 +45,27 @@ namespace uripp {
         bool is_null() const {return string_.empty();} ///< Test if null/empty.
         const std::string& string() const {return string_;} ///< Get decoded string.
         std::string encoding() const; ///< Calculate encoded string.
+        fragment(fragment const & o)
+            : string_(o.string_)
+            {}
+
+        void swap(fragment & o){
+            string_.swap(o.string_);
+        }
+
+        fragment & operator=(fragment o){
+            swap(o);
+            return *this;
+        }
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, fragment& v, std::string* errs);
         std::string string_;
     };
+    
+    void swap(fragment & a, fragment & b){
+        a.swap(b);
+    }
+
     /// Parse URI fragment, returning whether found or not
     /// and advancing first and setting fragment if found.
     /// Does not skip leading space.

@@ -47,6 +47,7 @@ namespace uripp {
      * However, once the query is sorted pairs must not be inserted.
      * @see http://tools.ietf.org/html/rfc3986#section-3.4 */
     class URIPP_API query : public std::vector<std::pair<std::string, std::string> > {
+        typedef std::vector<std::pair<std::string, std::string> > base_type;
     public:
         query(); ///< Construct.
         /// Construct from encoded string, for example "a=foo%20bar&b=1",
@@ -80,10 +81,30 @@ namespace uripp {
         }
         static const char PAIRS_SEP_CHAR; ///< pairs separator char ('&')
         static const char KEY_VALUE_SEP_CHAR; ///< key-value separator char ('=')
+        query(query const & o)
+        : base_type(o)
+        , sorted_(o.sorted_)
+        {
+        }
+
+        void swap(query & o){
+            base_type::swap(o);
+            std::swap(sorted_, o.sorted_);
+        }
+
+        query & operator=(query o){
+            swap(o);
+            return *this;
+        } 
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, query& v, std::string* errs);
         bool sorted_;
     };
+
+    void swap(query & a, query & b){
+        a.swap(b);
+    }
+
     /// Parse URI query, returning whether found or not
     /// and advancing first and setting query if found.
     /// Does not skip leading space.

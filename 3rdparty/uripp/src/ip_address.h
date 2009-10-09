@@ -50,11 +50,28 @@ namespace uripp {
         std::string string() const; ///< Calculate string.
         std::ostream& operator <<(std::ostream& os) const; ///< Stream out.
         static const char SEPARATOR_CHAR; ///< separator ('.')
+        ip_address(ip_address const & o)
+        {
+            std::memcpy(octets_, o.octets_, sizeof(octets_));
+        }
+        void swap(ip_address & o){
+            std::swap_ranges(&octets_[0], &octets_[sizeof(octets_)], &o.octets[0]);
+        }
+
+        ip_address & operator=(ip_address o){
+            swap(o);
+            return *this;
+        }    
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, ip_address& v);
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, ipv6_address& v);
         unsigned char octets_[4];
     };
+
+    void swap(ip_address & a, ip_address & b){
+        a.swap(b);
+    }
+
     /// Stream out IP address.
     inline std::ostream& operator <<(std::ostream& os, const ip_address& v) {return v.operator <<(os);}
     /// Parse IP address, returning whether found or not

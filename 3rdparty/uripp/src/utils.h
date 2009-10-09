@@ -11,9 +11,6 @@ namespace uripp {
     std::string URIPP_API convert(unsigned long int v); ///< unsigned long int to string
     std::string URIPP_API convert(long long int v); ///< long long int to string
     std::string URIPP_API convert(unsigned long long int v); ///< unsigned long long int to string
-#	ifndef _WIN32
-    std::string URIPP_API convert(ptrdiff_t v); ///< ptrdiff_t to string
-#	endif
     std::string URIPP_API convert(double v); ///< double to string
     std::string URIPP_API convert(const std::string& v); ///< string to trimmed string
     inline std::string convert(const char* v) {return v;} ///< cstring to string

@@ -122,6 +122,26 @@ namespace uripp {
         fragment_type& fragment() {return fragment_;} ///< Get fragment.
         std::string encoding() const; ///< Calculate encoded string.
         std::ostream& operator <<(std::ostream& os) const; ///< Stream out encoding.
+        uri(uri const & o)
+            : scheme_(o.scheme_)
+            , authority_(o.authority_)
+            , path_(o.path_)
+            , query_(o.query_)
+            , fragment_(o.fragment_) 
+            {}
+
+        void swap(uri & o){
+            scheme_.swap(o.scheme_);
+            authority_.swap(o.authority_);
+            path_.swap(o.path_);
+            query_.swap(o.query_);
+            fragment_.swap(o.fragment_);
+        }
+
+        uri & operator=(uri o){
+            swap(o);
+            return *this;
+        }
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, uri& v, std::string* errs);
         static bool parse_literal(std::string::const_iterator& first, std::string::const_iterator last, const char* v);
@@ -131,6 +151,10 @@ namespace uripp {
         query_type query_;
         fragment_type fragment_;
     };
+    void swap(uri & a, uri & b){
+        a.swap(b);
+    }
+
     /// Parse URI, returning whether found or not and advancing first
     /// and setting URI if found. Does not skip leading space.
     ///

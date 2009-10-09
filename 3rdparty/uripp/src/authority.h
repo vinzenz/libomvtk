@@ -64,12 +64,34 @@ namespace uripp {
         static const char IP_LITERAL_BEGIN_CHAR; ///< IP literal begin ('[')
         static const char IP_LITERAL_END_CHAR; ///< IP literal end (']')
         static const char PORT_SEPARATOR_CHAR; ///< port separator (':')
+
+        authority(authority const & o)
+            : host_type_(o.host_type_)
+            , host_(o.host_)
+            , port_(o.port_)
+            {}
+
+        void swap(authority & o){
+            host_type_.swap(o.host_type_);
+            host_.swap(o.host_);
+            std::swap(port_, o.port_);
+        }
+
+        autority & operator=(autority o){
+            swap(o);
+            return *this;
+        }
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, authority& v);
         host_type_e host_type_;
         std::string host_;
         unsigned short port_;
     };
+
+    void swap(authority & a, authority & b){
+        a.swap(b);
+    }
+
     /// Stream out URI authority.
     inline std::ostream& operator <<(std::ostream& os, const authority& v) {return v.operator <<(os);}
     /// Parse URI authority, returning whether found or not and advancing

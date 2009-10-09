@@ -62,11 +62,28 @@ namespace uripp {
         /// @see string()
         std::ostream& write(std::ostream& os, bool compress = false) const;
         static const char SEPARATOR_CHAR; ///< separator (':')
+        ipv6_address(ipv6_address const & o)
+        {
+            std::memcpy(hextets_, o.hextets_, sizeof(hextets_));
+        }
+        void swap(ipv6_address & o){
+            std::swap_ranges(&hextets_[0], &hextets_[sizeof(hextets_)], &o.hextets_[0]);
+        }
+
+        ipv6_address & operator=(ipv6_address o){
+            swap(o);
+            return *this;
+        } 
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, ipv6_address& v);
         bool zero_run(size_t& first, size_t& last) const;
         unsigned short hextets_[8];
     };
+
+    void swap(ipv6_address & a, ipv6_address & b){
+        a.swap(b);
+    }
+
     /// Stream out IP v6 address.
     inline std::ostream& operator <<(std::ostream& os, const ipv6_address& v) {return v.write(os);}
     /// Parse IP v6 address, returning whether found or not

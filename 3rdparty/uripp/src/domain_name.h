@@ -51,10 +51,27 @@ namespace uripp {
         domain_name& operator +=(const domain_name& rhs);
         static const char SEPARATOR_CHAR; ///< separator ('.')
         static const char char_class[256]; ///< char class
+        domain_name(domain_name const & o)
+            : string_(o.string_)
+            {}
+
+        void swap(domain_name & o){
+            string_.swap(o.string_);
+        }
+
+        domain_name & operator=(domain_name o){
+            swap(o);
+            return *this;
+        }
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, domain_name& v);
         std::string string_;
     };
+    
+    void swap(domain_name & a, domain_name & b){
+        a.swap(b);
+    }
+
     /// Stream out domain name.
     inline std::ostream& operator <<(std::ostream& os, const domain_name& v) {return os << v.string();}
     /// Parse domain name, returning whether found or not

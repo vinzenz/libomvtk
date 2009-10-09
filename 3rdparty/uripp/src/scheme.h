@@ -44,10 +44,26 @@ namespace uripp {
         bool empty() const {return is_null();} ///< Test if null/empty.
         bool is_null() const {return string_.empty();} ///< Test if null/empty.
         const std::string& string() const {return string_;} ///< Get string.
+        scheme(scheme const & o)
+            : string_(o.string_)
+            {}
+
+        void swap(scheme & o){
+            string_.swap(o.string_);
+        }
+
+        scheme & operator=(scheme o){
+            swap(o);
+            return *this;
+        }
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, scheme& v, char* endc);
         std::string string_;
     };
+
+    void swap(schema & a, schema & b){
+        a.swap(b);
+    }
     /// Stream out URI scheme.
     inline std::ostream& operator <<(std::ostream& os, const scheme& v) {return os << v.string();}
     /// Parse URI scheme, returning whether found or not
