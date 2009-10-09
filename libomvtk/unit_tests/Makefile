@@ -5,6 +5,7 @@ OBJECTS = \
     main.o \
     types/lldate_test.o  \
     types/lluuid_test.o \
+    types/byte_sub_range_test.o \
     ../libomvtk/types/lldate.o \
     ../libomvtk/types/byte_order.o \
     ../libomvtk/types/lluuid.o
