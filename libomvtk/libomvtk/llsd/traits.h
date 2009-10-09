@@ -35,7 +35,8 @@
 #include "../../3rdparty/tinyxml/tinyxml.h"
 #include "value.h"
 #include "../types/assert.h"
-#include "../types/exception.h"
+#include "../types/exceptions.h"
+#include "../types/byte_order.h"
 
 #include <sstream>
 

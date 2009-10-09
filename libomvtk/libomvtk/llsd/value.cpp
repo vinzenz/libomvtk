@@ -314,102 +314,102 @@ namespace omvtk
 
 	LLSDValue::Boolean const & LLSDValue::boolean() const
 	{
-		return boost::any_cast<LLSDValue::Boolean>(m_value);
+		return boost::any_cast<LLSDValue::Boolean const&>(m_value);
 	}
 
 	LLSDValue::Boolean & LLSDValue::boolean()
 	{
-		return boost::any_cast<LLSDValue::Boolean>(m_value);
+		return boost::any_cast<LLSDValue::Boolean&>(m_value);
 	}
 
 	LLSDValue::Integer const & LLSDValue::integer() const
 	{
-		return boost::any_cast<LLSDValue::Integer>(m_value);
+		return boost::any_cast<LLSDValue::Integer const &>(m_value);
 	}
 
 	LLSDValue::Integer & LLSDValue::integer()
 	{
-		return boost::any_cast<LLSDValue::Integer>(m_value);
+		return boost::any_cast<LLSDValue::Integer&>(m_value);
 	}
 
 	LLSDValue::Real	const & LLSDValue::real() const
 	{
-		return boost::any_cast<LLSDValue::Real>(m_value);
+		return boost::any_cast<LLSDValue::Real const &>(m_value);
 	}
 
 	LLSDValue::Real	& LLSDValue::real()
 	{
-		return boost::any_cast<LLSDValue::Real>(m_value);
+		return boost::any_cast<LLSDValue::Real &>(m_value);
 	}
 
 	LLSDValue::String const & LLSDValue::string() const
 	{
-		return boost::any_cast<LLSDValue::String>(m_value);
+		return boost::any_cast<LLSDValue::String const &>(m_value);
 	}
 
 	LLSDValue::String & LLSDValue::string()
 	{
-		return boost::any_cast<LLSDValue::String>(m_value);
+		return boost::any_cast<LLSDValue::String &>(m_value);
 	}
 
 	LLSDValue::UUID	const & LLSDValue::uuid() const
 	{
-		return boost::any_cast<LLSDValue::UUID>(m_value);
+		return boost::any_cast<LLSDValue::UUID const &>(m_value);
 	}
 
 	LLSDValue::UUID	& LLSDValue::uuid()
 	{
-		return boost::any_cast<LLSDValue::UUID>(m_value);
+		return boost::any_cast<LLSDValue::UUID &>(m_value);
 	}
 
 	LLSDValue::URI const & LLSDValue::uri() const
 	{
-		return boost::any_cast<LLSDValue::URI>(m_value);
+		return boost::any_cast<LLSDValue::URI const &>(m_value);
 	}
 
 	LLSDValue::URI & LLSDValue::uri()
 	{
-		return boost::any_cast<LLSDValue::URI>(m_value);
+		return boost::any_cast<LLSDValue::URI &>(m_value);
 	}
 
 	LLSDValue::Date	const & LLSDValue::date() const
 	{
-		return boost::any_cast<LLSDValue::Date>(m_value);
+		return boost::any_cast<LLSDValue::Date const &>(m_value);
 	}
 
 	LLSDValue::Date	& LLSDValue::date()
 	{
-		return boost::any_cast<LLSDValue::Date>(m_value);
+		return boost::any_cast<LLSDValue::Date &>(m_value);
 	}
 
 	LLSDValue::Binary const & LLSDValue::binary() const
 	{
-		return boost::any_cast<LLSDValue::Binary>(m_value);
+		return boost::any_cast<LLSDValue::Binary const &>(m_value);
 	}
 
 	LLSDValue::Binary & LLSDValue::binary()
 	{
-		return boost::any_cast<LLSDValue::Binary>(m_value);
+		return boost::any_cast<LLSDValue::Binary &>(m_value);
 	}
 
 	LLSDValue::Array const & LLSDValue::array() const
 	{
-		return boost::any_cast<LLSDValue::Array>(m_value);
+		return boost::any_cast<LLSDValue::Array const &>(m_value);
 	}
 
 	LLSDValue::Array & LLSDValue::array()
 	{
-		return boost::any_cast<LLSDValue::Array>(m_value);
+		return boost::any_cast<LLSDValue::Array &>(m_value);
 	}
 
 	LLSDValue::Map const & LLSDValue::map() const
 	{
-		return boost::any_cast<LLSDValue::Map>(m_value);
+		return boost::any_cast<LLSDValue::Map const &>(m_value);
 	}
 
 	LLSDValue::Map & LLSDValue::map()
 	{
-		return boost::any_cast<LLSDValue::Map>(m_value);
+		return boost::any_cast<LLSDValue::Map &>(m_value);
 	}
 
 	LLSDValue::String LLSDValue::xml_encode() const
