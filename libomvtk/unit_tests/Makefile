@@ -1,5 +1,5 @@
-CPPFLAGS?=-I../../3rdparty/tut-framework/ -I../../3rdparty/uuid/ -g3
-CXXFLAGS?=
+CPPFLAGS+=-I../../3rdparty/tut-framework/ -I../../3rdparty/uuid/ -g3
+CXXFLAGS+=
 
 OBJECTS = \
     main.o \
