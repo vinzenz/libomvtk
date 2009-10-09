@@ -46,7 +46,7 @@ namespace omvtk
 		/// Default constructor initializes Zero LLUUID
 		LLUUID();
 
-		/// Initialize from Poco::UUID
+		/// Initialize from an internal value_type object 
 		LLUUID(value_type const &);
 
 		/// Initialize from string representation
@@ -97,10 +97,10 @@ namespace omvtk
 		/// Converts to binary buffer
 		ByteBuffer to_binary() const;		
 
-		/// returns internal Poco::UUID instance
+		/// returns the internal instance
 		value_type & get();
 
-		/// returns internal Poco::UUID instance
+		/// returns the internal instance
 		value_type const & get() const;
 	protected:
 		value_type m_data;

@@ -25,13 +25,15 @@
 // POSSIBILITY OF SUCH DAMAGE
 #include "get_mac.h"
 #include <sstream>
-#include <Poco/Random.h>
+#include <boost/random
 
 namespace 
 {
 	omvtk::String generate_random_mac()
 	{
-		Poco::Random rnd;
+        boost::mt19937 rng;
+        boost::uniform_int<> chars(0,255);
+        boost::variate_generator<boost::mt19937&, boost::uniform_int<> > gen(rng, chars);
 		std::ostringstream ostr;
 		for(omvtk::UInt8 i = 0; i < 6; ++i)
 		{
@@ -42,7 +44,7 @@ namespace
 			case 0:
 				ostr.width(2);
 				ostr.fill('0');
-				ostr << std::hex << unsigned(rnd.nextChar());					
+				ostr << std::hex << unsigned(gen());
 				break;
 			}
 		}			

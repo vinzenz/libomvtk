@@ -34,7 +34,7 @@
 #include "../types/raw_types.h"
 #include "../llsd/value.h"
 #include "header.h"
-#include <Poco/ByteOrder.h>
+#include "../types/byte_order.h"
 #include <boost/noncopyable.hpp>
 
 namespace omvtk
@@ -231,26 +231,6 @@ namespace omvtk
 			size_t m_offset;
 		};
 
-		inline Real64 RealToNetwork(Real64 r)
-		{
-			return Real64ByteOrder::convert(Poco::ByteOrder::toNetwork,r);
-		}
-
-		inline Real32 RealToNetwork(Real32 r)
-		{
-			return Real32ByteOrder::convert(Poco::ByteOrder::toNetwork,r);
-		}
-
-		inline Real64 RealFromNetwork(Real64 r)
-		{
-			return Real64ByteOrder::convert(Poco::ByteOrder::fromNetwork,r);
-		}
-
-		inline Real32 RealFromNetwork(Real32 r)
-		{
-			return Real32ByteOrder::convert(Poco::ByteOrder::fromNetwork,r);
-		}
-
 		// every compiler should be able to optimize this away :)
 		template<typename T>
 		inline T & NoConvert(T & t)
@@ -276,7 +256,7 @@ namespace omvtk
 #define LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER(STYPE) \
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(STYPE,NoConvert,NoConvert)
 #define LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(STYPE) \
-		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(STYPE,Poco::ByteOrder::toNetwork,Poco::ByteOrder::fromNetwork)
+		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(STYPE,omvtk::to_network,omvtk::to_host)
 
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER(Int8)
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(Int16)
@@ -286,8 +266,8 @@ namespace omvtk
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(UInt16)
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(UInt32)
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(UInt64)
-		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real32,RealToNetwork,RealFromNetwork)
-		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real64,RealToNetwork,RealFromNetwork)
+		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real32,omvtk::to_network,omvtk::to_host)
+		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real64,omvtk::to_network,omvtk::to_host)
 
 		inline Serializer & operator<<(Serializer & s, bool val)
 		{

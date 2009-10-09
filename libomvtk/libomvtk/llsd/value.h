@@ -35,9 +35,9 @@
 #include "../types/lluuid.h"
 #include "../types/lldate.h"
 
-#include <Poco/Any.h>
 #include <map>
 #include <vector>
+#include <boost/any.hpp>
 
 namespace omvtk
 {
@@ -135,49 +135,49 @@ namespace omvtk
 
 		/// Conversion method forces conversion to Boolean
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		Boolean to_boolean() const;
 
 		/// Conversion method forces conversion to Integer
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		Integer to_integer() const;
 
 		/// Conversion method forces conversion to Real
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		Real	to_real()	 const;
 
 		/// Conversion method forces conversion to String
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		String	to_string()	 const;
 
 		/// Conversion method forces conversion to UUID
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		UUID	to_uuid()	 const;
 
 		/// Conversion method forces conversion to URI
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		URI		to_uri()	 const;
 
 		/// Conversion method forces conversion to Date
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		Date	to_date()	 const;
 
 		/// Conversion method forces conversion to Binary
 		/// those will throw std::exception based exceptions on errors
-		/// Poco::BadCastException if it is not implemented for the type
+		/// omvtk::BadCastException if it is not implemented for the type
 		/// boost::bad_lexical_cast if a lexical conversion failed		
 		Binary	to_binary()  const;
 
@@ -309,7 +309,7 @@ namespace omvtk
 		}
 #endif
 	protected:
-		Poco::Any m_value;
+		boost::any m_value;
 		Types m_current;
 	};
 }

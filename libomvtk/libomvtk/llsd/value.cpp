@@ -314,102 +314,102 @@ namespace omvtk
 
 	LLSDValue::Boolean const & LLSDValue::boolean() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Boolean>(m_value);
+		return boost::any_cast<LLSDValue::Boolean>(m_value);
 	}
 
 	LLSDValue::Boolean & LLSDValue::boolean()
 	{
-		return Poco::RefAnyCast<LLSDValue::Boolean>(m_value);
+		return boost::any_cast<LLSDValue::Boolean>(m_value);
 	}
 
 	LLSDValue::Integer const & LLSDValue::integer() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Integer>(m_value);
+		return boost::any_cast<LLSDValue::Integer>(m_value);
 	}
 
 	LLSDValue::Integer & LLSDValue::integer()
 	{
-		return Poco::RefAnyCast<LLSDValue::Integer>(m_value);
+		return boost::any_cast<LLSDValue::Integer>(m_value);
 	}
 
 	LLSDValue::Real	const & LLSDValue::real() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Real>(m_value);
+		return boost::any_cast<LLSDValue::Real>(m_value);
 	}
 
 	LLSDValue::Real	& LLSDValue::real()
 	{
-		return Poco::RefAnyCast<LLSDValue::Real>(m_value);
+		return boost::any_cast<LLSDValue::Real>(m_value);
 	}
 
 	LLSDValue::String const & LLSDValue::string() const
 	{
-		return Poco::RefAnyCast<LLSDValue::String>(m_value);
+		return boost::any_cast<LLSDValue::String>(m_value);
 	}
 
 	LLSDValue::String & LLSDValue::string()
 	{
-		return Poco::RefAnyCast<LLSDValue::String>(m_value);
+		return boost::any_cast<LLSDValue::String>(m_value);
 	}
 
 	LLSDValue::UUID	const & LLSDValue::uuid() const
 	{
-		return Poco::RefAnyCast<LLSDValue::UUID>(m_value);
+		return boost::any_cast<LLSDValue::UUID>(m_value);
 	}
 
 	LLSDValue::UUID	& LLSDValue::uuid()
 	{
-		return Poco::RefAnyCast<LLSDValue::UUID>(m_value);
+		return boost::any_cast<LLSDValue::UUID>(m_value);
 	}
 
 	LLSDValue::URI const & LLSDValue::uri() const
 	{
-		return Poco::RefAnyCast<LLSDValue::URI>(m_value);
+		return boost::any_cast<LLSDValue::URI>(m_value);
 	}
 
 	LLSDValue::URI & LLSDValue::uri()
 	{
-		return Poco::RefAnyCast<LLSDValue::URI>(m_value);
+		return boost::any_cast<LLSDValue::URI>(m_value);
 	}
 
 	LLSDValue::Date	const & LLSDValue::date() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Date>(m_value);
+		return boost::any_cast<LLSDValue::Date>(m_value);
 	}
 
 	LLSDValue::Date	& LLSDValue::date()
 	{
-		return Poco::RefAnyCast<LLSDValue::Date>(m_value);
+		return boost::any_cast<LLSDValue::Date>(m_value);
 	}
 
 	LLSDValue::Binary const & LLSDValue::binary() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Binary>(m_value);
+		return boost::any_cast<LLSDValue::Binary>(m_value);
 	}
 
 	LLSDValue::Binary & LLSDValue::binary()
 	{
-		return Poco::RefAnyCast<LLSDValue::Binary>(m_value);
+		return boost::any_cast<LLSDValue::Binary>(m_value);
 	}
 
 	LLSDValue::Array const & LLSDValue::array() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Array>(m_value);
+		return boost::any_cast<LLSDValue::Array>(m_value);
 	}
 
 	LLSDValue::Array & LLSDValue::array()
 	{
-		return Poco::RefAnyCast<LLSDValue::Array>(m_value);
+		return boost::any_cast<LLSDValue::Array>(m_value);
 	}
 
 	LLSDValue::Map const & LLSDValue::map() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Map>(m_value);
+		return boost::any_cast<LLSDValue::Map>(m_value);
 	}
 
 	LLSDValue::Map & LLSDValue::map()
 	{
-		return Poco::RefAnyCast<LLSDValue::Map>(m_value);
+		return boost::any_cast<LLSDValue::Map>(m_value);
 	}
 
 	LLSDValue::String LLSDValue::xml_encode() const

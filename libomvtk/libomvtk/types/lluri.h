@@ -75,10 +75,10 @@ namespace omvtk
 		/// swap
 		void swap(LLURI & o);
 
-		/// get a reference to the internal Poco::URI object
+		/// get a reference to the internal object
 		value_type const & get() const;
 		
-		/// get a reference to the internal Poco::URI object
+		/// get a reference to the internal object
 		value_type & get();
 	protected:
 		value_type m_data;

@@ -58,7 +58,7 @@ namespace omvtk
 	}
 
 
-	/// Initialize from Poco::UUID
+	/// Initialize from an internal object 
 	LLUUID::LLUUID(value_type const & val)
 		: m_data(val)
 	{
@@ -175,14 +175,14 @@ namespace omvtk
 	}
 
 
-	/// returns internal Poco::UUID instance
+	/// returns an internal instance
 	LLUUID::value_type & LLUUID::get()
 	{
 		return m_data;
 	}
 
 
-	/// returns internal Poco::UUID instance
+	/// returns an internal instance
 	LLUUID::value_type const & LLUUID::get() const
 	{
 		return m_data;
