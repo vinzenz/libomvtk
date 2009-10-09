@@ -63,6 +63,15 @@ namespace uripp {
             swap(o);
             return *this;
         }
+
+        bool operator == ( domain_name const & rhs ) const {
+            return string_ == rhs.string_;
+        }
+
+        bool operator != ( domain_name const & rhs ) const {
+            return !((*this) == rhs);
+        }
+
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, domain_name& v);
         std::string string_;

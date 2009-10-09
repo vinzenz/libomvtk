@@ -95,7 +95,19 @@ namespace uripp {
         query & operator=(query o){
             swap(o);
             return *this;
-        } 
+        }
+
+        bool operator == ( query const & rhs ) const {
+            base_type const & blhs = *this;
+            base_type const & brhs = rhs;
+            return sorted_ == rhs.sorted_ 
+                && blhs == brhs;
+        }
+
+        bool operator != ( query const & rhs ) const {
+            return !((*this) == rhs);
+        }
+ 
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, query& v, std::string* errs);
         bool sorted_;

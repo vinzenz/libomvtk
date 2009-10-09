@@ -56,12 +56,20 @@ namespace uripp {
             swap(o);
             return *this;
         }
+        bool operator == ( scheme const & rhs ) const {
+            return string_ == rhs.string_;
+        }
+
+        bool operator != ( scheme const & rhs ) const {
+            return !((*this) == rhs);
+        }
+
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, scheme& v, char* endc);
         std::string string_;
     };
 
-    void swap(schema & a, schema & b){
+    void swap(scheme & a, scheme & b){
         a.swap(b);
     }
     /// Stream out URI scheme.

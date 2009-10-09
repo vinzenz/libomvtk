@@ -72,15 +72,26 @@ namespace uripp {
             {}
 
         void swap(authority & o){
-            host_type_.swap(o.host_type_);
+            std::swap(host_type_, o.host_type_);
             host_.swap(o.host_);
             std::swap(port_, o.port_);
         }
 
-        autority & operator=(autority o){
+        authority & operator=(authority o){
             swap(o);
             return *this;
         }
+
+        bool operator == ( authority const & rhs ) const {
+            return host_type_ == rhs.host_type_
+                && host_ == rhs.host_
+                && port_ == rhs.port_;
+        }
+
+        bool operator != ( authority const & rhs ) const {
+            return !((*this) == rhs);
+        }
+
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, authority& v);
         host_type_e host_type_;

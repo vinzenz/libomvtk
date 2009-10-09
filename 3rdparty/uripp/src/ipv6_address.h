@@ -74,6 +74,13 @@ namespace uripp {
             swap(o);
             return *this;
         } 
+        bool operator == ( ipv6_address const & rhs ) const {
+            return memcmp( hextets_, rhs.hextets_, sizeof(hextets_) ) == 0;
+        }
+
+        bool operator != ( ipv6_address const & rhs ) const {
+            return !((*this) == rhs);
+        }
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, ipv6_address& v);
         bool zero_run(size_t& first, size_t& last) const;

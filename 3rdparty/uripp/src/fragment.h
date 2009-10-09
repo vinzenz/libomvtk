@@ -57,6 +57,14 @@ namespace uripp {
             swap(o);
             return *this;
         }
+
+        bool operator == ( fragment const & rhs ) const {
+            return string_ == rhs.string_;
+        }
+
+        bool operator != ( fragment const & rhs ) const {
+            return !((*this) == rhs);
+        }
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, fragment& v, std::string* errs);
         std::string string_;

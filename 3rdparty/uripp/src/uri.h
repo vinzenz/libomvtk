@@ -142,6 +142,20 @@ namespace uripp {
             swap(o);
             return *this;
         }
+
+        bool operator == ( uri const & rhs ) const {
+            return scheme_ == rhs.scheme_
+                && authority_ == rhs.authority_
+                && path_ == rhs.path_
+                && query_ == rhs.query_
+                && fragment_ == rhs.fragment_
+                ;
+        }
+
+        bool operator != ( uri const & rhs ) const {
+            return !((*this) == rhs);
+        }
+
     private:
         friend bool URIPP_API parse(std::string::const_iterator& first, std::string::const_iterator last, uri& v, std::string* errs);
         static bool parse_literal(std::string::const_iterator& first, std::string::const_iterator last, const char* v);
