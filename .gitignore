@@ -20,4 +20,4 @@ obj
 *.pdb
 *.exe
 *.dll
-
+*.make
