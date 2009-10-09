@@ -59,6 +59,7 @@ namespace uripp {
         const std::string& host() const {return host_;} ///< Get host.
         host_type_e host_type() const {return host_type_;} ///< Get host type.
         unsigned short port() const {return port_;} ///< Get port (0 if none).
+        unsigned short & port() {return port_;} ///< Get port (0 if none).
         std::string string() const; ///< Calculate string.
         std::ostream& operator <<(std::ostream& os) const; ///< Stream out.
         static const char IP_LITERAL_BEGIN_CHAR; ///< IP literal begin ('[')
@@ -99,7 +100,7 @@ namespace uripp {
         unsigned short port_;
     };
 
-    void swap(authority & a, authority & b){
+    inline void swap(authority & a, authority & b){
         a.swap(b);
     }
 

@@ -24,6 +24,7 @@ THE SOFTWARE.
 #include "apidefs.h"
 #include <string>
 #include <iostream>
+#include <cstring>
 namespace uripp {
     /** \brief IP v6 address.
      *
@@ -87,7 +88,7 @@ namespace uripp {
         unsigned short hextets_[8];
     };
 
-    void swap(ipv6_address & a, ipv6_address & b){
+    inline void swap(ipv6_address & a, ipv6_address & b){
         a.swap(b);
     }
 

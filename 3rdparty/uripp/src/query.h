@@ -113,7 +113,7 @@ namespace uripp {
         bool sorted_;
     };
 
-    void swap(query & a, query & b){
+    inline void swap(query & a, query & b){
         a.swap(b);
     }
 

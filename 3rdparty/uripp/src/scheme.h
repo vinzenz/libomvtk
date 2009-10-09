@@ -69,7 +69,7 @@ namespace uripp {
         std::string string_;
     };
 
-    void swap(scheme & a, scheme & b){
+    inline void swap(scheme & a, scheme & b){
         a.swap(b);
     }
     /// Stream out URI scheme.

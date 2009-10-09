@@ -70,7 +70,7 @@ namespace uripp {
         std::string string_;
     };
     
-    void swap(fragment & a, fragment & b){
+    inline void swap(fragment & a, fragment & b){
         a.swap(b);
     }
 

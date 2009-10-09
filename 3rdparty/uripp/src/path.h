@@ -126,7 +126,7 @@ namespace uripp {
         segments_type segments_;
     };
     
-    void swap(path & a, path & b){
+    inline void swap(path & a, path & b){
         a.swap(b);
     }
 

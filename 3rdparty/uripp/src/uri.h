@@ -165,9 +165,12 @@ namespace uripp {
         query_type query_;
         fragment_type fragment_;
     };
-    void swap(uri & a, uri & b){
+    
+    inline void swap(uri & a, uri & b){
         a.swap(b);
     }
+
+    unsigned short get_wellknown_port( std::string const & scheme );
 
     /// Parse URI, returning whether found or not and advancing first
     /// and setting URI if found. Does not skip leading space.

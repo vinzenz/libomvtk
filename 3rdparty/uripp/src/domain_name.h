@@ -77,7 +77,7 @@ namespace uripp {
         std::string string_;
     };
     
-    void swap(domain_name & a, domain_name & b){
+    inline void swap(domain_name & a, domain_name & b){
         a.swap(b);
     }
 

@@ -24,6 +24,7 @@ THE SOFTWARE.
 #include "apidefs.h"
 #include <string>
 #include <iostream>
+#include <cstring>
 namespace uripp {
     class ipv6_address;
     /** \brief IP address.
@@ -55,7 +56,7 @@ namespace uripp {
             std::memcpy(octets_, o.octets_, sizeof(octets_));
         }
         void swap(ip_address & o){
-            std::swap_ranges(&octets_[0], &octets_[sizeof(octets_)], &o.octets[0]);
+            std::swap_ranges(&octets_[0], &octets_[sizeof(octets_)], &o.octets_[0]);
         }
 
         ip_address & operator=(ip_address o){
@@ -76,7 +77,7 @@ namespace uripp {
         unsigned char octets_[4];
     };
 
-    void swap(ip_address & a, ip_address & b){
+    inline void swap(ip_address & a, ip_address & b){
         a.swap(b);
     }
 

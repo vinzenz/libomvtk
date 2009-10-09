@@ -104,6 +104,22 @@ namespace uripp {
         }
         v = tmp;
         first = f;
+        if( v.authority().port() == 0 ){
+            v.authority().port() = get_wellknown_port( v.scheme().string() );
+        }
         return true;
+    }
+
+    unsigned short get_wellknown_port( std::string const & scheme ){
+        if(scheme == "http"){
+            return 80;
+        } 
+        else if(scheme == "https"){
+            return 443;
+        } 
+        else if(scheme == "irc"){
+            return 6667;
+        } 
+        return 0;
     }
 }
