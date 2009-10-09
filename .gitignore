@@ -8,6 +8,7 @@ html
 *.vcproj
 *.user
 *.mk
+*.project
 *.workspace
 *.session
 *.tags
