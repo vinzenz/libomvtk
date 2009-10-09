@@ -32,12 +32,13 @@
 
 #include "base_types.h"
 #include "sub_range.h"
+#include "uri.h"
 
 namespace omvtk
 {
 	struct LLURI
 	{
-		typedef String value_type;
+		typedef uripp::uri value_type;
 		
 		/// Create an empty URI
 		LLURI();
@@ -50,6 +51,9 @@ namespace omvtk
 
 		/// Initialize the URI from a string
 		LLURI(String const &);
+
+		/// Initialize the URI from a value_type
+		LLURI(value_type const &);
 
 		/// Destructor
 		~LLURI();

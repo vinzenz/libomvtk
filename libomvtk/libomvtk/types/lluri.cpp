@@ -46,6 +46,11 @@ namespace omvtk
 	{
 	}
 
+	LLURI::LLURI(value_type const & str)
+		: m_data(str)
+	{
+	}
+
 	LLURI::~LLURI()
 	{
 	}
@@ -84,8 +89,7 @@ namespace omvtk
 
 	String LLURI::to_string() const
 	{
-		// return m_data.toString();
-        return m_data;
+		return m_data.encoding();
 	}
 
 	ByteBuffer LLURI::to_binary() const
