@@ -430,6 +430,13 @@ namespace omvtk
 		return ConvT::get_wrap(m_current).binary_encode(out, m_value);
 	}
 
+    /// Encodes value as LLSD+Binary
+    LLSDValue::Binary LLSDValue::binary_encode() const
+    {
+        Binary b;
+        binary_encode(b);
+        return b;
+    }
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 	void LLSDValue::xml_decode(Types typeID, byte_sub_range const & sr)

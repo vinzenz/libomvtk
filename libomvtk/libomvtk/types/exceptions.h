@@ -77,6 +77,17 @@ namespace omvtk
 		{}
 	};
 
+    struct BadConversionException : Exception
+    {
+        BadConversionException()
+            : Exception("BadConversionException")
+        {}
+
+        BadConversionException(std::string const & msg)
+            : Exception(std::string("BadConversionException: ") += msg)
+        {}
+    };
+
 }
 
 

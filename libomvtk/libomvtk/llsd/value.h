@@ -264,6 +264,8 @@ namespace omvtk
 		String notation_encode() const;
 		/// Encodes value as LLSD+Binary
 		void binary_encode(Binary & out) const;
+        /// Encodes value as LLSD+Binary
+        Binary binary_encode() const;
 
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 		/// Helper function for the decoder, should not be used to parse

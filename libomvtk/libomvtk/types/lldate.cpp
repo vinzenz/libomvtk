@@ -25,6 +25,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 #include "lldate.h"
 #include "byte_order.h"
+#include "exceptions.h"
 #include <iostream>
 #include <locale>
 #include <iostream>
@@ -45,7 +46,7 @@ namespace
 	{
 		libomvtk_ensure(sr.size() == sizeof(omvtk::Real64));
 		omvtk::Real64 r = *(omvtk::Real64*)&sr[0];
-		return from_time_t( omvtk::to_host(r) );
+        return from_time_t( std::time_t( omvtk::to_host(r) ) );
 	}
 
 	omvtk::LLDate::value_type FromString(omvtk::String const & s)
@@ -79,7 +80,7 @@ namespace omvtk
 	}
 
 	LLDate::LLDate(double secondsSinceEpoch)
-		: m_data(from_time_t(secondsSinceEpoch))
+        : m_data(from_time_t( std::time_t( secondsSinceEpoch ) ))
 	{	
 	}
 
@@ -154,16 +155,16 @@ namespace omvtk
 	Real64 LLDate::to_real() const{
         //if ptime is not_a_date_time or an infinity there's no conversion 
         if (m_data.is_special()) { 
-            throw std::runtime_error("conversion undefined"); 
+            throw BadConversionException("LLDate to Real64 conversion undefined"); 
         }
 
         ptime time_t_epoch(boost::gregorian::date(1970,1,1)); 
         //if ptime is less than 1970-1-1 conversion will fail 
         if (m_data < time_t_epoch) { 
-            throw std::runtime_error("conversion undefined"); 
+            throw BadConversionException("LLDate to Real64 conversion undefined"); 
         } 
         time_duration td = m_data - time_t_epoch; 
-        return static_cast<std::time_t>(td.total_seconds()); 
+        return static_cast<Real64>( td.total_seconds() ); 
 	}
 
 	LLDate::value_type const & LLDate::get() const
