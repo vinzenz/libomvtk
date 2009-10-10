@@ -43,45 +43,45 @@ namespace namespaces {
 
 /* Name string is a fully-qualified domain name */
 inline uuid dns() {
-    uuid u = { /* 6ba7b810-9dad-11d1-80b4-00c04fd430c8 */
+    uuid u = {{{ /* 6ba7b810-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x10,
        0x9d, 0xad,
        0x11, 0xd1,
        0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8
-    };
+    }}};
     return u;
 }
 
 /* Name string is a URL */
 inline uuid url() {
-    uuid u = { /* 6ba7b811-9dad-11d1-80b4-00c04fd430c8 */
+    uuid u = {{{ /* 6ba7b811-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x11,
        0x9d, 0xad,
        0x11, 0xd1,
        0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8
-    };
+    }}};
     return u;
 }
 
 /* Name string is an ISO OID */
 inline uuid oid() {
-    uuid u = { /* 6ba7b812-9dad-11d1-80b4-00c04fd430c8 */
+    uuid u = {{{ /* 6ba7b812-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x12,
        0x9d, 0xad,
        0x11, 0xd1,
        0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8
-    };
+    }}};
     return u;
 }
 
 /* Name string is an X.500 DN (in DER or a text output format) */
 inline uuid x500() {
-    uuid u = { /* 6ba7b814-9dad-11d1-80b4-00c04fd430c8 */
+    uuid u = {{{ /* 6ba7b814-9dad-11d1-80b4-00c04fd430c8 */
        0x6b, 0xa7, 0xb8, 0x14,
        0x9d, 0xad,
        0x11, 0xd1,
        0x80, 0xb4, 0x00, 0xc0, 0x4f, 0xd4, 0x30, 0xc8
-    };
+    }}};
     return u;
 }
 

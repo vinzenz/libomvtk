@@ -1,28 +1,3 @@
-// vim:et:st=4:ts=4:sts=4:
-// Copyright (c) 2008,2009 by the OpenMetaverse Toolkit Library Team
-// All rights reserved.
-//
-// - Redistribution and use in source and binary forms, with or without
-//   modification, are permitted provided that the following conditions are met:
-//
-// - Redistributions of source code must retain the above copyright notice, this
-//   list of conditions and the following disclaimer.
-//
-// - Neither the name of the OpenMetaverse Toolkit Library Team nor the names
-//   of its contributors may be used to endorse or promote products derived from
-//   this software without specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
-// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
-// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
-// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
-// POSSIBILITY OF SUCH DAMAGE
 #ifndef GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED
 #define GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED
 
@@ -41,7 +16,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TestMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0001;
+			enum { id = 0xFFFF0001ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -108,7 +83,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UseCircuitCode"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0003;
+			enum { id = 0xFFFF0003ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -159,7 +134,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TelehubInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF000A;
+			enum { id = 0xFFFF000Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -228,7 +203,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EconomyDataRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0018;
+			enum { id = 0xFFFF0018ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -260,7 +235,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EconomyData"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0019;
+			enum { id = 0xFFFF0019ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -339,7 +314,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarPickerRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF001A;
+			enum { id = 0xFFFF001Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -406,7 +381,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarPickerReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF001C;
+			enum { id = 0xFFFF001Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -475,7 +450,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PlacesQuery"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF001D;
+			enum { id = 0xFFFF001Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -564,7 +539,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PlacesReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF001E;
+			enum { id = 0xFFFF001Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -669,7 +644,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirFindQuery"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF001F;
+			enum { id = 0xFFFF001Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -740,7 +715,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirPlacesQuery"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0021;
+			enum { id = 0xFFFF0021ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -815,7 +790,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirPlacesReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0023;
+			enum { id = 0xFFFF0023ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -902,7 +877,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirPeopleReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0024;
+			enum { id = 0xFFFF0024ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -991,7 +966,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirEventsReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0025;
+			enum { id = 0xFFFF0025ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1080,7 +1055,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirGroupsReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0026;
+			enum { id = 0xFFFF0026ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1165,7 +1140,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirClassifiedQuery"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0027;
+			enum { id = 0xFFFF0027ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1238,7 +1213,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirClassifiedReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0029;
+			enum { id = 0xFFFF0029ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1327,7 +1302,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarClassifiedReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF002A;
+			enum { id = 0xFFFF002Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1394,7 +1369,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ClassifiedInfoRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF002B;
+			enum { id = 0xFFFF002Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1459,7 +1434,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ClassifiedInfoReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF002C;
+			enum { id = 0xFFFF002Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1550,7 +1525,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ClassifiedInfoUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF002D;
+			enum { id = 0xFFFF002Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1633,7 +1608,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ClassifiedDelete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF002E;
+			enum { id = 0xFFFF002Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1698,7 +1673,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ClassifiedGodDelete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF002F;
+			enum { id = 0xFFFF002Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1765,7 +1740,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirLandQuery"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0030;
+			enum { id = 0xFFFF0030ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1840,7 +1815,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirLandReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0032;
+			enum { id = 0xFFFF0032ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1929,7 +1904,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirPopularQuery"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0033;
+			enum { id = 0xFFFF0033ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -1996,7 +1971,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DirPopularReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0035;
+			enum { id = 0xFFFF0035ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2079,7 +2054,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelInfoRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0036;
+			enum { id = 0xFFFF0036ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2144,7 +2119,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelInfoReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0037;
+			enum { id = 0xFFFF0037ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2235,7 +2210,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelObjectOwnersRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0038;
+			enum { id = 0xFFFF0038ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2300,7 +2275,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelObjectOwnersReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0039;
+			enum { id = 0xFFFF0039ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2353,7 +2328,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupNoticesListRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF003A;
+			enum { id = 0xFFFF003Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2418,7 +2393,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupNoticesListReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF003B;
+			enum { id = 0xFFFF003Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2493,7 +2468,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupNoticeRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF003C;
+			enum { id = 0xFFFF003Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2558,7 +2533,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF003E;
+			enum { id = 0xFFFF003Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2627,7 +2602,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportLocationRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF003F;
+			enum { id = 0xFFFF003Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2696,7 +2671,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportLocal"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0040;
+			enum { id = 0xFFFF0040ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2751,7 +2726,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportLandmarkRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0041;
+			enum { id = 0xFFFF0041ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2802,7 +2777,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportProgress"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0042;
+			enum { id = 0xFFFF0042ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2867,7 +2842,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportFinish"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0045;
+			enum { id = 0xFFFF0045ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -2928,7 +2903,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "StartLure"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0046;
+			enum { id = 0xFFFF0046ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3011,7 +2986,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportLureRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0047;
+			enum { id = 0xFFFF0047ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3064,7 +3039,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportCancel"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0048;
+			enum { id = 0xFFFF0048ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3113,7 +3088,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportStart"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0049;
+			enum { id = 0xFFFF0049ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3160,7 +3135,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TeleportFailed"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF004A;
+			enum { id = 0xFFFF004Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3209,7 +3184,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "Undo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF004B;
+			enum { id = 0xFFFF004Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3276,7 +3251,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "Redo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF004C;
+			enum { id = 0xFFFF004Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3343,7 +3318,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UndoLand"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF004D;
+			enum { id = 0xFFFF004Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3392,7 +3367,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentPause"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF004E;
+			enum { id = 0xFFFF004Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3443,7 +3418,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentResume"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF004F;
+			enum { id = 0xFFFF004Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3494,7 +3469,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChatFromViewer"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0050;
+			enum { id = 0xFFFF0050ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3563,7 +3538,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentThrottle"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0051;
+			enum { id = 0xFFFF0051ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3632,7 +3607,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentFOV"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0052;
+			enum { id = 0xFFFF0052ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3701,7 +3676,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentHeightWidth"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0053;
+			enum { id = 0xFFFF0053ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3772,7 +3747,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentSetAppearance"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0054;
+			enum { id = 0xFFFF0054ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3875,7 +3850,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentQuitCopy"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0055;
+			enum { id = 0xFFFF0055ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3940,7 +3915,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ImageNotInDatabase"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0056;
+			enum { id = 0xFFFF0056ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -3987,7 +3962,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RebakeAvatarTextures"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0057;
+			enum { id = 0xFFFF0057ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4034,7 +4009,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SetAlwaysRun"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0058;
+			enum { id = 0xFFFF0058ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4085,7 +4060,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDelete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0059;
+			enum { id = 0xFFFF0059ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4152,7 +4127,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDuplicate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF005A;
+			enum { id = 0xFFFF005Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4237,7 +4212,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDuplicateOnRay"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF005B;
+			enum { id = 0xFFFF005Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4320,7 +4295,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectScale"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF005C;
+			enum { id = 0xFFFF005Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4387,7 +4362,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectRotation"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF005D;
+			enum { id = 0xFFFF005Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4454,7 +4429,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectFlagUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF005E;
+			enum { id = 0xFFFF005Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4513,7 +4488,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectClickAction"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF005F;
+			enum { id = 0xFFFF005Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4580,7 +4555,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectImage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0060;
+			enum { id = 0xFFFF0060ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4649,7 +4624,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectMaterial"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0061;
+			enum { id = 0xFFFF0061ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4716,7 +4691,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectShape"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0062;
+			enum { id = 0xFFFF0062ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4817,7 +4792,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectExtraParams"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0063;
+			enum { id = 0xFFFF0063ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4890,7 +4865,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectOwner"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0064;
+			enum { id = 0xFFFF0064ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -4975,7 +4950,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectGroup"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0065;
+			enum { id = 0xFFFF0065ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5042,7 +5017,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectBuy"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0066;
+			enum { id = 0xFFFF0066ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5115,7 +5090,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "BuyObjectInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0067;
+			enum { id = 0xFFFF0067ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5184,7 +5159,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DerezContainer"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0068;
+			enum { id = 0xFFFF0068ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5233,7 +5208,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectPermissions"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0069;
+			enum { id = 0xFFFF0069ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5320,7 +5295,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectSaleInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF006A;
+			enum { id = 0xFFFF006Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5389,7 +5364,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectName"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF006B;
+			enum { id = 0xFFFF006Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5456,7 +5431,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDescription"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF006C;
+			enum { id = 0xFFFF006Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5523,7 +5498,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectCategory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF006D;
+			enum { id = 0xFFFF006Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5590,7 +5565,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectSelect"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF006E;
+			enum { id = 0xFFFF006Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5655,7 +5630,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDeselect"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF006F;
+			enum { id = 0xFFFF006Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5720,7 +5695,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectAttach"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0070;
+			enum { id = 0xFFFF0070ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5789,7 +5764,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDetach"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0071;
+			enum { id = 0xFFFF0071ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5854,7 +5829,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDrop"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0072;
+			enum { id = 0xFFFF0072ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5919,7 +5894,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectLink"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0073;
+			enum { id = 0xFFFF0073ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -5984,7 +5959,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDelink"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0074;
+			enum { id = 0xFFFF0074ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6049,7 +6024,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectGrab"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0075;
+			enum { id = 0xFFFF0075ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6116,7 +6091,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectGrabUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0076;
+			enum { id = 0xFFFF0076ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6187,7 +6162,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectDeGrab"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0077;
+			enum { id = 0xFFFF0077ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6252,7 +6227,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectSpinStart"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0078;
+			enum { id = 0xFFFF0078ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6317,7 +6292,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectSpinUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0079;
+			enum { id = 0xFFFF0079ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6384,7 +6359,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectSpinStop"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF007A;
+			enum { id = 0xFFFF007Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6449,7 +6424,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectExportSelected"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF007B;
+			enum { id = 0xFFFF007Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6516,7 +6491,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ModifyLand"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF007C;
+			enum { id = 0xFFFF007Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6611,7 +6586,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "VelocityInterpolateOn"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF007D;
+			enum { id = 0xFFFF007Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6660,7 +6635,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "VelocityInterpolateOff"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF007E;
+			enum { id = 0xFFFF007Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6709,7 +6684,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "StateSave"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF007F;
+			enum { id = 0xFFFF007Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6774,7 +6749,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ReportAutosaveCrash"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0080;
+			enum { id = 0xFFFF0080ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6823,7 +6798,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SimWideDeletes"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0081;
+			enum { id = 0xFFFF0081ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6890,7 +6865,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TrackAgent"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0082;
+			enum { id = 0xFFFF0082ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -6955,7 +6930,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ViewerStats"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0083;
+			enum { id = 0xFFFF0083ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7116,7 +7091,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptAnswerYes"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0084;
+			enum { id = 0xFFFF0084ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7185,7 +7160,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UserReport"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0085;
+			enum { id = 0xFFFF0085ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7272,7 +7247,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AlertMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0086;
+			enum { id = 0xFFFF0086ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7319,7 +7294,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentAlertMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0087;
+			enum { id = 0xFFFF0087ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7384,7 +7359,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MeanCollisionAlert"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0088;
+			enum { id = 0xFFFF0088ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7439,7 +7414,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ViewerFrozenMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0089;
+			enum { id = 0xFFFF0089ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7486,7 +7461,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "HealthMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF008A;
+			enum { id = 0xFFFF008Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7533,7 +7508,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChatFromSimulator"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF008B;
+			enum { id = 0xFFFF008Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7594,7 +7569,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SimStats"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF008C;
+			enum { id = 0xFFFF008Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7665,7 +7640,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestRegionInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF008D;
+			enum { id = 0xFFFF008Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7714,7 +7689,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RegionInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF008E;
+			enum { id = 0xFFFF008Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7809,7 +7784,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GodUpdateRegionInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF008F;
+			enum { id = 0xFFFF008Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7888,7 +7863,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "NearestLandingRegionUpdated"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0092;
+			enum { id = 0xFFFF0092ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -7935,7 +7910,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RegionHandshake"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0094;
+			enum { id = 0xFFFF0094ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8044,7 +8019,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RegionHandshakeReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0095;
+			enum { id = 0xFFFF0095ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8109,7 +8084,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SimulatorViewerTimeMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0096;
+			enum { id = 0xFFFF0096ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8166,7 +8141,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EnableSimulator"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0097;
+			enum { id = 0xFFFF0097ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8217,7 +8192,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DisableSimulator"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0098;
+			enum { id = 0xFFFF0098ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8249,7 +8224,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TransferRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0099;
+			enum { id = 0xFFFF0099ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8304,7 +8279,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TransferInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF009A;
+			enum { id = 0xFFFF009Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8361,7 +8336,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TransferAbort"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF009B;
+			enum { id = 0xFFFF009Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8410,7 +8385,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestXfer"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF009C;
+			enum { id = 0xFFFF009Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8469,7 +8444,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AbortXfer"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF009D;
+			enum { id = 0xFFFF009Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8518,7 +8493,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarAppearance"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF009E;
+			enum { id = 0xFFFF009Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8599,7 +8574,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SetFollowCamProperties"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF009F;
+			enum { id = 0xFFFF009Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8664,7 +8639,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ClearFollowCamProperties"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A0;
+			enum { id = 0xFFFF00A0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8711,7 +8686,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestPayPrice"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A1;
+			enum { id = 0xFFFF00A1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8758,7 +8733,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PayPriceReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A2;
+			enum { id = 0xFFFF00A2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8823,7 +8798,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "KickUser"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A3;
+			enum { id = 0xFFFF00A3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8892,7 +8867,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "KickUserAck"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A4;
+			enum { id = 0xFFFF00A4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8941,7 +8916,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GodKickUser"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A5;
+			enum { id = 0xFFFF00A5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -8996,7 +8971,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EjectUser"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A7;
+			enum { id = 0xFFFF00A7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9063,7 +9038,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "FreezeUser"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A8;
+			enum { id = 0xFFFF00A8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9130,7 +9105,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarPropertiesRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00A9;
+			enum { id = 0xFFFF00A9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9181,7 +9156,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarPropertiesReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00AB;
+			enum { id = 0xFFFF00ABul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9262,7 +9237,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarInterestsReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00AC;
+			enum { id = 0xFFFF00ACul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9335,7 +9310,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarGroupsReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00AD;
+			enum { id = 0xFFFF00ADul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9426,7 +9401,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarPropertiesUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00AE;
+			enum { id = 0xFFFF00AEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9503,7 +9478,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarInterestsUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00AF;
+			enum { id = 0xFFFF00AFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9576,7 +9551,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarNotesReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B0;
+			enum { id = 0xFFFF00B0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9641,7 +9616,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarNotesUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B1;
+			enum { id = 0xFFFF00B1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9708,7 +9683,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarPicksReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B2;
+			enum { id = 0xFFFF00B2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9775,7 +9750,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EventInfoRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B3;
+			enum { id = 0xFFFF00B3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9840,7 +9815,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EventInfoReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B4;
+			enum { id = 0xFFFF00B4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9927,7 +9902,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EventNotificationAddRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B5;
+			enum { id = 0xFFFF00B5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -9992,7 +9967,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EventNotificationRemoveRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B6;
+			enum { id = 0xFFFF00B6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10057,7 +10032,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EventGodDelete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B7;
+			enum { id = 0xFFFF00B7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10144,7 +10119,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PickInfoReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B8;
+			enum { id = 0xFFFF00B8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10231,7 +10206,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PickInfoUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00B9;
+			enum { id = 0xFFFF00B9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10314,7 +10289,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PickDelete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00BA;
+			enum { id = 0xFFFF00BAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10379,7 +10354,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PickGodDelete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00BB;
+			enum { id = 0xFFFF00BBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10446,7 +10421,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptQuestion"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00BC;
+			enum { id = 0xFFFF00BCul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10501,7 +10476,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptControlChange"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00BD;
+			enum { id = 0xFFFF00BDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10552,7 +10527,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptDialog"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00BE;
+			enum { id = 0xFFFF00BEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10627,7 +10602,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptDialogReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00BF;
+			enum { id = 0xFFFF00BFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10698,7 +10673,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ForceScriptControlRelease"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C0;
+			enum { id = 0xFFFF00C0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10747,7 +10722,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RevokePermissions"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C1;
+			enum { id = 0xFFFF00C1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10814,7 +10789,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LoadURL"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C2;
+			enum { id = 0xFFFF00C2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10871,7 +10846,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptTeleportRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C3;
+			enum { id = 0xFFFF00C3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10924,7 +10899,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelOverlay"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C4;
+			enum { id = 0xFFFF00C4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -10973,7 +10948,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelPropertiesRequestByID"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C5;
+			enum { id = 0xFFFF00C5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11040,7 +11015,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelPropertiesUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C6;
+			enum { id = 0xFFFF00C6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11141,7 +11116,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelReturnObjects"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C7;
+			enum { id = 0xFFFF00C7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11240,7 +11215,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelSetOtherCleanTime"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C8;
+			enum { id = 0xFFFF00C8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11307,7 +11282,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelDisableObjects"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00C9;
+			enum { id = 0xFFFF00C9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11406,7 +11381,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelSelectObjects"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00CA;
+			enum { id = 0xFFFF00CAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11489,7 +11464,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EstateCovenantRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00CB;
+			enum { id = 0xFFFF00CBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11538,7 +11513,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EstateCovenantReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00CC;
+			enum { id = 0xFFFF00CCul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11591,7 +11566,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ForceObjectSelect"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00CD;
+			enum { id = 0xFFFF00CDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11654,7 +11629,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelBuyPass"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00CE;
+			enum { id = 0xFFFF00CEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11719,7 +11694,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelDeedToGroup"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00CF;
+			enum { id = 0xFFFF00CFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11786,7 +11761,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelReclaim"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D0;
+			enum { id = 0xFFFF00D0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11851,7 +11826,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelClaim"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D1;
+			enum { id = 0xFFFF00D1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -11942,7 +11917,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelJoin"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D2;
+			enum { id = 0xFFFF00D2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12013,7 +11988,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelDivide"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D3;
+			enum { id = 0xFFFF00D3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12084,7 +12059,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelRelease"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D4;
+			enum { id = 0xFFFF00D4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12149,7 +12124,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelBuy"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D5;
+			enum { id = 0xFFFF00D5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12240,7 +12215,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelGodForceOwner"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D6;
+			enum { id = 0xFFFF00D6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12307,7 +12282,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelAccessListRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D7;
+			enum { id = 0xFFFF00D7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12376,7 +12351,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelAccessListReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D8;
+			enum { id = 0xFFFF00D8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12449,7 +12424,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelAccessListUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00D9;
+			enum { id = 0xFFFF00D9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12542,7 +12517,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelDwellRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00DA;
+			enum { id = 0xFFFF00DAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12609,7 +12584,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelDwellReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00DB;
+			enum { id = 0xFFFF00DBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12676,7 +12651,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelGodMarkAsContent"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00E3;
+			enum { id = 0xFFFF00E3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12741,7 +12716,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ViewerStartAuction"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00E4;
+			enum { id = 0xFFFF00E4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12808,7 +12783,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UUIDNameRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00EB;
+			enum { id = 0xFFFF00EBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12855,7 +12830,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UUIDNameReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00EC;
+			enum { id = 0xFFFF00ECul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12906,7 +12881,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UUIDGroupNameRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00ED;
+			enum { id = 0xFFFF00EDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -12953,7 +12928,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UUIDGroupNameReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00EE;
+			enum { id = 0xFFFF00EEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13002,7 +12977,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChildAgentDying"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F0;
+			enum { id = 0xFFFF00F0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13051,7 +13026,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChildAgentUnknown"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F1;
+			enum { id = 0xFFFF00F1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13100,7 +13075,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GetScriptRunning"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F3;
+			enum { id = 0xFFFF00F3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13149,7 +13124,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptRunningReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F4;
+			enum { id = 0xFFFF00F4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13200,7 +13175,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SetScriptRunning"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F5;
+			enum { id = 0xFFFF00F5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13269,7 +13244,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptReset"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F6;
+			enum { id = 0xFFFF00F6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13336,7 +13311,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptSensorRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F7;
+			enum { id = 0xFFFF00F7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13403,7 +13378,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ScriptSensorReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F8;
+			enum { id = 0xFFFF00F8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13482,7 +13457,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CompleteAgentMovement"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00F9;
+			enum { id = 0xFFFF00F9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13533,7 +13508,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentMovementComplete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00FA;
+			enum { id = 0xFFFF00FAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13620,7 +13595,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LogoutRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00FC;
+			enum { id = 0xFFFF00FCul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13669,7 +13644,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LogoutReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00FD;
+			enum { id = 0xFFFF00FDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13734,7 +13709,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ImprovedInstantMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00FE;
+			enum { id = 0xFFFF00FEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13821,7 +13796,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RetrieveInstantMessages"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF00FF;
+			enum { id = 0xFFFF00FFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13870,7 +13845,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "FindAgent"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0100;
+			enum { id = 0xFFFF0100ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -13939,7 +13914,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestGodlikePowers"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0101;
+			enum { id = 0xFFFF0101ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14006,7 +13981,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GrantGodlikePowers"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0102;
+			enum { id = 0xFFFF0102ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14073,7 +14048,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GodlikeMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0103;
+			enum { id = 0xFFFF0103ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14158,7 +14133,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EstateOwnerMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0104;
+			enum { id = 0xFFFF0104ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14243,7 +14218,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GenericMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0105;
+			enum { id = 0xFFFF0105ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14328,7 +14303,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MuteListRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0106;
+			enum { id = 0xFFFF0106ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14393,7 +14368,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UpdateMuteListEntry"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0107;
+			enum { id = 0xFFFF0107ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14464,7 +14439,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RemoveMuteListEntry"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0108;
+			enum { id = 0xFFFF0108ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14531,7 +14506,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CopyInventoryFromNotecard"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0109;
+			enum { id = 0xFFFF0109ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14616,7 +14591,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UpdateInventoryItem"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF010A;
+			enum { id = 0xFFFF010Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14725,7 +14700,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UpdateCreateInventoryItem"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF010B;
+			enum { id = 0xFFFF010Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14834,7 +14809,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MoveInventoryItem"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF010C;
+			enum { id = 0xFFFF010Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14905,7 +14880,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CopyInventoryItem"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF010D;
+			enum { id = 0xFFFF010Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -14978,7 +14953,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RemoveInventoryItem"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF010E;
+			enum { id = 0xFFFF010Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15043,7 +15018,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChangeInventoryItemFlags"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF010F;
+			enum { id = 0xFFFF010Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15110,7 +15085,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SaveAssetIntoInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0110;
+			enum { id = 0xFFFF0110ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15175,7 +15150,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CreateInventoryFolder"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0111;
+			enum { id = 0xFFFF0111ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15246,7 +15221,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UpdateInventoryFolder"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0112;
+			enum { id = 0xFFFF0112ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15317,7 +15292,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MoveInventoryFolder"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0113;
+			enum { id = 0xFFFF0113ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15386,7 +15361,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RemoveInventoryFolder"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0114;
+			enum { id = 0xFFFF0114ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15451,7 +15426,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "FetchInventoryDescendents"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0115;
+			enum { id = 0xFFFF0115ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15524,7 +15499,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "InventoryDescendents"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0116;
+			enum { id = 0xFFFF0116ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15657,7 +15632,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "FetchInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0117;
+			enum { id = 0xFFFF0117ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15724,7 +15699,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "FetchInventoryReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0118;
+			enum { id = 0xFFFF0118ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15827,7 +15802,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "BulkUpdateInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0119;
+			enum { id = 0xFFFF0119ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -15956,7 +15931,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestInventoryAsset"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF011A;
+			enum { id = 0xFFFF011Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16009,7 +15984,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "InventoryAssetResponse"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF011B;
+			enum { id = 0xFFFF011Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16060,7 +16035,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RemoveInventoryObjects"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF011C;
+			enum { id = 0xFFFF011Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16141,7 +16116,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PurgeInventoryDescendents"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF011D;
+			enum { id = 0xFFFF011Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16206,7 +16181,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UpdateTaskInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF011E;
+			enum { id = 0xFFFF011Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16329,7 +16304,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RemoveTaskInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF011F;
+			enum { id = 0xFFFF011Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16396,7 +16371,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MoveTaskInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0120;
+			enum { id = 0xFFFF0120ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16465,7 +16440,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestTaskInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0121;
+			enum { id = 0xFFFF0121ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16530,7 +16505,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ReplyTaskInventory"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0122;
+			enum { id = 0xFFFF0122ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16581,7 +16556,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DeRezObject"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0123;
+			enum { id = 0xFFFF0123ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16672,7 +16647,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DeRezAck"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0124;
+			enum { id = 0xFFFF0124ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16721,7 +16696,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RezObject"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0125;
+			enum { id = 0xFFFF0125ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16866,7 +16841,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RezObjectFromNotecard"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0126;
+			enum { id = 0xFFFF0126ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -16989,7 +16964,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AcceptFriendship"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0129;
+			enum { id = 0xFFFF0129ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17070,7 +17045,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DeclineFriendship"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF012A;
+			enum { id = 0xFFFF012Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17135,7 +17110,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "FormFriendship"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF012B;
+			enum { id = 0xFFFF012Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17184,7 +17159,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TerminateFriendship"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF012C;
+			enum { id = 0xFFFF012Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17249,7 +17224,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "OfferCallingCard"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF012D;
+			enum { id = 0xFFFF012Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17316,7 +17291,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AcceptCallingCard"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF012E;
+			enum { id = 0xFFFF012Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17397,7 +17372,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DeclineCallingCard"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF012F;
+			enum { id = 0xFFFF012Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17462,7 +17437,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RezScript"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0130;
+			enum { id = 0xFFFF0130ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17587,7 +17562,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CreateInventoryItem"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0131;
+			enum { id = 0xFFFF0131ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17668,7 +17643,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CreateLandmarkForEvent"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0132;
+			enum { id = 0xFFFF0132ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17751,7 +17726,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RegionHandleRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0135;
+			enum { id = 0xFFFF0135ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17798,7 +17773,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RegionIDAndHandleReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0136;
+			enum { id = 0xFFFF0136ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17847,7 +17822,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MoneyTransferRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0137;
+			enum { id = 0xFFFF0137ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17926,7 +17901,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MoneyBalanceRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0139;
+			enum { id = 0xFFFF0139ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -17991,7 +17966,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MoneyBalanceReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF013A;
+			enum { id = 0xFFFF013Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18050,7 +18025,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RoutedMoneyBalanceReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF013B;
+			enum { id = 0xFFFF013Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18127,7 +18102,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ActivateGestures"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF013C;
+			enum { id = 0xFFFF013Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18198,7 +18173,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DeactivateGestures"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF013D;
+			enum { id = 0xFFFF013Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18267,7 +18242,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MuteListUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF013E;
+			enum { id = 0xFFFF013Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18316,7 +18291,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UseCachedMuteList"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF013F;
+			enum { id = 0xFFFF013Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18363,7 +18338,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GrantUserRights"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0140;
+			enum { id = 0xFFFF0140ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18430,7 +18405,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChangeUserRights"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0141;
+			enum { id = 0xFFFF0141ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18495,7 +18470,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "OnlineNotification"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0142;
+			enum { id = 0xFFFF0142ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18542,7 +18517,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "OfflineNotification"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0143;
+			enum { id = 0xFFFF0143ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18589,7 +18564,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SetStartLocationRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0144;
+			enum { id = 0xFFFF0144ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18660,7 +18635,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AssetUploadRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF014D;
+			enum { id = 0xFFFF014Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18715,7 +18690,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AssetUploadComplete"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF014E;
+			enum { id = 0xFFFF014Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18766,7 +18741,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CreateGroupRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0153;
+			enum { id = 0xFFFF0153ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18845,7 +18820,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CreateGroupReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0154;
+			enum { id = 0xFFFF0154ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18912,7 +18887,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UpdateGroupInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0155;
+			enum { id = 0xFFFF0155ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -18991,7 +18966,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupRoleChanges"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0156;
+			enum { id = 0xFFFF0156ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19062,7 +19037,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "JoinGroupRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0157;
+			enum { id = 0xFFFF0157ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19127,7 +19102,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "JoinGroupReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0158;
+			enum { id = 0xFFFF0158ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19192,7 +19167,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EjectGroupMemberRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0159;
+			enum { id = 0xFFFF0159ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19273,7 +19248,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "EjectGroupMemberReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF015A;
+			enum { id = 0xFFFF015Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19352,7 +19327,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LeaveGroupRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF015B;
+			enum { id = 0xFFFF015Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19417,7 +19392,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LeaveGroupReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF015C;
+			enum { id = 0xFFFF015Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19482,7 +19457,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "InviteGroupRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF015D;
+			enum { id = 0xFFFF015Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19565,7 +19540,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupProfileRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF015F;
+			enum { id = 0xFFFF015Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19630,7 +19605,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupProfileReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0160;
+			enum { id = 0xFFFF0160ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19723,7 +19698,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupAccountSummaryRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0161;
+			enum { id = 0xFFFF0161ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19794,7 +19769,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupAccountSummaryReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0162;
+			enum { id = 0xFFFF0162ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19897,7 +19872,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupAccountDetailsRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0163;
+			enum { id = 0xFFFF0163ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -19968,7 +19943,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupAccountDetailsReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0164;
+			enum { id = 0xFFFF0164ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20057,7 +20032,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupAccountTransactionsRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0165;
+			enum { id = 0xFFFF0165ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20128,7 +20103,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupAccountTransactionsReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0166;
+			enum { id = 0xFFFF0166ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20223,7 +20198,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupActiveProposalsRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0167;
+			enum { id = 0xFFFF0167ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20304,7 +20279,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupActiveProposalItemReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0168;
+			enum { id = 0xFFFF0168ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20405,7 +20380,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupVoteHistoryRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0169;
+			enum { id = 0xFFFF0169ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20486,7 +20461,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupVoteHistoryItemReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF016A;
+			enum { id = 0xFFFF016Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20607,7 +20582,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "StartGroupProposal"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF016B;
+			enum { id = 0xFFFF016Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20680,7 +20655,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupProposalBallot"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF016C;
+			enum { id = 0xFFFF016Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20749,7 +20724,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupMembersRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF016E;
+			enum { id = 0xFFFF016Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20816,7 +20791,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupMembersReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF016F;
+			enum { id = 0xFFFF016Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20909,7 +20884,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ActivateGroup"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0170;
+			enum { id = 0xFFFF0170ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -20960,7 +20935,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SetGroupContribution"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0171;
+			enum { id = 0xFFFF0171ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21027,7 +21002,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SetGroupAcceptNotices"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0172;
+			enum { id = 0xFFFF0172ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21110,7 +21085,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupRoleDataRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0173;
+			enum { id = 0xFFFF0173ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21177,7 +21152,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupRoleDataReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0174;
+			enum { id = 0xFFFF0174ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21270,7 +21245,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupRoleMembersRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0175;
+			enum { id = 0xFFFF0175ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21337,7 +21312,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupRoleMembersReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0176;
+			enum { id = 0xFFFF0176ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21408,7 +21383,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupTitlesRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0177;
+			enum { id = 0xFFFF0177ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21461,7 +21436,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupTitlesReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0178;
+			enum { id = 0xFFFF0178ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21532,7 +21507,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupTitleUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0179;
+			enum { id = 0xFFFF0179ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21585,7 +21560,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupRoleUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF017A;
+			enum { id = 0xFFFF017Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21662,7 +21637,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LiveHelpGroupRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF017B;
+			enum { id = 0xFFFF017Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21711,7 +21686,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LiveHelpGroupReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF017C;
+			enum { id = 0xFFFF017Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21762,7 +21737,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentWearablesRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF017D;
+			enum { id = 0xFFFF017Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21811,7 +21786,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentWearablesUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF017E;
+			enum { id = 0xFFFF017Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21882,7 +21857,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentIsNowWearing"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF017F;
+			enum { id = 0xFFFF017Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -21949,7 +21924,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentCachedTexture"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0180;
+			enum { id = 0xFFFF0180ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22018,7 +21993,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentCachedTextureResponse"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0181;
+			enum { id = 0xFFFF0181ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22089,7 +22064,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentDataUpdateRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0182;
+			enum { id = 0xFFFF0182ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22138,7 +22113,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentDataUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0183;
+			enum { id = 0xFFFF0183ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22197,7 +22172,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "GroupDataUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0184;
+			enum { id = 0xFFFF0184ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22250,7 +22225,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentGroupDataUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0185;
+			enum { id = 0xFFFF0185ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22323,7 +22298,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentDropGroup"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0186;
+			enum { id = 0xFFFF0186ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22372,7 +22347,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CreateTrustedCircuit"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0188;
+			enum { id = 0xFFFF0188ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22421,7 +22396,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DenyTrustedCircuit"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0189;
+			enum { id = 0xFFFF0189ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22468,7 +22443,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestTrustedCircuit"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF018A;
+			enum { id = 0xFFFF018Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22500,7 +22475,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RezSingleAttachmentFromInv"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF018B;
+			enum { id = 0xFFFF018Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22581,7 +22556,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RezMultipleAttachmentsFromInv"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF018C;
+			enum { id = 0xFFFF018Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22682,7 +22657,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "DetachAttachmentIntoInv"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF018D;
+			enum { id = 0xFFFF018Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22731,7 +22706,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CreateNewOutfitAttachments"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF018E;
+			enum { id = 0xFFFF018Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22814,7 +22789,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UserInfoRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF018F;
+			enum { id = 0xFFFF018Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22863,7 +22838,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UserInfoReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0190;
+			enum { id = 0xFFFF0190ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22930,7 +22905,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "UpdateUserInfo"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0191;
+			enum { id = 0xFFFF0191ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -22997,7 +22972,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "InitiateDownload"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0193;
+			enum { id = 0xFFFF0193ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23062,7 +23037,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SystemMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0194;
+			enum { id = 0xFFFF0194ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23129,7 +23104,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MapLayerRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0195;
+			enum { id = 0xFFFF0195ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23184,7 +23159,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MapLayerReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0196;
+			enum { id = 0xFFFF0196ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23257,7 +23232,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MapBlockRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0197;
+			enum { id = 0xFFFF0197ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23334,7 +23309,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MapNameRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0198;
+			enum { id = 0xFFFF0198ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23405,7 +23380,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MapBlockReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF0199;
+			enum { id = 0xFFFF0199ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23484,7 +23459,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MapItemRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF019A;
+			enum { id = 0xFFFF019Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23557,7 +23532,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MapItemReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF019B;
+			enum { id = 0xFFFF019Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23648,7 +23623,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SendPostcard"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF019C;
+			enum { id = 0xFFFF019Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23715,7 +23690,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelMediaCommandMessage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF01A3;
+			enum { id = 0xFFFF01A3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23766,7 +23741,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelMediaUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF01A4;
+			enum { id = 0xFFFF01A4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23841,7 +23816,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LandStatRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF01A5;
+			enum { id = 0xFFFF01A5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23912,7 +23887,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LandStatReply"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF01A6;
+			enum { id = 0xFFFF01A6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -23993,7 +23968,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "Error"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF01A7;
+			enum { id = 0xFFFF01A7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -24066,7 +24041,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectIncludeInSearch"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFF01A8;
+			enum { id = 0xFFFF01A8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
 			
@@ -24133,7 +24108,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PacketAck"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFFFFFB;
+			enum { id = 0xFFFFFFFBul };
 			static FrequencyType const frequency = FT_FIXED;
 			static bool const encoded = false;
 			
@@ -24180,7 +24155,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "OpenCircuit"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFFFFFC;
+			enum { id = 0xFFFFFFFCul };
 			static FrequencyType const frequency = FT_FIXED;
 			static bool const encoded = false;
 			
@@ -24229,7 +24204,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CloseCircuit"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFFFFFFFD;
+			enum { id = 0xFFFFFFFDul };
 			static FrequencyType const frequency = FT_FIXED;
 			static bool const encoded = false;
 			
@@ -24261,7 +24236,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectAdd"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000001;
+			enum { id = 0xFF000001ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24384,7 +24359,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "MultipleObjectUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000002;
+			enum { id = 0xFF000002ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24453,7 +24428,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestMultipleObjects"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000003;
+			enum { id = 0xFF000003ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24520,7 +24495,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectPosition"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000004;
+			enum { id = 0xFF000004ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24587,7 +24562,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestObjectPropertiesFamily"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000005;
+			enum { id = 0xFF000005ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24654,7 +24629,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CoarseLocationUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000006;
+			enum { id = 0xFF000006ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24739,7 +24714,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CrossedRegion"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000007;
+			enum { id = 0xFF000007ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24828,7 +24803,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ConfirmEnableSimulator"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000008;
+			enum { id = 0xFF000008ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24877,7 +24852,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectProperties"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000009;
+			enum { id = 0xFF000009ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -24976,7 +24951,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectPropertiesFamily"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF00000A;
+			enum { id = 0xFF00000Aul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -25053,7 +25028,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelPropertiesRequest"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF00000B;
+			enum { id = 0xFF00000Bul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -25128,7 +25103,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AttachedSound"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF00000D;
+			enum { id = 0xFF00000Dul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -25183,7 +25158,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AttachedSoundGainChange"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF00000E;
+			enum { id = 0xFF00000Eul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -25232,7 +25207,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "PreloadSound"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF00000F;
+			enum { id = 0xFF00000Ful };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -25283,7 +25258,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ViewerEffect"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xFF000011;
+			enum { id = 0xFF000011ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
 			
@@ -25358,7 +25333,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "StartPingCheck"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x1;
+			enum { id = 0x1ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25407,7 +25382,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CompletePingCheck"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x2;
+			enum { id = 0x2ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25454,7 +25429,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x4;
+			enum { id = 0x4ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25523,7 +25498,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentAnimation"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x5;
+			enum { id = 0x5ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25606,7 +25581,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentRequestSit"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x6;
+			enum { id = 0x6ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25673,7 +25648,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AgentSit"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x7;
+			enum { id = 0x7ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25722,7 +25697,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "RequestImage"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x8;
+			enum { id = 0x8ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25795,7 +25770,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ImageData"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x9;
+			enum { id = 0x9ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25864,7 +25839,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ImagePacket"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xA;
+			enum { id = 0xAul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25929,7 +25904,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "LayerData"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xB;
+			enum { id = 0xBul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -25992,7 +25967,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xC;
+			enum { id = 0xCul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26147,7 +26122,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectUpdateCompressed"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xD;
+			enum { id = 0xDul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26214,7 +26189,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ObjectUpdateCached"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xE;
+			enum { id = 0xEul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26283,7 +26258,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ImprovedTerseObjectUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0xF;
+			enum { id = 0xFul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26350,7 +26325,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "KillObject"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x10;
+			enum { id = 0x10ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26397,7 +26372,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "TransferPacket"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x11;
+			enum { id = 0x11ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26452,7 +26427,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SendXferPacket"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x12;
+			enum { id = 0x12ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26517,7 +26492,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ConfirmXferPacket"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x13;
+			enum { id = 0x13ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26566,7 +26541,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarAnimation"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x14;
+			enum { id = 0x14ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26663,7 +26638,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "AvatarSitResponse"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x15;
+			enum { id = 0x15ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26736,7 +26711,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "CameraConstraint"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x16;
+			enum { id = 0x16ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26783,7 +26758,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ParcelProperties"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x17;
+			enum { id = 0x17ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -26942,7 +26917,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChildAgentUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x19;
+			enum { id = 0x19ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -27125,7 +27100,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChildAgentAlive"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x1A;
+			enum { id = 0x1Aul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -27178,7 +27153,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "ChildAgentPositionUpdate"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x1B;
+			enum { id = 0x1Bul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			
@@ -27247,7 +27222,7 @@ namespace omvtk
 		{
 			static char const * name(){ return "SoundTrigger"; }
 			static bool const trusted = false;
-			static UInt32 const id = 0x1D;
+			enum { id = 0x1Dul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
 			

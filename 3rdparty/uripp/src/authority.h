@@ -46,8 +46,8 @@ namespace uripp {
         enum host_type_e {
             null,
             DOMAIN_NAME, ///< domain name
-            IP_ADDRESS, ///< IP address
-            IPV6_ADDRESS, ///< IP v6 address
+            IP_ADDRESS,  ///< IP address
+            IPV6_ADDRESS ///< IP v6 address
         };
         authority(); ///< Construct.
         /// Construct from string. This test to be sure host
