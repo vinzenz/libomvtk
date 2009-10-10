@@ -27,6 +27,7 @@
 #	pragma warning(push)
 #	pragma warning(disable:4127)
 #	pragma warning(disable:4512)
+#   pragma warning(disable:4355) // this in initalization list 
 #endif
 
 #include "simulator.h"

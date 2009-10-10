@@ -27,6 +27,11 @@
 #include "settings.h"
 #include "library.h"
 
+#if _MSC_VER > 1200
+#	pragma warning(push)
+#   pragma warning(disable:4355) // this in initalization list 
+#endif
+
 namespace omvtk
 {
 	GridClient::GridClient()
@@ -66,3 +71,6 @@ namespace omvtk
 	}
 }
 
+#if _MSC_VER > 1200
+#	pragma warning(pop)
+#endif
