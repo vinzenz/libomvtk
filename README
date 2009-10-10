@@ -9,6 +9,18 @@ Whilst the core is developed in C++ and the latest API our plan is to offer
 a C API to this library so it will be easily possible to created bindings
 for other languages such as Python, Perl, Ruby, Pascal, Delphi a.s.o.
 
+The library will be licensed under the BSD-3 license to offer unrestricted
+use of the library to anyone.
+
+The source code repository for this project is hosted at 
+http://github.com/vinzenz/libomvtk and we're using git as VCS
+
+The project management system is hosted at: 
+http://code.snip-a-lot.org/projects/show/libomvtk
+
+Please feel free to report any bugs or feature wishes to us, or if you 
+want to contribute let us know we'd love to support you with all our
+knowledge :-)
 
 -- The OpenMetaVerse ToolKit Library Team
 
