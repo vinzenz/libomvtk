@@ -78,17 +78,7 @@ namespace omvtk
 		return m_client.library().service();
 	}
 
-	boost::asio::io_service const & Network::service() const
-	{
-		return m_client.library().service();
-	}
-
 	boost::asio::ssl::context & Network::context()
-	{
-		return m_client.library().context();
-	}
-
-	boost::asio::ssl::context const & Network::context() const
 	{
 		return m_client.library().context();
 	}

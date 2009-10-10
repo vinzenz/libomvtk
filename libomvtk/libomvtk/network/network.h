@@ -85,9 +85,7 @@ namespace omvtk
 		UInt32 circuit_code() const;
 
 		boost::asio::io_service & service();
-		boost::asio::io_service const & service() const;
 		boost::asio::ssl::context & context();
-		boost::asio::ssl::context const & context() const;
 		
 		MessageHandlerManager & messages_manager();
 		CapsHandlerManager & caps_manager();

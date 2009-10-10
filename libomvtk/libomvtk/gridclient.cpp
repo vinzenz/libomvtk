@@ -34,8 +34,8 @@
 
 namespace omvtk
 {
-	GridClient::GridClient()
-	: m_library()
+	GridClient::GridClient(Library & l)
+	: m_library(l)
 	, m_settings(*this)
 	, m_network(*this)
 	{}
