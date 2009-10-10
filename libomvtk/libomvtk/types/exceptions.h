@@ -50,7 +50,7 @@ namespace omvtk
 		{}
 		
 		SyntaxException(std::string const & msg)
-			: Exception("SyntaxException: " + msg)
+			: Exception(std::string("SyntaxException: ") += msg)
 		{}
 	};
 
@@ -61,7 +61,7 @@ namespace omvtk
 		{}
 		
 		IllegalStateException(std::string const & msg)
-			: Exception("IllegalStateException: " + msg)
+			: Exception(std::string("IllegalStateException: ") += msg)
 		{}
 
 	};
@@ -73,7 +73,7 @@ namespace omvtk
 		{}
 		
 		BadCastException(std::string const & msg)
-			: Exception("BadCastException: " + msg)
+            : Exception(std::string("BadCastException: ") += msg)
 		{}
 	};
 

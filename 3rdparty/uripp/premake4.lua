@@ -5,10 +5,14 @@ solution "uripp"
         kind "StaticLib"
         language "C++"        
         files { "src/*.cpp" }
-        targetdir "../lib"        
-        configuration "Release"
+        targetdir "../lib"
+	configuration "vs*"
+	    flags "StaticRuntime"
+	configuration "Release"
+	    targetname "uripp"
             flags {"OptimizeSpeed"}
         configuration "Debug"
+	    targetname "urippd"
             flags {"Symbols"}
 
     project "uripp_test"
@@ -16,6 +20,8 @@ solution "uripp"
         language "C++"        
         files { "test/*.cpp" }
         links "uripp"
+	configuration "vs*"
+	    flags "StaticRuntime"
         configuration "Release"
             flags {"OptimizeSpeed"}
         configuration "Debug"

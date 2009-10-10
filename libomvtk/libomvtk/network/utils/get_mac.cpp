@@ -25,7 +25,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 #include "get_mac.h"
 #include <sstream>
-#include <boost/random
+#include <boost/random.hpp>
 
 namespace 
 {

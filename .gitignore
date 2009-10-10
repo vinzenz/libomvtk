@@ -21,3 +21,10 @@ obj
 *.exe
 *.dll
 *.make
+*.idb
+*.ilk
+*.suo
+*.ncb
+*.XML
+_UpgradeReport_Files
+
