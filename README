@@ -1,0 +1,20 @@
+The OpenMetaVerse ToolKit Library 
+
+The OpenMetaVerse ToolKit Library is a Library for accessing virtual worlds
+such as Second Life Grid(TM) [1] created by Linden Lab/Linden Research, Inc[2],
+and OpenSim based virtual worlds such as OSgrid[3] and Openlife grid[4]
+
+Our main target is to offer an API for compiled languages such as C or C++
+Whilst the core is developed in C++ and the latest API our plan is to offer
+a C API to this library so it will be easily possible to created bindings
+for other languages such as Python, Perl, Ruby, Pascal, Delphi a.s.o.
+
+
+-- The OpenMetaVerse ToolKit Library Team
+
+
+References:
+[1] http://secondlife.com
+[2] http://lindenlab.com
+[3] http://www.osgrid.org
+[4] http://www.openlifegrid.org
