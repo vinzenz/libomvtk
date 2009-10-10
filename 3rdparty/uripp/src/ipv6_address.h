@@ -24,6 +24,7 @@ THE SOFTWARE.
 #include "apidefs.h"
 #include <string>
 #include <iostream>
+#include <algorithm>
 #include <cstring>
 namespace uripp {
     /** \brief IP v6 address.
@@ -68,7 +69,7 @@ namespace uripp {
             std::memcpy(hextets_, o.hextets_, sizeof(hextets_));
         }
         void swap(ipv6_address & o){
-            std::swap_ranges(&hextets_[0], &hextets_[sizeof(hextets_)], &o.hextets_[0]);
+            std::swap_ranges(&hextets_[0], &hextets_[sizeof(hextets_) / sizeof(hextets_[0])], &o.hextets_[0]);
         }
 
         ipv6_address & operator=(ipv6_address o){

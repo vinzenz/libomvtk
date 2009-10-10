@@ -58,8 +58,9 @@ namespace uripp {
         bool is_null() const {return host_.empty();} ///< Test if null/empty.
         const std::string& host() const {return host_;} ///< Get host.
         host_type_e host_type() const {return host_type_;} ///< Get host type.
-        unsigned short port() const {return port_;} ///< Get port (0 if none).
-        unsigned short & port() {return port_;} ///< Get port (0 if none).
+        unsigned short port() const {return port_ ? port_ : wellknown_port_;} ///< Get port (0 if none).
+        unsigned short wellknown_port() const {return wellknown_port_;} ///< Get port (0 if none).
+        unsigned short & wellknown_port() {return wellknown_port_;} ///< Get port (0 if none).
         std::string string() const; ///< Calculate string.
         std::ostream& operator <<(std::ostream& os) const; ///< Stream out.
         static const char IP_LITERAL_BEGIN_CHAR; ///< IP literal begin ('[')
@@ -70,12 +71,14 @@ namespace uripp {
             : host_type_(o.host_type_)
             , host_(o.host_)
             , port_(o.port_)
+            , wellknown_port_(o.wellknown_port_)
             {}
 
         void swap(authority & o){
             std::swap(host_type_, o.host_type_);
             host_.swap(o.host_);
             std::swap(port_, o.port_);
+            std::swap(wellknown_port_, o.wellknown_port_);
         }
 
         authority & operator=(authority o){
@@ -86,7 +89,8 @@ namespace uripp {
         bool operator == ( authority const & rhs ) const {
             return host_type_ == rhs.host_type_
                 && host_ == rhs.host_
-                && port_ == rhs.port_;
+                && port_ == rhs.port_
+                && wellknown_port_ == rhs.wellknown_port_;
         }
 
         bool operator != ( authority const & rhs ) const {
@@ -98,6 +102,7 @@ namespace uripp {
         host_type_e host_type_;
         std::string host_;
         unsigned short port_;
+        unsigned short wellknown_port_;
     };
 
     inline void swap(authority & a, authority & b){

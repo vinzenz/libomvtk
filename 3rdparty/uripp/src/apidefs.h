@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 #ifndef uripp_apidefs_h
 #define uripp_apidefs_h
-#ifdef _WIN32
+#if 0
 // Symbols to define for the preprocessor when compiling the code:
 //    URIPP_STATIC: to create static library
 //    URIPP_EXPORTS: to create DLL library

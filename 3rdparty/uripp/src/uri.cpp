@@ -104,9 +104,7 @@ namespace uripp {
         }
         v = tmp;
         first = f;
-        if( v.authority().port() == 0 ){
-            v.authority().port() = get_wellknown_port( v.scheme().string() );
-        }
+        v.authority().wellknown_port() = get_wellknown_port(v.scheme().string());
         return true;
     }
 

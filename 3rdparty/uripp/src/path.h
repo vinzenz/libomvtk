@@ -112,6 +112,8 @@ namespace uripp {
         {
         }
         void swap(path & o){
+            std::swap(absolute_, o.absolute_);
+            std::swap(is_directory_, o.is_directory_);
             segments_.swap(o.segments_);
         }
 

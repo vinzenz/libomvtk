@@ -25,6 +25,7 @@ THE SOFTWARE.
 #include <string>
 #include <iostream>
 #include <cstring>
+#include <algorithm>
 namespace uripp {
     class ipv6_address;
     /** \brief IP address.
