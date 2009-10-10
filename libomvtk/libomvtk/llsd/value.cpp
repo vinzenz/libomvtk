@@ -1,3 +1,28 @@
+// vim:et:st=4:ts=4:sts=4:
+// Copyright (c) 2008,2009 by the OpenMetaverse Toolkit Library Team
+// All rights reserved.
+//
+// - Redistribution and use in source and binary forms, with or without
+//   modification, are permitted provided that the following conditions are met:
+//
+// - Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+//
+// - Neither the name of the OpenMetaverse Toolkit Library Team nor the names
+//   of its contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE
 #ifdef _MSC_VER
 #	pragma warning(push)
 #	pragma warning(disable: 4702)
@@ -289,102 +314,102 @@ namespace omvtk
 
 	LLSDValue::Boolean const & LLSDValue::boolean() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Boolean>(m_value);
+		return boost::any_cast<LLSDValue::Boolean const&>(m_value);
 	}
 
 	LLSDValue::Boolean & LLSDValue::boolean()
 	{
-		return Poco::RefAnyCast<LLSDValue::Boolean>(m_value);
+		return boost::any_cast<LLSDValue::Boolean&>(m_value);
 	}
 
 	LLSDValue::Integer const & LLSDValue::integer() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Integer>(m_value);
+		return boost::any_cast<LLSDValue::Integer const &>(m_value);
 	}
 
 	LLSDValue::Integer & LLSDValue::integer()
 	{
-		return Poco::RefAnyCast<LLSDValue::Integer>(m_value);
+		return boost::any_cast<LLSDValue::Integer&>(m_value);
 	}
 
 	LLSDValue::Real	const & LLSDValue::real() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Real>(m_value);
+		return boost::any_cast<LLSDValue::Real const &>(m_value);
 	}
 
 	LLSDValue::Real	& LLSDValue::real()
 	{
-		return Poco::RefAnyCast<LLSDValue::Real>(m_value);
+		return boost::any_cast<LLSDValue::Real &>(m_value);
 	}
 
 	LLSDValue::String const & LLSDValue::string() const
 	{
-		return Poco::RefAnyCast<LLSDValue::String>(m_value);
+		return boost::any_cast<LLSDValue::String const &>(m_value);
 	}
 
 	LLSDValue::String & LLSDValue::string()
 	{
-		return Poco::RefAnyCast<LLSDValue::String>(m_value);
+		return boost::any_cast<LLSDValue::String &>(m_value);
 	}
 
 	LLSDValue::UUID	const & LLSDValue::uuid() const
 	{
-		return Poco::RefAnyCast<LLSDValue::UUID>(m_value);
+		return boost::any_cast<LLSDValue::UUID const &>(m_value);
 	}
 
 	LLSDValue::UUID	& LLSDValue::uuid()
 	{
-		return Poco::RefAnyCast<LLSDValue::UUID>(m_value);
+		return boost::any_cast<LLSDValue::UUID &>(m_value);
 	}
 
 	LLSDValue::URI const & LLSDValue::uri() const
 	{
-		return Poco::RefAnyCast<LLSDValue::URI>(m_value);
+		return boost::any_cast<LLSDValue::URI const &>(m_value);
 	}
 
 	LLSDValue::URI & LLSDValue::uri()
 	{
-		return Poco::RefAnyCast<LLSDValue::URI>(m_value);
+		return boost::any_cast<LLSDValue::URI &>(m_value);
 	}
 
 	LLSDValue::Date	const & LLSDValue::date() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Date>(m_value);
+		return boost::any_cast<LLSDValue::Date const &>(m_value);
 	}
 
 	LLSDValue::Date	& LLSDValue::date()
 	{
-		return Poco::RefAnyCast<LLSDValue::Date>(m_value);
+		return boost::any_cast<LLSDValue::Date &>(m_value);
 	}
 
 	LLSDValue::Binary const & LLSDValue::binary() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Binary>(m_value);
+		return boost::any_cast<LLSDValue::Binary const &>(m_value);
 	}
 
 	LLSDValue::Binary & LLSDValue::binary()
 	{
-		return Poco::RefAnyCast<LLSDValue::Binary>(m_value);
+		return boost::any_cast<LLSDValue::Binary &>(m_value);
 	}
 
 	LLSDValue::Array const & LLSDValue::array() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Array>(m_value);
+		return boost::any_cast<LLSDValue::Array const &>(m_value);
 	}
 
 	LLSDValue::Array & LLSDValue::array()
 	{
-		return Poco::RefAnyCast<LLSDValue::Array>(m_value);
+		return boost::any_cast<LLSDValue::Array &>(m_value);
 	}
 
 	LLSDValue::Map const & LLSDValue::map() const
 	{
-		return Poco::RefAnyCast<LLSDValue::Map>(m_value);
+		return boost::any_cast<LLSDValue::Map const &>(m_value);
 	}
 
 	LLSDValue::Map & LLSDValue::map()
 	{
-		return Poco::RefAnyCast<LLSDValue::Map>(m_value);
+		return boost::any_cast<LLSDValue::Map &>(m_value);
 	}
 
 	LLSDValue::String LLSDValue::xml_encode() const
@@ -405,6 +430,13 @@ namespace omvtk
 		return ConvT::get_wrap(m_current).binary_encode(out, m_value);
 	}
 
+    /// Encodes value as LLSD+Binary
+    LLSDValue::Binary LLSDValue::binary_encode() const
+    {
+        Binary b;
+        binary_encode(b);
+        return b;
+    }
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
 
 	void LLSDValue::xml_decode(Types typeID, byte_sub_range const & sr)

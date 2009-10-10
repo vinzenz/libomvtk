@@ -381,7 +381,7 @@ struct Builder
 		"\t\t{\n"
 		"\t\t\tstatic char const * name(){ return \"%s\"; }\n"
 		"\t\t\tstatic bool const trusted = %s;\n"
-		"\t\t\tstatic UInt32 const id = 0x%.08X;\n"
+		"\t\t\tenum { id = 0x%.08Xul };\n"
 		"\t\t\tstatic FrequencyType const frequency = %s;\n"
 		"\t\t\tstatic bool const encoded = %s;\n"
 		"\t\t\t\n\n"

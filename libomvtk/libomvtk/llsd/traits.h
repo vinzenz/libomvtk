@@ -1,3 +1,28 @@
+// vim:et:st=4:ts=4:sts=4:
+// Copyright (c) 2008,2009 by the OpenMetaverse Toolkit Library Team
+// All rights reserved.
+//
+// - Redistribution and use in source and binary forms, with or without
+//   modification, are permitted provided that the following conditions are met:
+//
+// - Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+//
+// - Neither the name of the OpenMetaverse Toolkit Library Team nor the names
+//   of its contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE
 #ifndef GUARD_LIBOMVTK_LLSD_LLSD_TRAITS_H_INCLUDED
 #define GUARD_LIBOMVTK_LLSD_LLSD_TRAITS_H_INCLUDED
 #ifndef DOXYGEN_SHOULD_SKIP_THIS
@@ -10,9 +35,8 @@
 #include "../../3rdparty/tinyxml/tinyxml.h"
 #include "value.h"
 #include "../types/assert.h"
-#include <Poco/Any.h>
-#include <Poco/Exception.h>
-#include <Poco/ByteOrder.h>
+#include "../types/exceptions.h"
+#include "../types/byte_order.h"
 
 #include <sstream>
 
@@ -21,6 +45,7 @@
 #include <boost/lexical_cast.hpp>
 #include <boost/function.hpp>
 #include <boost/foreach.hpp>
+#include <boost/any.hpp>
 #include <boost/archive/iterators/binary_from_base64.hpp>
 #include <boost/archive/iterators/base64_from_binary.hpp>
 #include <boost/archive/iterators/transform_width.hpp>
@@ -198,7 +223,7 @@ namespace omvtk
 
 			static inline void binary_encode(LLSDValue::Binary & out, Type const & type)
 			{
-				UInt32 tmp = Poco::ByteOrder::toNetwork(Poco::UInt32(type.size()));
+				UInt32 tmp = to_network(UInt32(type.size()));
 				Byte const * p  = reinterpret_cast<Byte const*>(&tmp);
 				out.push_back('s');
 				out.insert(out.end(), p, p + sizeof(UInt32));
@@ -250,15 +275,15 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Date &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Boolean to Date");
+				throw BadCastException("Illegal LLSD conversion from Boolean to Date");
 			}
 			static inline void convert(LLSDValue::URI &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Boolean to LLURI");
+				throw BadCastException("Illegal LLSD conversion from Boolean to LLURI");
 			}
 			static inline void convert(LLSDValue::UUID &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Boolean to LLUUID");
+				throw BadCastException("Illegal LLSD conversion from Boolean to LLUUID");
 			}
 
 			static inline String xml_encode(Type const & value)
@@ -338,7 +363,7 @@ namespace omvtk
 				if(from.size() < sizeof(TargetT))
 					to = 0;
 				else
-					to = Poco::ByteOrder::fromNetwork(*reinterpret_cast<TargetT const *>(&from[0]));
+					to = to_host(*reinterpret_cast<TargetT const *>(&from[0]));
 			}
 			static inline void convert(LLSDValue::Real & to, Type const & from)	
 			{
@@ -346,7 +371,7 @@ namespace omvtk
 				if(from.size() < sizeof(TargetT))
 					to = 0;
 				else
-					to = Real64ByteOrder::convert(Poco::ByteOrder::fromNetwork, *reinterpret_cast<TargetT const *>(&from[0]));
+					to = to_host(*reinterpret_cast<TargetT const *>(&from[0]));
 			}
 			static inline void convert(LLSDValue::String & to, Type const & from)
 			{
@@ -358,7 +383,7 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Date &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from UUID to Date");
+				throw BadCastException("Illegal LLSD conversion from UUID to Date");
 			}
 			static inline void convert(LLSDValue::URI & to, Type const & from)
 			{
@@ -396,7 +421,7 @@ namespace omvtk
 
 			static inline void binary_encode(LLSDValue::Binary & out, Type const & value)
 			{
-				UInt32 size = Poco::ByteOrder::toNetwork(Poco::UInt32(value.size()));
+				UInt32 size = to_network(UInt32(value.size()));
 				Byte * p = reinterpret_cast<Byte*>(&size);
 				out.push_back(Byte('b'));
 				out.insert(out.end(), p, p+sizeof(UInt32));
@@ -445,7 +470,7 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Binary & to, Type const & from)
 			{
-				Int32 tmp = Poco::ByteOrder::toNetwork(from);
+				Int32 tmp = to_network(from);
 				Byte * p = reinterpret_cast<Byte*>(&tmp);
 				to.assign(p,p+sizeof(Int32));
 			}
@@ -456,11 +481,11 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::URI &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Integer to URI");
+				throw BadCastException("Illegal LLSD conversion from Integer to URI");
 			}
 			static inline void convert(LLSDValue::UUID &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Integer to UUID");
+				throw BadCastException("Illegal LLSD conversion from Integer to UUID");
 			}
 
 			static inline String xml_encode(Type const & value)
@@ -547,7 +572,7 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Binary & to, Type const & from)
 			{
-				Type tmp = Real64ByteOrder::convert(&Poco::ByteOrder::toNetwork, from);
+				Type tmp = to_network(from);
 				Byte * p = reinterpret_cast<Byte*>(&tmp);
 				to.assign(p,p+sizeof(Type));
 			}
@@ -558,11 +583,11 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::URI &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Rela64 to URI");
+				throw BadCastException("Illegal LLSD conversion from Rela64 to URI");
 			}
 			static inline void convert(LLSDValue::UUID &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Real64 to UUID");
+				throw BadCastException("Illegal LLSD conversion from Real64 to UUID");
 			}
 
 			static inline String xml_encode(Type const & value)
@@ -636,11 +661,11 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Integer &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from UUID to Integer");
+				throw BadCastException("Illegal LLSD conversion from UUID to Integer");
 			}
 			static inline void convert(LLSDValue::Real &, Type const &)	
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from UUID to Real64");
+				throw BadCastException("Illegal LLSD conversion from UUID to Real64");
 			}
 			static inline void convert(LLSDValue::String & to, Type const & from)
 			{
@@ -652,11 +677,11 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Date &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from UUID to Date");
+				throw BadCastException("Illegal LLSD conversion from UUID to Date");
 			}
 			static inline void convert(LLSDValue::URI &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from UUID to URI");
+				throw BadCastException("Illegal LLSD conversion from UUID to URI");
 			}
 			static inline void convert(LLSDValue::UUID & to, Type const & from)
 			{
@@ -718,15 +743,15 @@ namespace omvtk
 
 			static inline void convert(LLSDValue::Boolean &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from URI to Boolean");
+				throw BadCastException("Illegal LLSD conversion from URI to Boolean");
 			}
 			static inline void convert(LLSDValue::Integer &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from URI to Integer");
+				throw BadCastException("Illegal LLSD conversion from URI to Integer");
 			}
 			static inline void convert(LLSDValue::Real &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from URI to Real64");
+				throw BadCastException("Illegal LLSD conversion from URI to Real64");
 			}
 			static inline void convert(LLSDValue::String & to, Type const & from)
 			{
@@ -734,11 +759,11 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Binary &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from URI to Binary");
+				throw BadCastException("Illegal LLSD conversion from URI to Binary");
 			}
 			static inline void convert(LLSDValue::Date &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from URI to Date");
+				throw BadCastException("Illegal LLSD conversion from URI to Date");
 			}
 			static inline void convert(LLSDValue::URI & to, Type const & from)
 			{
@@ -746,7 +771,7 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::UUID &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from URI to UUID");
+				throw BadCastException("Illegal LLSD conversion from URI to UUID");
 			}
 
 			static inline String xml_encode(Type const & value)
@@ -774,7 +799,7 @@ namespace omvtk
 			static inline void binary_encode(LLSDValue::Binary & out, Type const & value)
 			{
 				String uriString = value.to_string();
-				UInt32 tmp = Poco::ByteOrder::toNetwork(Poco::UInt32(uriString.size()));
+				UInt32 tmp = to_network(UInt32(uriString.size()));
 				Byte const * p  = reinterpret_cast<Byte const*>(&tmp);
 				out.push_back('l');
 				out.insert(out.end(), p, p + sizeof(UInt32));
@@ -807,7 +832,7 @@ namespace omvtk
 
 			static inline void convert(LLSDValue::Boolean &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Date to Boolean");
+				throw BadCastException("Illegal LLSD conversion from Date to Boolean");
 			}
 			static inline void convert(LLSDValue::Integer & to, Type const & from)
 			{
@@ -823,7 +848,7 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::Binary &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Date to Binary");
+				throw BadCastException("Illegal LLSD conversion from Date to Binary");
 			}
 			static inline void convert(LLSDValue::Date & to, Type const & from)
 			{
@@ -831,11 +856,11 @@ namespace omvtk
 			}
 			static inline void convert(LLSDValue::URI &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Date to URI");
+				throw BadCastException("Illegal LLSD conversion from Date to URI");
 			}
 			static inline void convert(LLSDValue::UUID &, Type const &)
 			{
-				throw Poco::BadCastException("Illegal LLSD conversion from Date to UUID");
+				throw BadCastException("Illegal LLSD conversion from Date to UUID");
 			}
 
 			static inline String xml_encode(Type const & value)
@@ -929,7 +954,7 @@ namespace omvtk
 			static inline void binary_encode(LLSDValue::Binary & out, Type const & value)
 			{
 				out.push_back(Byte('['));
-				UInt32 size = Poco::ByteOrder::toNetwork(Poco::UInt32(value.size()));
+				UInt32 size = to_network(UInt32(value.size()));
 				Byte * p = reinterpret_cast<Byte*>(&size);
 				out.insert(out.end(), p, p+sizeof(UInt32));
 				BOOST_FOREACH(Type::value_type const & item, value)
@@ -1004,7 +1029,7 @@ namespace omvtk
 			static inline void binary_encode(LLSDValue::Binary & out, Type const & value)
 			{
 				out.push_back(Byte('{'));
-				UInt32 size = Poco::ByteOrder::toNetwork(Poco::UInt32(value.size()));
+				UInt32 size = to_network(UInt32(value.size()));
 				Byte const * p = reinterpret_cast<Byte const *>(&size);
 				out.insert(out.end(), p, p+sizeof(UInt32));
 				BOOST_FOREACH(Type::value_type const & item, value)
@@ -1070,9 +1095,9 @@ namespace omvtk
 
 		struct LLSDTraitsWrapBase
 		{
-			typedef boost::function<String(Poco::Any const &)> EncoderT;
-			typedef boost::function<Poco::Any(byte_sub_range const &)> DecoderT;
-			typedef boost::function<void(LLSDValue::Binary & ,Poco::Any const & value)> BinEncoderT;
+			typedef boost::function<String(boost::any const &)> EncoderT;
+			typedef boost::function<boost::any(byte_sub_range const &)> DecoderT;
+			typedef boost::function<void(LLSDValue::Binary & ,boost::any const & value)> BinEncoderT;
 
 			EncoderT xml_encode;
 			DecoderT xml_decode;
@@ -1114,32 +1139,32 @@ namespace omvtk
 				return instance; 
 			}
 
-			static inline String xml_encode_(Poco::Any const & value)
+			static inline String xml_encode_(boost::any const & value)
 			{
-				return Traits::xml_encode(Poco::RefAnyCast<typename Traits::Type>(value));
+				return Traits::xml_encode(boost::any_cast<typename Traits::Type>(value));
 			}
 			
-			static inline Poco::Any xml_decode_(byte_sub_range const & sr)
+			static inline boost::any xml_decode_(byte_sub_range const & sr)
 			{
 				return Traits::xml_decode(sr.begin(),sr.end());
 			}
 
-			static inline String notation_encode_(Poco::Any const & value)
+			static inline String notation_encode_(boost::any const & value)
 			{
-				return Traits::notation_encode(Poco::RefAnyCast<typename Traits::Type>(value));
+				return Traits::notation_encode(boost::any_cast<typename Traits::Type>(value));
 			}
 
-			static inline Poco::Any notation_decode_(byte_sub_range const & sr)
+			static inline boost::any notation_decode_(byte_sub_range const & sr)
 			{
 				return Traits::notation_decode(sr.begin(),sr.end());
 			}
 
-			static inline void binary_encode_(LLSDValue::Binary & out, Poco::Any const & value)
+			static inline void binary_encode_(LLSDValue::Binary & out, boost::any const & value)
 			{
-				Traits::binary_encode(out, Poco::RefAnyCast<typename Traits::Type>(value));
+				Traits::binary_encode(out, boost::any_cast<typename Traits::Type>(value));
 			}
 
-			static inline Poco::Any binary_decode_(byte_sub_range const & sr)
+			static inline boost::any binary_decode_(byte_sub_range const & sr)
 			{
 				return Traits::binary_decode(sr.begin(), sr.end());
 			}
@@ -1150,10 +1175,10 @@ namespace omvtk
 		struct LLSDConverter
 		{
 			template<LLSDValue::Types TypeID>
-			static void do_convert(TargetType & target, Poco::Any const & a)
+			static void do_convert(TargetType & target, boost::any const & a)
 			{
 				typedef typename LLSDTraits<TypeID>::Type SourceT;
-				LLSDTraits<TypeID>::convert(target, Poco::AnyCast<SourceT>(a));
+				LLSDTraits<TypeID>::convert(target, boost::any_cast<SourceT>(a));
 			}
 
 			template<LLSDValue::Types TypeID>
@@ -1191,7 +1216,7 @@ namespace omvtk
 				return get_wrap_helper<LLSDValue::VT_UNDEF>();
 			}
 
-			static TargetType convert(Poco::Any const & a, LLSDValue::Types type_id)
+			static TargetType convert(boost::any const & a, LLSDValue::Types type_id)
 			{
 				TargetType target = TargetType();
 				switch(type_id)

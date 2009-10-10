@@ -1,3 +1,28 @@
+// vim:et:st=4:ts=4:sts=4:
+// Copyright (c) 2008,2009 by the OpenMetaverse Toolkit Library Team
+// All rights reserved.
+//
+// - Redistribution and use in source and binary forms, with or without
+//   modification, are permitted provided that the following conditions are met:
+//
+// - Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+//
+// - Neither the name of the OpenMetaverse Toolkit Library Team nor the names
+//   of its contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE
 #ifndef GUARD_LIBOMVTK_PACKETS_SERIALIZATION_H_INCLUDED
 #define GUARD_LIBOMVTK_PACKETS_SERIALIZATION_H_INCLUDED
 
@@ -9,7 +34,7 @@
 #include "../types/raw_types.h"
 #include "../llsd/value.h"
 #include "header.h"
-#include <Poco/ByteOrder.h>
+#include "../types/byte_order.h"
 #include <boost/noncopyable.hpp>
 
 namespace omvtk
@@ -206,26 +231,6 @@ namespace omvtk
 			size_t m_offset;
 		};
 
-		inline Real64 RealToNetwork(Real64 r)
-		{
-			return Real64ByteOrder::convert(Poco::ByteOrder::toNetwork,r);
-		}
-
-		inline Real32 RealToNetwork(Real32 r)
-		{
-			return Real32ByteOrder::convert(Poco::ByteOrder::toNetwork,r);
-		}
-
-		inline Real64 RealFromNetwork(Real64 r)
-		{
-			return Real64ByteOrder::convert(Poco::ByteOrder::fromNetwork,r);
-		}
-
-		inline Real32 RealFromNetwork(Real32 r)
-		{
-			return Real32ByteOrder::convert(Poco::ByteOrder::fromNetwork,r);
-		}
-
 		// every compiler should be able to optimize this away :)
 		template<typename T>
 		inline T & NoConvert(T & t)
@@ -251,7 +256,7 @@ namespace omvtk
 #define LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER(STYPE) \
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(STYPE,NoConvert,NoConvert)
 #define LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(STYPE) \
-		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(STYPE,Poco::ByteOrder::toNetwork,Poco::ByteOrder::fromNetwork)
+		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(STYPE,omvtk::to_network,omvtk::to_host)
 
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER(Int8)
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(Int16)
@@ -261,8 +266,8 @@ namespace omvtk
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(UInt16)
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(UInt32)
 		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_BYTEORDER(UInt64)
-		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real32,RealToNetwork,RealFromNetwork)
-		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real64,RealToNetwork,RealFromNetwork)
+		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real32,omvtk::to_network,omvtk::to_host)
+		LIBOMVTK_PACKETS_IMPLEMENT_GENERIC_SERIALIZER_IMPL(Real64,omvtk::to_network,omvtk::to_host)
 
 		inline Serializer & operator<<(Serializer & s, bool val)
 		{

@@ -1,15 +1,49 @@
+// vim:et:st=4:ts=4:sts=4:
+// Copyright (c) 2008,2009 by the OpenMetaverse Toolkit Library Team
+// All rights reserved.
+//
+// - Redistribution and use in source and binary forms, with or without
+//   modification, are permitted provided that the following conditions are met:
+//
+// - Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+//
+// - Neither the name of the OpenMetaverse Toolkit Library Team nor the names
+//   of its contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE
 #include "lluuid.h"
 #include "assert.h"
+#include <sstream>
 
 namespace // local visibility only so we can use an arbitary name
 {
-	Poco::UUID fromSubRange(omvtk::byte_sub_range const & b)
+	boost::uuid fromSubRange(omvtk::byte_sub_range const & b)
 	{
-		Poco::UUID uuid;		
+		boost::uuid uuid;		
 		libomvtk_ensure(b.size() == 16);
-		uuid.copyFrom(reinterpret_cast<char const*>(&b[0]));
+		uuid.assign(b.begin(), b.end());
 		return uuid;
 	}
+
+    boost::uuid fromString(omvtk::String const & str)
+    {
+        std::istringstream istr(str);
+        boost::uuid u;
+        istr >> u;
+        return u;
+    }
 }
 
 namespace omvtk
@@ -24,7 +58,7 @@ namespace omvtk
 	}
 
 
-	/// Initialize from Poco::UUID
+	/// Initialize from an internal object 
 	LLUUID::LLUUID(value_type const & val)
 		: m_data(val)
 	{
@@ -33,7 +67,7 @@ namespace omvtk
 
 	/// Initialize from string representation
 	LLUUID::LLUUID(String const & str)
-		: m_data(str)
+		: m_data(fromString(str))
 	{
 	}
 
@@ -121,34 +155,34 @@ namespace omvtk
 	/// Whether the current instance is a zero uuid
 	bool LLUUID::is_zero() const
 	{
-		return m_data.isNil();
+		return m_data.is_nil();
 	}
 
 
 	/// Converts to string representation
 	String LLUUID::to_string() const
 	{
-		return m_data.toString();
+		std::ostringstream str;
+        str << m_data;
+        return str.str();
 	}
 
 
 	/// Converts to binary buffer
 	ByteBuffer LLUUID::to_binary() const
 	{
-		ByteBuffer buffer(16,0);
-		m_data.copyTo(reinterpret_cast<char*>(&buffer[0]));
-		return buffer;
+		return ByteBuffer(m_data.begin(), m_data.end());		
 	}
 
 
-	/// returns internal Poco::UUID instance
+	/// returns an internal instance
 	LLUUID::value_type & LLUUID::get()
 	{
 		return m_data;
 	}
 
 
-	/// returns internal Poco::UUID instance
+	/// returns an internal instance
 	LLUUID::value_type const & LLUUID::get() const
 	{
 		return m_data;

@@ -1,3 +1,28 @@
+// vim:et:st=4:ts=4:sts=4:
+// Copyright (c) 2008,2009 by the OpenMetaverse Toolkit Library Team
+// All rights reserved.
+//
+// - Redistribution and use in source and binary forms, with or without
+//   modification, are permitted provided that the following conditions are met:
+//
+// - Redistributions of source code must retain the above copyright notice, this
+//   list of conditions and the following disclaimer.
+//
+// - Neither the name of the OpenMetaverse Toolkit Library Team nor the names
+//   of its contributors may be used to endorse or promote products derived from
+//   this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+// CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+// SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+// INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+// ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE
 #ifndef GUARD_LIBOMVTK_TYPES_BASE_TYPES_H_INCLUDED
 #define GUARD_LIBOMVTK_TYPES_BASE_TYPES_H_INCLUDED
 
@@ -7,23 +32,23 @@
 
 #include <string>
 #include <vector>
-#include <Poco/Types.h>
 #include <boost/range.hpp>
 #include <boost/foreach.hpp>
+#include <boost/cstdint.hpp>
 #include <ostream>
 #include <istream>
 
 namespace omvtk
 {
-	typedef Poco::Int8  Int8;
-	typedef Poco::Int16 Int16;
-	typedef Poco::Int32 Int32;
-	typedef Poco::Int64 Int64;
+	typedef boost::int8_t  Int8;
+	typedef boost::int16_t Int16;
+	typedef boost::int32_t Int32;
+	typedef boost::int64_t Int64;
 
-	typedef Poco::UInt8  UInt8;
-	typedef Poco::UInt16 UInt16;
-	typedef Poco::UInt32 UInt32;
-	typedef Poco::UInt64 UInt64;
+	typedef boost::uint8_t  UInt8;
+	typedef boost::uint16_t UInt16;
+	typedef boost::uint32_t UInt32;
+	typedef boost::uint64_t UInt64;
 
 	typedef UInt8  Byte;
 	typedef UInt16 Word;
