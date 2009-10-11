@@ -46,7 +46,7 @@ namespace omvtk
 			  g_log_level()->set_enabled(level::debug);
 			  break;
             case verbose:
-              g_log_level()->set_enabled(500);
+              g_log_level()->set_enabled(verbose);
 			  break;
 			case info:
 			  g_log_level()->set_enabled(level::info);

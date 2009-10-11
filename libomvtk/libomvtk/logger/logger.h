@@ -59,7 +59,7 @@ namespace omvtk
 		#define LOG_ERR     LOG_(error)     <<  " [ ERROR ] MSG: "		
 		#define LOG_FATAL   LOG_(fatal)     <<  " [ FATAL ] MSG: "
 		#define LOG_WARN    LOG_(warning)   <<  " [ WARN  ] MSG: "
-		#define LOG_TRACE   LOG_(trace)     <<  " [ TRACE ] MSG: "
+		#define LOG_TRACE   LOG_(enable_all)<<  " [ TRACE ] MSG: "
 
 		BOOST_DECLARE_LOG_FILTER( g_log_level, boost::logging::level::holder )
 		BOOST_DECLARE_LOG(g_logger, logger_type)

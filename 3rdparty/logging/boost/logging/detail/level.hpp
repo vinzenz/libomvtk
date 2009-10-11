@@ -52,6 +52,7 @@ namespace level {
         disable_all = (type)-1,
         enable_all = 0,
         debug = 1000,
+        verbose = 1500,
         info = 2000,
         warning = 3000,
         error = 4000,
