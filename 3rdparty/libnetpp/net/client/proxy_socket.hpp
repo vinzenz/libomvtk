@@ -90,21 +90,21 @@ namespace net
 		void cancel(error_code & ec)
 		{
 			proxy_ptr_->cancel();
-			base_type::cancel(ec);
+			base_type::close(ec);
 		}
 
 #ifndef BOOST_NO_EXCEPTIONS
 		void cancel()
 		{
 			proxy_ptr_->cancel();
-			base_type::cancel();
+			base_type::close();
 		}
 #endif //#ifndef BOOST_NO_EXCEPTIONS
 
 		void close(error_code & ec)
 		{
 			proxy_ptr_->cancel();
-			base_type::cancel(ec);
+			base_type::close(ec);
 		}
 
 #ifndef BOOST_NO_EXCEPTIONS

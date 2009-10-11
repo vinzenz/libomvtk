@@ -96,11 +96,12 @@ namespace net
 				{
 					timer_.expires_from_now(connect_timeout_);
 					timer_.async_wait(
-						boost::bind( 
+					    boost::bind( 
 							&connection_base<Tag>::connect_timeout, 
-							this, 
-							boost::asio::placeholders::error
-						)
+					 		this, 
+					 		boost::asio::placeholders::error, 
+                            cb
+					 	)
 					);
 				}
 			}
@@ -172,7 +173,10 @@ namespace net
             );
         }
 
-        virtual void connect_timeout( boost::system::error_code const & ec )
+        // callback is just a dummy some might pass just a shared_ptr to the handler and the app
+        // would crash because the instance is dead -> this way we can ensure the bound pointer
+        // is not released. Kind of a hack but hey it work :-)
+        virtual void connect_timeout( boost::system::error_code const & ec , callback )
         {
             if(!ec)
             {
