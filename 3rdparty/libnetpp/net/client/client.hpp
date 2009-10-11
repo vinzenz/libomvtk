@@ -45,8 +45,14 @@ namespace net
         : adapter_(connection_ptr(new connection<Tag>(service)), false)
         {}
 
-        basic_client(service_type & service, ssl_context_type & context)
-        : adapter_(connection_ptr(new ssl_connection<Tag>(service, context)), true)
+        basic_client(service_type & service, ssl_context_type & context, bool use_ssl = true)
+        : adapter_(
+            (   use_ssl 
+                ? connection_ptr(new ssl_connection<Tag>(service, context))
+                : connection_ptr(new connection<Tag>(service))
+            )
+            , use_ssl
+        )
         {}
 
         ~basic_client()
