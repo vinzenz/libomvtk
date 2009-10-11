@@ -25,6 +25,7 @@
 // POSSIBILITY OF SUCH DAMAGE
 #include "settings.h"
 #include "gridclient.h"
+#include "version.h"
 
 namespace omvtk
 {
@@ -37,6 +38,10 @@ namespace omvtk
 	, aditi_uri(m_mutex, "https://login.aditi.lindenlab.com/cgi-bin/login.cgi")
 	, resource_directory(m_mutex, "../../data/")
 	, cache_directory(m_mutex, "../../data/cache/")
+    // Network Settings
+	, user_agent(m_mutex, LIBOMVTK_VERSION_STRING)
+	, http_connect_timeout(m_mutex, 30)
+	, http_timeout(m_mutex, 30)
 	{}			
 }
 

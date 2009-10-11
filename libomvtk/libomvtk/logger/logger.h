@@ -41,20 +41,25 @@ namespace omvtk
 	{
   		enum log_level
   		{
+            trace,
     		debug,
+            verbose,
     		info,
-    		error
+            warning,
+    		error,
+            fatal
   		};
   
   		typedef boost::logging::named_logger<>::type logger_type;
-  		#define LOG_(lvl) BOOST_LOG_USE_LOG_IF_LEVEL( logger::g_logger() , logger::g_log_level(), lvl ) << __FILE__ << ":" << __LINE__
+        #define LOG_(lvl) BOOST_LOG_USE_LOG_IF_LEVEL( omvtk::logger::g_logger() , omvtk::logger::g_log_level(), lvl ) << __FILE__ << ":" << __LINE__
 
-		#define LOG_DBG LOG_(debug)  <<  " [ DEBUG ] MSG: "
-		#define LOG_APP LOG_(info)   <<  " [ INFO  ] MSG: "
-		#define LOG_ERR LOG_(error)  <<  " [ ERROR ] MSG: "		
-		#define LOG_FATAL LOG_(error) << " [ FATAL ] MSG: "
-		#define LOG_WARN LOG_(error) <<  " [ WARN  ] MSG: "
-		#define LOG_TRACE LOG_(debug)<<  " [ TRACE ] MSG: "
+		#define LOG_DBG     LOG_(debug)     <<  " [ DEBUG ] MSG: "
+		#define LOG_APP     LOG_(verbose)   <<  " [  APP  ] MSG: "
+		#define LOG_INFO    LOG_(info)      <<  " [ INFO  ] MSG: "
+		#define LOG_ERR     LOG_(error)     <<  " [ ERROR ] MSG: "		
+		#define LOG_FATAL   LOG_(fatal)     <<  " [ FATAL ] MSG: "
+		#define LOG_WARN    LOG_(warning)   <<  " [ WARN  ] MSG: "
+		#define LOG_TRACE   LOG_(trace)     <<  " [ TRACE ] MSG: "
 
 		BOOST_DECLARE_LOG_FILTER( g_log_level, boost::logging::level::holder )
 		BOOST_DECLARE_LOG(g_logger, logger_type)

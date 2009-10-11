@@ -23,57 +23,14 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
-#include "gridclient.h"
-#include "settings.h"
-#include "library.h"
+#ifndef GUARD_LIBOMVTK_VERSION_H_INCLUDED
+#define GUARD_LIBOMVTK_VERSION_H_INCLUDED
 
-#if _MSC_VER > 1200
-#	pragma warning(push)
-#   pragma warning(disable:4355) // this in initalization list 
+#ifndef LIBOMVTK_REVISION
+#   define LIBOMVTK_REVISION "$"
 #endif
 
-namespace omvtk
-{
-	GridClient::GridClient()
-    : m_library()
-	, m_settings(*this)
-	, m_network(*this)
-	{}
+#define LIBOMVTK_VERSION "0.1.0"
+#define LIBOMVTK_VERSION_STRING "LIBOMVTK/" LIBOMVTK_VERSION " Rev: " LIBOMVTK_REVISION
 
-    GridClient::~GridClient()
-    {}
-	
-	Network & GridClient::network()
-	{
-		return m_network;
-	}
-
-	Network const & GridClient::network() const
-	{
-		return m_network;
-	}
-
-	Settings & GridClient::settings()
-	{
-		return m_settings;
-	}
-
-	Settings const & GridClient::settings() const
-	{
-		return m_settings;
-	}
-
-	Library & GridClient::library()
-	{
-		return m_library;
-	}
-	
-	Library const & GridClient::library() const
-	{
-		return m_library;
-	}
-}
-
-#if _MSC_VER > 1200
-#	pragma warning(pop)
-#endif
+#endif //GUARD_LIBOMVTK_VERSION_H_INCLUDED

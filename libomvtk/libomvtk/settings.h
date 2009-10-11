@@ -56,6 +56,11 @@ namespace omvtk
 		StringProp const aditi_uri;
 		StringProp const resource_directory;
 		StringProp const cache_directory;
+    
+    // Network Settings
+		StringProp user_agent;
+		UInt32Prop http_connect_timeout;
+		UInt32Prop http_timeout;
 	};
 }
 

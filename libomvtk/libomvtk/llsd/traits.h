@@ -333,7 +333,7 @@ namespace omvtk
 			static inline Type binary_decode(Iterator iter, Iterator end)
 			{
 				byte_sub_range sr(iter, end);
-				return Type();
+				return !sr.empty();
 			}
 		};
 

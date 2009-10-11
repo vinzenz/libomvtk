@@ -83,6 +83,16 @@ namespace omvtk
 		return m_client.library().context();
 	}
 
+    GridClient const & Network::client() const
+    {
+        return m_client;
+    }
+    
+    GridClient & Network::client()
+    {
+        return m_client;
+    }
+
 	Network::HandlerManager const & Network::handler() const
 	{
 		return m_handler_manager;

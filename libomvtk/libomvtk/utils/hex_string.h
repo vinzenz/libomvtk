@@ -23,57 +23,29 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
-#include "gridclient.h"
-#include "settings.h"
-#include "library.h"
+#ifndef GUARD_LIBOMVTK_UTILS_HEX_STRING_H_INCLUDED
+#define GUARD_LIBOMVTK_UTILS_HEX_STRING_H_INCLUDED
 
-#if _MSC_VER > 1200
-#	pragma warning(push)
-#   pragma warning(disable:4355) // this in initalization list 
-#endif
+#include "../types/sub_range.h"
+#include <boost/foreach.hpp>
 
-namespace omvtk
-{
-	GridClient::GridClient()
-    : m_library()
-	, m_settings(*this)
-	, m_network(*this)
-	{}
+namespace omvtk {
 
-    GridClient::~GridClient()
-    {}
-	
-	Network & GridClient::network()
-	{
-		return m_network;
-	}
+    template< typename IteratorT >
+    String to_hex_string( IteratorT begin, IteratorT end ) {
+        return to_hex_string( byte_sub_range( begin, end ) );
+    }
 
-	Network const & GridClient::network() const
-	{
-		return m_network;
-	}
-
-	Settings & GridClient::settings()
-	{
-		return m_settings;
-	}
-
-	Settings const & GridClient::settings() const
-	{
-		return m_settings;
-	}
-
-	Library & GridClient::library()
-	{
-		return m_library;
-	}
-	
-	Library const & GridClient::library() const
-	{
-		return m_library;
-	}
+    String to_hex_string( byte_sub_range const & range ) {
+        static char const HEX_C[17] = "0123456789ABCDEF";
+        String result;
+        BOOST_FOREACH( Byte b, range )
+        {
+            result += HEX_C[ (b & 0xF0) >> 4 ];
+            result += HEX_C[ (b & 0x0F) ];
+        }
+        return result;
+    }
 }
 
-#if _MSC_VER > 1200
-#	pragma warning(pop)
-#endif
+#endif //GUARD_LIBOMVTK_UTILS_HEX_STRING_H_INCLUDED

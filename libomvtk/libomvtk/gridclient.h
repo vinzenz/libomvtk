@@ -36,7 +36,7 @@ namespace omvtk
 
 	struct GridClient
 	{
-		GridClient(Library & l);
+		GridClient();
 		~GridClient();
 
 		Network & network();
@@ -46,7 +46,7 @@ namespace omvtk
 		Library & library();
 		Library const & library() const;
 	protected:
-		Library & m_library;
+		Library m_library;
 		Settings m_settings;
 		Network m_network;
 	};

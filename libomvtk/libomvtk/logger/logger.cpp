@@ -39,23 +39,41 @@ namespace omvtk
 			using namespace boost::logging;
 			switch(l)
 			{
-			case debug:
+            case trace:
+			  g_log_level()->set_enabled(level::enable_all);
+			  break;
+            case debug:
 			  g_log_level()->set_enabled(level::debug);
+			  break;
+            case verbose:
+              g_log_level()->set_enabled(500);
 			  break;
 			case info:
 			  g_log_level()->set_enabled(level::info);
 			  break;
+            case warning:
+              g_log_level()->set_enabled(level::warning);
+			  break;
 			case error:
 			  g_log_level()->set_enabled(level::error);
+			  break;
+			case fatal:
+			  g_log_level()->set_enabled(level::fatal);
 			  break;
 			}
 		}
 		  
 		void init(log_level level)
 		{
-			g_logger()->writer().write("[%idx%] %time%($yyyy-$MM-$dd $hh:$mm.$ss) %thread_id% |\n", "file(libomvtk.log) debug");
+#ifdef LIBOMVTK_WINDOWS
+#   define LIBOMVTK_DEBUG_LOG " debug"
+#else
+#   define LIBOMVTK_DEBUG_LOG
+#endif            
+			g_logger()->writer().write("[%idx%] %time%($yyyy-$MM-$dd $hh:$mm.$ss) %thread_id% |\n", 
+                                        "file(libomvtk.log)" LIBOMVTK_DEBUG_LOG " cout");
 			g_logger()->mark_as_initialized();    
-			LOG_APP << "Logger Subsystem initialized";
+			LOG_INFO << "Logger Subsystem initialized";
 			set_log_level(level);
 		}
 
@@ -72,7 +90,7 @@ namespace omvtk
 		void shutdown()
 		{
 			set_log_level(info);
-			LOG_APP << "Logger Subsystem shutdown";    
+			LOG_INFO << "Logger Subsystem shutdown";    
 		}
 	}
 }

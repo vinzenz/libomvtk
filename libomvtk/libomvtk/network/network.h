@@ -87,6 +87,9 @@ namespace omvtk
 		boost::asio::io_service & service();
 		boost::asio::ssl::context & context();
 		
+        GridClient const & client() const;
+        GridClient & client();
+
 		MessageHandlerManager & messages_manager();
 		CapsHandlerManager & caps_manager();
 
