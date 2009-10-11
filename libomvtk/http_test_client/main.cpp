@@ -8,6 +8,7 @@
 #include "../libomvtk/types/lluuid.h"
 #include "../libomvtk/utils/md5.h"
 #include "../libomvtk/gridclient.h"
+#include <boost/optional.hpp>
 #include <boost/unordered_map.hpp>
 #include <boost/foreach.hpp>
 
@@ -43,16 +44,15 @@ struct HTTPRequest {
         : id( random_uuid() )
         , uri()
         , method()
-        , content_type()
         , body() 
         , headers() {
     }
-    omvtk::LLUUID id;
-    omvtk::LLURI uri;
-    omvtk::String method;
-    omvtk::String content_type;    
-    omvtk::String body;    
-    HeaderCollection headers;
+
+    omvtk::LLUUID       id;
+    omvtk::LLURI        uri;
+    omvtk::String       method;
+    omvtk::String       body;    
+    HeaderCollection    headers;
 };
 
 struct HTTPResponse : http_response_base {
@@ -104,19 +104,57 @@ struct HTTPRequestBuilder {
 };
 
 struct HttpClient {
-    typedef boost::function< void (HTTPResponse const &) > OnCompletion;
+    struct Progress {
+        enum State {
+            Connecting,
+            Connected,        
+            RequestSent,
+            HeadersReceived,
+            BodyInTransfer,
+            Finished
+        };
+
+        omvtk::String to_string() const {
+            switch( state ) {
+            case Connecting:        return "Connecting";
+            case Connected:         return "Connected";
+            case RequestSent:       return "RequestSent";
+            case HeadersReceived:   return "HeadersReceived";
+            case BodyInTransfer:    return "BodyInTransfer";
+            case Finished:          return "Finished";
+            }
+            return "Unknown";
+        }
+        
+        Progress()
+            : state( Connecting )
+            , error_code()
+            , bytes_sent( 0 )
+            , bytes_received( 0 )
+            , response( )
+        {}
+
+        State                       state;
+        boost::system::error_code   error_code;
+        omvtk::UInt64               bytes_sent;
+        omvtk::UInt64               bytes_received;
+        HTTPResponse                response;
+    };
+
+    typedef boost::function< bool (HTTPRequest const & request, Progress const & data) > ProgressHandler;
     struct Instance {
         Instance(Network & network, 
                  HTTPRequest const & r = HTTPRequest(), 
-                 OnCompletion const & handler = OnCompletion() )
+                 ProgressHandler const & handler = ProgressHandler() )
         : client( network.service() ) //, network.context() )
         , request(r)
-        , completion_handler(handler) {
+        , handler(handler) {
         }
 
         tcp_client      client;
         HTTPRequest     request;
-        OnCompletion    completion_handler;
+        Progress        progress;
+        ProgressHandler handler;
     };
     typedef HTTPRequest::HeaderCollection HeaderCollection;
     typedef boost::shared_ptr<Instance> InstancePtr;
@@ -125,30 +163,30 @@ struct HttpClient {
         : network_(network) {
     }
 
-    void get(omvtk::LLURI const & uri, OnCompletion handler, 
+    omvtk::LLUUID get(omvtk::LLURI const & uri, ProgressHandler handler, 
              HeaderCollection const & headers = HeaderCollection()) {
 
-        create_instance("GET", uri, omvtk::String(), handler, headers);
+        return create_instance("GET", uri, omvtk::String(), handler, headers);
 
     }
 
-    void post(omvtk::LLURI const & uri, omvtk::String const & body, 
-              OnCompletion handler, HeaderCollection const & headers = HeaderCollection()) {
+    omvtk::LLUUID post(omvtk::LLURI const & uri, omvtk::String const & body, 
+              ProgressHandler handler, HeaderCollection const & headers = HeaderCollection()) {
         
-        create_instance( "POST", uri, body, handler, headers );
+        return create_instance( "POST", uri, body, handler, headers );
     }
 
-    void post(omvtk::LLURI const & uri, omvtk::String const & content_type, 
-              omvtk::String const & body, OnCompletion handler) {
+    omvtk::LLUUID post(omvtk::LLURI const & uri, omvtk::String const & content_type, 
+              omvtk::String const & body, ProgressHandler handler) {
 
         HeaderCollection headers;
         headers.insert( std::make_pair( "Content-Type", content_type ) );
-        post( uri, body, handler, headers );
+        return post( uri, body, handler, headers );
         
     }
 
-    void create_instance(omvtk::String const & method, omvtk::LLURI const & uri, 
-                         omvtk::String const & body, OnCompletion handler, 
+    omvtk::LLUUID create_instance(omvtk::String const & method, omvtk::LLURI const & uri, 
+                         omvtk::String const & body, ProgressHandler handler, 
                          HeaderCollection const & headers) {
 
         InstancePtr instance(new Instance(network_));
@@ -158,11 +196,13 @@ struct HttpClient {
         instance->request.headers                   = headers;
         
         initiate_instance(instance);
+
+        return instance->request.id;
     }
 
     void initiate_instance(InstancePtr instance) {
 
-        LOG_DBG << "Instance initiated to: " << instance->request.uri 
+        LOG_APP << "Instance initiated to: " << instance->request.uri 
                 << " method: "               << instance->request.method
                 << " request id: "           << instance->request.id;
 
@@ -173,10 +213,21 @@ struct HttpClient {
     }
 
     void on_connected( boost::system::error_code const & ec, InstancePtr instance ) {
+        instance->progress.error_code = ec;
         if(!ec) {
-            LOG_DBG << "Request id: " << instance->request.id << " Server connection established ";
+            LOG_APP << "Request id: " << instance->request.id << " Server connection established";
+            instance->progress.state = Progress::Connected;            
+            if( !progress( instance ) ) {
+                return;
+            }
+
             omvtk::String message = HTTPRequestBuilder()(instance->request);
-            LOG_DBG << "Sending Message:\n----------------------\n" << message << "\n----------------------------\n";
+            LOG_DBG << "Sending Message:\n----------------------\n" << message << "\n----------------------------\n";            
+
+            boost::asio::async_write( instance->client.socket(), 
+                                      boost::asio::buffer( message ), 
+                                      boost::bind( &HttpClient::on_request_sent, this, _1, _2, instance )
+                                    );
         }
         else {
             LOG_ERR << "Request id: "   << instance->request.id
@@ -185,9 +236,43 @@ struct HttpClient {
                     << " Method: "      << instance->request.uri
                     << " Error Code: "  << ec 
                     << " Message: "     << ec.message();
+            progress( instance );
         }        
     }
+
+    bool progress( InstancePtr instance ) {
+        if ( instance->handler ) {
+            if( !instance->handler( instance->request, instance->progress ) ) {
+                LOG_INFO << "Request was aborted by handler. ID: " << instance->request.id 
+                         << " URI: " << instance->request.id
+                         << " State: " << instance->progress.to_string();                         
+                return false;
+            }
+        }
+        return true;
+    }
     
+    void on_request_sent( boost::system::error_code const & ec, size_t transfered, InstancePtr instance ) {
+        instance->progress.error_code = ec;
+        instance->progress.bytes_sent += transfered;
+        if( !ec ) {
+            instance->progress.state = Progress::RequestSent;
+            LOG_APP << "Request id: " << instance->request.id << " Request sent.";
+            if( !progress( instance ) ) {
+                return;
+            }
+        }
+        else {
+            LOG_ERR << "Request id: "   << instance->request.id
+                    << " Failure: Failed sending HTTP request"
+                    << " URI: "         << instance->request.uri
+                    << " Method: "      << instance->request.uri
+                    << " Error Code: "  << ec 
+                    << " Message: "     << ec.message();
+            progress( instance );
+        }
+    }
+
 protected:
     Network & network_;
 };
@@ -198,7 +283,6 @@ int main()
     omvtk::GridClient grid;
     HttpClient client(grid.network());
 
-    client.post(omvtk::LLURI("http://www.google.com/abcdefg/fsasd/?asfas=#abc"), "application/omvtk", "", HttpClient::OnCompletion());
+    client.post(omvtk::LLURI("http://www.google.com"), "application/omvtk", "", HttpClient::ProgressHandler());
     grid.network().service().run();
-    system("pause");
 }
