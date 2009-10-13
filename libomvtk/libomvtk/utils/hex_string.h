@@ -31,11 +31,6 @@
 
 namespace omvtk {
 
-    template< typename IteratorT >
-    String to_hex_string( IteratorT begin, IteratorT end ) {
-        return to_hex_string( byte_sub_range( begin, end ) );
-    }
-
     String to_hex_string( byte_sub_range const & range ) {
         static char const HEX_C[17] = "0123456789abcdef";
         String result;
@@ -46,6 +41,12 @@ namespace omvtk {
         }
         return result;
     }
+
+    template< typename IteratorT >
+    String to_hex_string( IteratorT begin, IteratorT end ) {
+        return to_hex_string( byte_sub_range( begin, end ) );
+    }
+
 }
 
 #endif //GUARD_LIBOMVTK_UTILS_HEX_STRING_H_INCLUDED
