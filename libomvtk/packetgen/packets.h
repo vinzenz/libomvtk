@@ -6,11 +6,27 @@
 #	pragma once
 #endif
 
-#include "../packets/processors.h"
+#include "processors.h"
+#include "../network/network.h"
 namespace omvtk
 {
 	namespace packets
 	{
+		struct PacketInitializer {
+		omvtk::Network & n_; omvtk::Simulator & s_; omvtk::ByteBuffer & b_;
+			PacketInitializer(omvtk::Network & net, omvtk::Simulator & sim, omvtk::ByteBuffer & buf)
+			: n_(net), s_(sim), b_(buf)
+			{}
+
+			template<typename T>
+			void init() {
+				std::size_t p = 0;
+				T m(b_, p);
+				if ( p == b_.size() ) {
+					n_.messages_manager()(m, s_);
+				}
+			}
+		};
 		struct TestMessageMessage
 			: Message
 		{
@@ -19,7 +35,14 @@ namespace omvtk
 			enum { id = 0xFFFF0001ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TestMessageMessage>();
+				}
+			};
+
 
 			TestMessageMessage()
 			: Message(LowHeader())
@@ -86,7 +109,14 @@ namespace omvtk
 			enum { id = 0xFFFF0003ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UseCircuitCodeMessage>();
+				}
+			};
+
 
 			UseCircuitCodeMessage()
 			: Message(LowHeader())
@@ -137,7 +167,14 @@ namespace omvtk
 			enum { id = 0xFFFF000Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TelehubInfoMessage>();
+				}
+			};
+
 
 			TelehubInfoMessage()
 			: Message(LowHeader())
@@ -206,7 +243,14 @@ namespace omvtk
 			enum { id = 0xFFFF0018ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EconomyDataRequestMessage>();
+				}
+			};
+
 
 			EconomyDataRequestMessage()
 			: Message(LowHeader())
@@ -238,7 +282,14 @@ namespace omvtk
 			enum { id = 0xFFFF0019ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EconomyDataMessage>();
+				}
+			};
+
 
 			EconomyDataMessage()
 			: Message(LowHeader())
@@ -317,7 +368,14 @@ namespace omvtk
 			enum { id = 0xFFFF001Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarPickerRequestMessage>();
+				}
+			};
+
 
 			AvatarPickerRequestMessage()
 			: Message(LowHeader())
@@ -384,7 +442,14 @@ namespace omvtk
 			enum { id = 0xFFFF001Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarPickerReplyMessage>();
+				}
+			};
+
 
 			AvatarPickerReplyMessage()
 			: Message(LowHeader())
@@ -453,7 +518,14 @@ namespace omvtk
 			enum { id = 0xFFFF001Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PlacesQueryMessage>();
+				}
+			};
+
 
 			PlacesQueryMessage()
 			: Message(LowHeader())
@@ -542,7 +614,14 @@ namespace omvtk
 			enum { id = 0xFFFF001Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PlacesReplyMessage>();
+				}
+			};
+
 
 			PlacesReplyMessage()
 			: Message(LowHeader())
@@ -647,7 +726,14 @@ namespace omvtk
 			enum { id = 0xFFFF001Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirFindQueryMessage>();
+				}
+			};
+
 
 			DirFindQueryMessage()
 			: Message(LowHeader())
@@ -718,7 +804,14 @@ namespace omvtk
 			enum { id = 0xFFFF0021ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirPlacesQueryMessage>();
+				}
+			};
+
 
 			DirPlacesQueryMessage()
 			: Message(LowHeader())
@@ -793,7 +886,14 @@ namespace omvtk
 			enum { id = 0xFFFF0023ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirPlacesReplyMessage>();
+				}
+			};
+
 
 			DirPlacesReplyMessage()
 			: Message(LowHeader())
@@ -880,7 +980,14 @@ namespace omvtk
 			enum { id = 0xFFFF0024ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirPeopleReplyMessage>();
+				}
+			};
+
 
 			DirPeopleReplyMessage()
 			: Message(LowHeader())
@@ -969,7 +1076,14 @@ namespace omvtk
 			enum { id = 0xFFFF0025ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirEventsReplyMessage>();
+				}
+			};
+
 
 			DirEventsReplyMessage()
 			: Message(LowHeader())
@@ -1058,7 +1172,14 @@ namespace omvtk
 			enum { id = 0xFFFF0026ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirGroupsReplyMessage>();
+				}
+			};
+
 
 			DirGroupsReplyMessage()
 			: Message(LowHeader())
@@ -1143,7 +1264,14 @@ namespace omvtk
 			enum { id = 0xFFFF0027ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirClassifiedQueryMessage>();
+				}
+			};
+
 
 			DirClassifiedQueryMessage()
 			: Message(LowHeader())
@@ -1216,7 +1344,14 @@ namespace omvtk
 			enum { id = 0xFFFF0029ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirClassifiedReplyMessage>();
+				}
+			};
+
 
 			DirClassifiedReplyMessage()
 			: Message(LowHeader())
@@ -1305,7 +1440,14 @@ namespace omvtk
 			enum { id = 0xFFFF002Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarClassifiedReplyMessage>();
+				}
+			};
+
 
 			AvatarClassifiedReplyMessage()
 			: Message(LowHeader())
@@ -1372,7 +1514,14 @@ namespace omvtk
 			enum { id = 0xFFFF002Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ClassifiedInfoRequestMessage>();
+				}
+			};
+
 
 			ClassifiedInfoRequestMessage()
 			: Message(LowHeader())
@@ -1437,7 +1586,14 @@ namespace omvtk
 			enum { id = 0xFFFF002Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ClassifiedInfoReplyMessage>();
+				}
+			};
+
 
 			ClassifiedInfoReplyMessage()
 			: Message(LowHeader())
@@ -1528,7 +1684,14 @@ namespace omvtk
 			enum { id = 0xFFFF002Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ClassifiedInfoUpdateMessage>();
+				}
+			};
+
 
 			ClassifiedInfoUpdateMessage()
 			: Message(LowHeader())
@@ -1611,7 +1774,14 @@ namespace omvtk
 			enum { id = 0xFFFF002Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ClassifiedDeleteMessage>();
+				}
+			};
+
 
 			ClassifiedDeleteMessage()
 			: Message(LowHeader())
@@ -1676,7 +1846,14 @@ namespace omvtk
 			enum { id = 0xFFFF002Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ClassifiedGodDeleteMessage>();
+				}
+			};
+
 
 			ClassifiedGodDeleteMessage()
 			: Message(LowHeader())
@@ -1743,7 +1920,14 @@ namespace omvtk
 			enum { id = 0xFFFF0030ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirLandQueryMessage>();
+				}
+			};
+
 
 			DirLandQueryMessage()
 			: Message(LowHeader())
@@ -1818,7 +2002,14 @@ namespace omvtk
 			enum { id = 0xFFFF0032ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirLandReplyMessage>();
+				}
+			};
+
 
 			DirLandReplyMessage()
 			: Message(LowHeader())
@@ -1907,7 +2098,14 @@ namespace omvtk
 			enum { id = 0xFFFF0033ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirPopularQueryMessage>();
+				}
+			};
+
 
 			DirPopularQueryMessage()
 			: Message(LowHeader())
@@ -1974,7 +2172,14 @@ namespace omvtk
 			enum { id = 0xFFFF0035ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DirPopularReplyMessage>();
+				}
+			};
+
 
 			DirPopularReplyMessage()
 			: Message(LowHeader())
@@ -2057,7 +2262,14 @@ namespace omvtk
 			enum { id = 0xFFFF0036ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelInfoRequestMessage>();
+				}
+			};
+
 
 			ParcelInfoRequestMessage()
 			: Message(LowHeader())
@@ -2122,7 +2334,14 @@ namespace omvtk
 			enum { id = 0xFFFF0037ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelInfoReplyMessage>();
+				}
+			};
+
 
 			ParcelInfoReplyMessage()
 			: Message(LowHeader())
@@ -2213,7 +2432,14 @@ namespace omvtk
 			enum { id = 0xFFFF0038ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelObjectOwnersRequestMessage>();
+				}
+			};
+
 
 			ParcelObjectOwnersRequestMessage()
 			: Message(LowHeader())
@@ -2278,7 +2504,14 @@ namespace omvtk
 			enum { id = 0xFFFF0039ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelObjectOwnersReplyMessage>();
+				}
+			};
+
 
 			ParcelObjectOwnersReplyMessage()
 			: Message(LowHeader())
@@ -2331,7 +2564,14 @@ namespace omvtk
 			enum { id = 0xFFFF003Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupNoticesListRequestMessage>();
+				}
+			};
+
 
 			GroupNoticesListRequestMessage()
 			: Message(LowHeader())
@@ -2396,7 +2636,14 @@ namespace omvtk
 			enum { id = 0xFFFF003Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupNoticesListReplyMessage>();
+				}
+			};
+
 
 			GroupNoticesListReplyMessage()
 			: Message(LowHeader())
@@ -2471,7 +2718,14 @@ namespace omvtk
 			enum { id = 0xFFFF003Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupNoticeRequestMessage>();
+				}
+			};
+
 
 			GroupNoticeRequestMessage()
 			: Message(LowHeader())
@@ -2536,7 +2790,14 @@ namespace omvtk
 			enum { id = 0xFFFF003Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportRequestMessage>();
+				}
+			};
+
 
 			TeleportRequestMessage()
 			: Message(LowHeader())
@@ -2605,7 +2866,14 @@ namespace omvtk
 			enum { id = 0xFFFF003Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportLocationRequestMessage>();
+				}
+			};
+
 
 			TeleportLocationRequestMessage()
 			: Message(LowHeader())
@@ -2674,7 +2942,14 @@ namespace omvtk
 			enum { id = 0xFFFF0040ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportLocalMessage>();
+				}
+			};
+
 
 			TeleportLocalMessage()
 			: Message(LowHeader())
@@ -2729,7 +3004,14 @@ namespace omvtk
 			enum { id = 0xFFFF0041ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportLandmarkRequestMessage>();
+				}
+			};
+
 
 			TeleportLandmarkRequestMessage()
 			: Message(LowHeader())
@@ -2780,7 +3062,14 @@ namespace omvtk
 			enum { id = 0xFFFF0042ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportProgressMessage>();
+				}
+			};
+
 
 			TeleportProgressMessage()
 			: Message(LowHeader())
@@ -2845,7 +3134,14 @@ namespace omvtk
 			enum { id = 0xFFFF0045ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportFinishMessage>();
+				}
+			};
+
 
 			TeleportFinishMessage()
 			: Message(LowHeader())
@@ -2906,7 +3202,14 @@ namespace omvtk
 			enum { id = 0xFFFF0046ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<StartLureMessage>();
+				}
+			};
+
 
 			StartLureMessage()
 			: Message(LowHeader())
@@ -2989,7 +3292,14 @@ namespace omvtk
 			enum { id = 0xFFFF0047ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportLureRequestMessage>();
+				}
+			};
+
 
 			TeleportLureRequestMessage()
 			: Message(LowHeader())
@@ -3042,7 +3352,14 @@ namespace omvtk
 			enum { id = 0xFFFF0048ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportCancelMessage>();
+				}
+			};
+
 
 			TeleportCancelMessage()
 			: Message(LowHeader())
@@ -3091,7 +3408,14 @@ namespace omvtk
 			enum { id = 0xFFFF0049ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportStartMessage>();
+				}
+			};
+
 
 			TeleportStartMessage()
 			: Message(LowHeader())
@@ -3138,7 +3462,14 @@ namespace omvtk
 			enum { id = 0xFFFF004Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TeleportFailedMessage>();
+				}
+			};
+
 
 			TeleportFailedMessage()
 			: Message(LowHeader())
@@ -3187,7 +3518,14 @@ namespace omvtk
 			enum { id = 0xFFFF004Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UndoMessage>();
+				}
+			};
+
 
 			UndoMessage()
 			: Message(LowHeader())
@@ -3254,7 +3592,14 @@ namespace omvtk
 			enum { id = 0xFFFF004Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RedoMessage>();
+				}
+			};
+
 
 			RedoMessage()
 			: Message(LowHeader())
@@ -3321,7 +3666,14 @@ namespace omvtk
 			enum { id = 0xFFFF004Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UndoLandMessage>();
+				}
+			};
+
 
 			UndoLandMessage()
 			: Message(LowHeader())
@@ -3370,7 +3722,14 @@ namespace omvtk
 			enum { id = 0xFFFF004Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentPauseMessage>();
+				}
+			};
+
 
 			AgentPauseMessage()
 			: Message(LowHeader())
@@ -3421,7 +3780,14 @@ namespace omvtk
 			enum { id = 0xFFFF004Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentResumeMessage>();
+				}
+			};
+
 
 			AgentResumeMessage()
 			: Message(LowHeader())
@@ -3472,7 +3838,14 @@ namespace omvtk
 			enum { id = 0xFFFF0050ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChatFromViewerMessage>();
+				}
+			};
+
 
 			ChatFromViewerMessage()
 			: Message(LowHeader())
@@ -3541,7 +3914,14 @@ namespace omvtk
 			enum { id = 0xFFFF0051ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentThrottleMessage>();
+				}
+			};
+
 
 			AgentThrottleMessage()
 			: Message(LowHeader())
@@ -3610,7 +3990,14 @@ namespace omvtk
 			enum { id = 0xFFFF0052ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentFOVMessage>();
+				}
+			};
+
 
 			AgentFOVMessage()
 			: Message(LowHeader())
@@ -3679,7 +4066,14 @@ namespace omvtk
 			enum { id = 0xFFFF0053ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentHeightWidthMessage>();
+				}
+			};
+
 
 			AgentHeightWidthMessage()
 			: Message(LowHeader())
@@ -3750,7 +4144,14 @@ namespace omvtk
 			enum { id = 0xFFFF0054ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentSetAppearanceMessage>();
+				}
+			};
+
 
 			AgentSetAppearanceMessage()
 			: Message(LowHeader())
@@ -3853,7 +4254,14 @@ namespace omvtk
 			enum { id = 0xFFFF0055ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentQuitCopyMessage>();
+				}
+			};
+
 
 			AgentQuitCopyMessage()
 			: Message(LowHeader())
@@ -3918,7 +4326,14 @@ namespace omvtk
 			enum { id = 0xFFFF0056ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ImageNotInDatabaseMessage>();
+				}
+			};
+
 
 			ImageNotInDatabaseMessage()
 			: Message(LowHeader())
@@ -3965,7 +4380,14 @@ namespace omvtk
 			enum { id = 0xFFFF0057ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RebakeAvatarTexturesMessage>();
+				}
+			};
+
 
 			RebakeAvatarTexturesMessage()
 			: Message(LowHeader())
@@ -4012,7 +4434,14 @@ namespace omvtk
 			enum { id = 0xFFFF0058ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SetAlwaysRunMessage>();
+				}
+			};
+
 
 			SetAlwaysRunMessage()
 			: Message(LowHeader())
@@ -4063,7 +4492,14 @@ namespace omvtk
 			enum { id = 0xFFFF0059ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDeleteMessage>();
+				}
+			};
+
 
 			ObjectDeleteMessage()
 			: Message(LowHeader())
@@ -4130,7 +4566,14 @@ namespace omvtk
 			enum { id = 0xFFFF005Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDuplicateMessage>();
+				}
+			};
+
 
 			ObjectDuplicateMessage()
 			: Message(LowHeader())
@@ -4215,7 +4658,14 @@ namespace omvtk
 			enum { id = 0xFFFF005Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDuplicateOnRayMessage>();
+				}
+			};
+
 
 			ObjectDuplicateOnRayMessage()
 			: Message(LowHeader())
@@ -4298,7 +4748,14 @@ namespace omvtk
 			enum { id = 0xFFFF005Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectScaleMessage>();
+				}
+			};
+
 
 			ObjectScaleMessage()
 			: Message(LowHeader())
@@ -4365,7 +4822,14 @@ namespace omvtk
 			enum { id = 0xFFFF005Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectRotationMessage>();
+				}
+			};
+
 
 			ObjectRotationMessage()
 			: Message(LowHeader())
@@ -4432,7 +4896,14 @@ namespace omvtk
 			enum { id = 0xFFFF005Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectFlagUpdateMessage>();
+				}
+			};
+
 
 			ObjectFlagUpdateMessage()
 			: Message(LowHeader())
@@ -4491,7 +4962,14 @@ namespace omvtk
 			enum { id = 0xFFFF005Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectClickActionMessage>();
+				}
+			};
+
 
 			ObjectClickActionMessage()
 			: Message(LowHeader())
@@ -4558,7 +5036,14 @@ namespace omvtk
 			enum { id = 0xFFFF0060ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectImageMessage>();
+				}
+			};
+
 
 			ObjectImageMessage()
 			: Message(LowHeader())
@@ -4627,7 +5112,14 @@ namespace omvtk
 			enum { id = 0xFFFF0061ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectMaterialMessage>();
+				}
+			};
+
 
 			ObjectMaterialMessage()
 			: Message(LowHeader())
@@ -4694,7 +5186,14 @@ namespace omvtk
 			enum { id = 0xFFFF0062ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectShapeMessage>();
+				}
+			};
+
 
 			ObjectShapeMessage()
 			: Message(LowHeader())
@@ -4795,7 +5294,14 @@ namespace omvtk
 			enum { id = 0xFFFF0063ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectExtraParamsMessage>();
+				}
+			};
+
 
 			ObjectExtraParamsMessage()
 			: Message(LowHeader())
@@ -4868,7 +5374,14 @@ namespace omvtk
 			enum { id = 0xFFFF0064ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectOwnerMessage>();
+				}
+			};
+
 
 			ObjectOwnerMessage()
 			: Message(LowHeader())
@@ -4953,7 +5466,14 @@ namespace omvtk
 			enum { id = 0xFFFF0065ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectGroupMessage>();
+				}
+			};
+
 
 			ObjectGroupMessage()
 			: Message(LowHeader())
@@ -5020,7 +5540,14 @@ namespace omvtk
 			enum { id = 0xFFFF0066ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectBuyMessage>();
+				}
+			};
+
 
 			ObjectBuyMessage()
 			: Message(LowHeader())
@@ -5093,7 +5620,14 @@ namespace omvtk
 			enum { id = 0xFFFF0067ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<BuyObjectInventoryMessage>();
+				}
+			};
+
 
 			BuyObjectInventoryMessage()
 			: Message(LowHeader())
@@ -5162,7 +5696,14 @@ namespace omvtk
 			enum { id = 0xFFFF0068ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DerezContainerMessage>();
+				}
+			};
+
 
 			DerezContainerMessage()
 			: Message(LowHeader())
@@ -5211,7 +5752,14 @@ namespace omvtk
 			enum { id = 0xFFFF0069ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectPermissionsMessage>();
+				}
+			};
+
 
 			ObjectPermissionsMessage()
 			: Message(LowHeader())
@@ -5298,7 +5846,14 @@ namespace omvtk
 			enum { id = 0xFFFF006Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectSaleInfoMessage>();
+				}
+			};
+
 
 			ObjectSaleInfoMessage()
 			: Message(LowHeader())
@@ -5367,7 +5922,14 @@ namespace omvtk
 			enum { id = 0xFFFF006Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectNameMessage>();
+				}
+			};
+
 
 			ObjectNameMessage()
 			: Message(LowHeader())
@@ -5434,7 +5996,14 @@ namespace omvtk
 			enum { id = 0xFFFF006Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDescriptionMessage>();
+				}
+			};
+
 
 			ObjectDescriptionMessage()
 			: Message(LowHeader())
@@ -5501,7 +6070,14 @@ namespace omvtk
 			enum { id = 0xFFFF006Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectCategoryMessage>();
+				}
+			};
+
 
 			ObjectCategoryMessage()
 			: Message(LowHeader())
@@ -5568,7 +6144,14 @@ namespace omvtk
 			enum { id = 0xFFFF006Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectSelectMessage>();
+				}
+			};
+
 
 			ObjectSelectMessage()
 			: Message(LowHeader())
@@ -5633,7 +6216,14 @@ namespace omvtk
 			enum { id = 0xFFFF006Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDeselectMessage>();
+				}
+			};
+
 
 			ObjectDeselectMessage()
 			: Message(LowHeader())
@@ -5698,7 +6288,14 @@ namespace omvtk
 			enum { id = 0xFFFF0070ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectAttachMessage>();
+				}
+			};
+
 
 			ObjectAttachMessage()
 			: Message(LowHeader())
@@ -5767,7 +6364,14 @@ namespace omvtk
 			enum { id = 0xFFFF0071ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDetachMessage>();
+				}
+			};
+
 
 			ObjectDetachMessage()
 			: Message(LowHeader())
@@ -5832,7 +6436,14 @@ namespace omvtk
 			enum { id = 0xFFFF0072ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDropMessage>();
+				}
+			};
+
 
 			ObjectDropMessage()
 			: Message(LowHeader())
@@ -5897,7 +6508,14 @@ namespace omvtk
 			enum { id = 0xFFFF0073ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectLinkMessage>();
+				}
+			};
+
 
 			ObjectLinkMessage()
 			: Message(LowHeader())
@@ -5962,7 +6580,14 @@ namespace omvtk
 			enum { id = 0xFFFF0074ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDelinkMessage>();
+				}
+			};
+
 
 			ObjectDelinkMessage()
 			: Message(LowHeader())
@@ -6027,7 +6652,14 @@ namespace omvtk
 			enum { id = 0xFFFF0075ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectGrabMessage>();
+				}
+			};
+
 
 			ObjectGrabMessage()
 			: Message(LowHeader())
@@ -6094,7 +6726,14 @@ namespace omvtk
 			enum { id = 0xFFFF0076ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectGrabUpdateMessage>();
+				}
+			};
+
 
 			ObjectGrabUpdateMessage()
 			: Message(LowHeader())
@@ -6165,7 +6804,14 @@ namespace omvtk
 			enum { id = 0xFFFF0077ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectDeGrabMessage>();
+				}
+			};
+
 
 			ObjectDeGrabMessage()
 			: Message(LowHeader())
@@ -6230,7 +6876,14 @@ namespace omvtk
 			enum { id = 0xFFFF0078ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectSpinStartMessage>();
+				}
+			};
+
 
 			ObjectSpinStartMessage()
 			: Message(LowHeader())
@@ -6295,7 +6948,14 @@ namespace omvtk
 			enum { id = 0xFFFF0079ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectSpinUpdateMessage>();
+				}
+			};
+
 
 			ObjectSpinUpdateMessage()
 			: Message(LowHeader())
@@ -6362,7 +7022,14 @@ namespace omvtk
 			enum { id = 0xFFFF007Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectSpinStopMessage>();
+				}
+			};
+
 
 			ObjectSpinStopMessage()
 			: Message(LowHeader())
@@ -6427,7 +7094,14 @@ namespace omvtk
 			enum { id = 0xFFFF007Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectExportSelectedMessage>();
+				}
+			};
+
 
 			ObjectExportSelectedMessage()
 			: Message(LowHeader())
@@ -6494,7 +7168,14 @@ namespace omvtk
 			enum { id = 0xFFFF007Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ModifyLandMessage>();
+				}
+			};
+
 
 			ModifyLandMessage()
 			: Message(LowHeader())
@@ -6589,7 +7270,14 @@ namespace omvtk
 			enum { id = 0xFFFF007Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<VelocityInterpolateOnMessage>();
+				}
+			};
+
 
 			VelocityInterpolateOnMessage()
 			: Message(LowHeader())
@@ -6638,7 +7326,14 @@ namespace omvtk
 			enum { id = 0xFFFF007Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<VelocityInterpolateOffMessage>();
+				}
+			};
+
 
 			VelocityInterpolateOffMessage()
 			: Message(LowHeader())
@@ -6687,7 +7382,14 @@ namespace omvtk
 			enum { id = 0xFFFF007Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<StateSaveMessage>();
+				}
+			};
+
 
 			StateSaveMessage()
 			: Message(LowHeader())
@@ -6752,7 +7454,14 @@ namespace omvtk
 			enum { id = 0xFFFF0080ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ReportAutosaveCrashMessage>();
+				}
+			};
+
 
 			ReportAutosaveCrashMessage()
 			: Message(LowHeader())
@@ -6801,7 +7510,14 @@ namespace omvtk
 			enum { id = 0xFFFF0081ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SimWideDeletesMessage>();
+				}
+			};
+
 
 			SimWideDeletesMessage()
 			: Message(LowHeader())
@@ -6868,7 +7584,14 @@ namespace omvtk
 			enum { id = 0xFFFF0082ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TrackAgentMessage>();
+				}
+			};
+
 
 			TrackAgentMessage()
 			: Message(LowHeader())
@@ -6933,7 +7656,14 @@ namespace omvtk
 			enum { id = 0xFFFF0083ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ViewerStatsMessage>();
+				}
+			};
+
 
 			ViewerStatsMessage()
 			: Message(LowHeader())
@@ -7094,7 +7824,14 @@ namespace omvtk
 			enum { id = 0xFFFF0084ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptAnswerYesMessage>();
+				}
+			};
+
 
 			ScriptAnswerYesMessage()
 			: Message(LowHeader())
@@ -7163,7 +7900,14 @@ namespace omvtk
 			enum { id = 0xFFFF0085ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UserReportMessage>();
+				}
+			};
+
 
 			UserReportMessage()
 			: Message(LowHeader())
@@ -7250,7 +7994,14 @@ namespace omvtk
 			enum { id = 0xFFFF0086ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AlertMessageMessage>();
+				}
+			};
+
 
 			AlertMessageMessage()
 			: Message(LowHeader())
@@ -7297,7 +8048,14 @@ namespace omvtk
 			enum { id = 0xFFFF0087ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentAlertMessageMessage>();
+				}
+			};
+
 
 			AgentAlertMessageMessage()
 			: Message(LowHeader())
@@ -7362,7 +8120,14 @@ namespace omvtk
 			enum { id = 0xFFFF0088ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MeanCollisionAlertMessage>();
+				}
+			};
+
 
 			MeanCollisionAlertMessage()
 			: Message(LowHeader())
@@ -7417,7 +8182,14 @@ namespace omvtk
 			enum { id = 0xFFFF0089ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ViewerFrozenMessageMessage>();
+				}
+			};
+
 
 			ViewerFrozenMessageMessage()
 			: Message(LowHeader())
@@ -7464,7 +8236,14 @@ namespace omvtk
 			enum { id = 0xFFFF008Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<HealthMessageMessage>();
+				}
+			};
+
 
 			HealthMessageMessage()
 			: Message(LowHeader())
@@ -7511,7 +8290,14 @@ namespace omvtk
 			enum { id = 0xFFFF008Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChatFromSimulatorMessage>();
+				}
+			};
+
 
 			ChatFromSimulatorMessage()
 			: Message(LowHeader())
@@ -7572,7 +8358,14 @@ namespace omvtk
 			enum { id = 0xFFFF008Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SimStatsMessage>();
+				}
+			};
+
 
 			SimStatsMessage()
 			: Message(LowHeader())
@@ -7643,7 +8436,14 @@ namespace omvtk
 			enum { id = 0xFFFF008Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestRegionInfoMessage>();
+				}
+			};
+
 
 			RequestRegionInfoMessage()
 			: Message(LowHeader())
@@ -7692,7 +8492,14 @@ namespace omvtk
 			enum { id = 0xFFFF008Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RegionInfoMessage>();
+				}
+			};
+
 
 			RegionInfoMessage()
 			: Message(LowHeader())
@@ -7787,7 +8594,14 @@ namespace omvtk
 			enum { id = 0xFFFF008Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GodUpdateRegionInfoMessage>();
+				}
+			};
+
 
 			GodUpdateRegionInfoMessage()
 			: Message(LowHeader())
@@ -7866,7 +8680,14 @@ namespace omvtk
 			enum { id = 0xFFFF0092ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<NearestLandingRegionUpdatedMessage>();
+				}
+			};
+
 
 			NearestLandingRegionUpdatedMessage()
 			: Message(LowHeader())
@@ -7913,7 +8734,14 @@ namespace omvtk
 			enum { id = 0xFFFF0094ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RegionHandshakeMessage>();
+				}
+			};
+
 
 			RegionHandshakeMessage()
 			: Message(LowHeader())
@@ -8022,7 +8850,14 @@ namespace omvtk
 			enum { id = 0xFFFF0095ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RegionHandshakeReplyMessage>();
+				}
+			};
+
 
 			RegionHandshakeReplyMessage()
 			: Message(LowHeader())
@@ -8087,7 +8922,14 @@ namespace omvtk
 			enum { id = 0xFFFF0096ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SimulatorViewerTimeMessageMessage>();
+				}
+			};
+
 
 			SimulatorViewerTimeMessageMessage()
 			: Message(LowHeader())
@@ -8144,7 +8986,14 @@ namespace omvtk
 			enum { id = 0xFFFF0097ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EnableSimulatorMessage>();
+				}
+			};
+
 
 			EnableSimulatorMessage()
 			: Message(LowHeader())
@@ -8195,7 +9044,14 @@ namespace omvtk
 			enum { id = 0xFFFF0098ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DisableSimulatorMessage>();
+				}
+			};
+
 
 			DisableSimulatorMessage()
 			: Message(LowHeader())
@@ -8227,7 +9083,14 @@ namespace omvtk
 			enum { id = 0xFFFF0099ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TransferRequestMessage>();
+				}
+			};
+
 
 			TransferRequestMessage()
 			: Message(LowHeader())
@@ -8282,7 +9145,14 @@ namespace omvtk
 			enum { id = 0xFFFF009Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TransferInfoMessage>();
+				}
+			};
+
 
 			TransferInfoMessage()
 			: Message(LowHeader())
@@ -8339,7 +9209,14 @@ namespace omvtk
 			enum { id = 0xFFFF009Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TransferAbortMessage>();
+				}
+			};
+
 
 			TransferAbortMessage()
 			: Message(LowHeader())
@@ -8388,7 +9265,14 @@ namespace omvtk
 			enum { id = 0xFFFF009Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestXferMessage>();
+				}
+			};
+
 
 			RequestXferMessage()
 			: Message(LowHeader())
@@ -8447,7 +9331,14 @@ namespace omvtk
 			enum { id = 0xFFFF009Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AbortXferMessage>();
+				}
+			};
+
 
 			AbortXferMessage()
 			: Message(LowHeader())
@@ -8496,7 +9387,14 @@ namespace omvtk
 			enum { id = 0xFFFF009Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarAppearanceMessage>();
+				}
+			};
+
 
 			AvatarAppearanceMessage()
 			: Message(LowHeader())
@@ -8577,7 +9475,14 @@ namespace omvtk
 			enum { id = 0xFFFF009Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SetFollowCamPropertiesMessage>();
+				}
+			};
+
 
 			SetFollowCamPropertiesMessage()
 			: Message(LowHeader())
@@ -8642,7 +9547,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ClearFollowCamPropertiesMessage>();
+				}
+			};
+
 
 			ClearFollowCamPropertiesMessage()
 			: Message(LowHeader())
@@ -8689,7 +9601,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestPayPriceMessage>();
+				}
+			};
+
 
 			RequestPayPriceMessage()
 			: Message(LowHeader())
@@ -8736,7 +9655,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PayPriceReplyMessage>();
+				}
+			};
+
 
 			PayPriceReplyMessage()
 			: Message(LowHeader())
@@ -8801,7 +9727,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<KickUserMessage>();
+				}
+			};
+
 
 			KickUserMessage()
 			: Message(LowHeader())
@@ -8870,7 +9803,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<KickUserAckMessage>();
+				}
+			};
+
 
 			KickUserAckMessage()
 			: Message(LowHeader())
@@ -8919,7 +9859,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GodKickUserMessage>();
+				}
+			};
+
 
 			GodKickUserMessage()
 			: Message(LowHeader())
@@ -8974,7 +9921,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EjectUserMessage>();
+				}
+			};
+
 
 			EjectUserMessage()
 			: Message(LowHeader())
@@ -9041,7 +9995,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<FreezeUserMessage>();
+				}
+			};
+
 
 			FreezeUserMessage()
 			: Message(LowHeader())
@@ -9108,7 +10069,14 @@ namespace omvtk
 			enum { id = 0xFFFF00A9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarPropertiesRequestMessage>();
+				}
+			};
+
 
 			AvatarPropertiesRequestMessage()
 			: Message(LowHeader())
@@ -9159,7 +10127,14 @@ namespace omvtk
 			enum { id = 0xFFFF00ABul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarPropertiesReplyMessage>();
+				}
+			};
+
 
 			AvatarPropertiesReplyMessage()
 			: Message(LowHeader())
@@ -9240,7 +10215,14 @@ namespace omvtk
 			enum { id = 0xFFFF00ACul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarInterestsReplyMessage>();
+				}
+			};
+
 
 			AvatarInterestsReplyMessage()
 			: Message(LowHeader())
@@ -9313,7 +10295,14 @@ namespace omvtk
 			enum { id = 0xFFFF00ADul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarGroupsReplyMessage>();
+				}
+			};
+
 
 			AvatarGroupsReplyMessage()
 			: Message(LowHeader())
@@ -9404,7 +10393,14 @@ namespace omvtk
 			enum { id = 0xFFFF00AEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarPropertiesUpdateMessage>();
+				}
+			};
+
 
 			AvatarPropertiesUpdateMessage()
 			: Message(LowHeader())
@@ -9481,7 +10477,14 @@ namespace omvtk
 			enum { id = 0xFFFF00AFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarInterestsUpdateMessage>();
+				}
+			};
+
 
 			AvatarInterestsUpdateMessage()
 			: Message(LowHeader())
@@ -9554,7 +10557,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarNotesReplyMessage>();
+				}
+			};
+
 
 			AvatarNotesReplyMessage()
 			: Message(LowHeader())
@@ -9619,7 +10629,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarNotesUpdateMessage>();
+				}
+			};
+
 
 			AvatarNotesUpdateMessage()
 			: Message(LowHeader())
@@ -9686,7 +10703,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarPicksReplyMessage>();
+				}
+			};
+
 
 			AvatarPicksReplyMessage()
 			: Message(LowHeader())
@@ -9753,7 +10777,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EventInfoRequestMessage>();
+				}
+			};
+
 
 			EventInfoRequestMessage()
 			: Message(LowHeader())
@@ -9818,7 +10849,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EventInfoReplyMessage>();
+				}
+			};
+
 
 			EventInfoReplyMessage()
 			: Message(LowHeader())
@@ -9905,7 +10943,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EventNotificationAddRequestMessage>();
+				}
+			};
+
 
 			EventNotificationAddRequestMessage()
 			: Message(LowHeader())
@@ -9970,7 +11015,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EventNotificationRemoveRequestMessage>();
+				}
+			};
+
 
 			EventNotificationRemoveRequestMessage()
 			: Message(LowHeader())
@@ -10035,7 +11087,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EventGodDeleteMessage>();
+				}
+			};
+
 
 			EventGodDeleteMessage()
 			: Message(LowHeader())
@@ -10122,7 +11181,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PickInfoReplyMessage>();
+				}
+			};
+
 
 			PickInfoReplyMessage()
 			: Message(LowHeader())
@@ -10209,7 +11275,14 @@ namespace omvtk
 			enum { id = 0xFFFF00B9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PickInfoUpdateMessage>();
+				}
+			};
+
 
 			PickInfoUpdateMessage()
 			: Message(LowHeader())
@@ -10292,7 +11365,14 @@ namespace omvtk
 			enum { id = 0xFFFF00BAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PickDeleteMessage>();
+				}
+			};
+
 
 			PickDeleteMessage()
 			: Message(LowHeader())
@@ -10357,7 +11437,14 @@ namespace omvtk
 			enum { id = 0xFFFF00BBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PickGodDeleteMessage>();
+				}
+			};
+
 
 			PickGodDeleteMessage()
 			: Message(LowHeader())
@@ -10424,7 +11511,14 @@ namespace omvtk
 			enum { id = 0xFFFF00BCul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptQuestionMessage>();
+				}
+			};
+
 
 			ScriptQuestionMessage()
 			: Message(LowHeader())
@@ -10479,7 +11573,14 @@ namespace omvtk
 			enum { id = 0xFFFF00BDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptControlChangeMessage>();
+				}
+			};
+
 
 			ScriptControlChangeMessage()
 			: Message(LowHeader())
@@ -10530,7 +11631,14 @@ namespace omvtk
 			enum { id = 0xFFFF00BEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptDialogMessage>();
+				}
+			};
+
 
 			ScriptDialogMessage()
 			: Message(LowHeader())
@@ -10605,7 +11713,14 @@ namespace omvtk
 			enum { id = 0xFFFF00BFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptDialogReplyMessage>();
+				}
+			};
+
 
 			ScriptDialogReplyMessage()
 			: Message(LowHeader())
@@ -10676,7 +11791,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ForceScriptControlReleaseMessage>();
+				}
+			};
+
 
 			ForceScriptControlReleaseMessage()
 			: Message(LowHeader())
@@ -10725,7 +11847,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RevokePermissionsMessage>();
+				}
+			};
+
 
 			RevokePermissionsMessage()
 			: Message(LowHeader())
@@ -10792,7 +11921,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LoadURLMessage>();
+				}
+			};
+
 
 			LoadURLMessage()
 			: Message(LowHeader())
@@ -10849,7 +11985,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptTeleportRequestMessage>();
+				}
+			};
+
 
 			ScriptTeleportRequestMessage()
 			: Message(LowHeader())
@@ -10902,7 +12045,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelOverlayMessage>();
+				}
+			};
+
 
 			ParcelOverlayMessage()
 			: Message(LowHeader())
@@ -10951,7 +12101,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelPropertiesRequestByIDMessage>();
+				}
+			};
+
 
 			ParcelPropertiesRequestByIDMessage()
 			: Message(LowHeader())
@@ -11018,7 +12175,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelPropertiesUpdateMessage>();
+				}
+			};
+
 
 			ParcelPropertiesUpdateMessage()
 			: Message(LowHeader())
@@ -11119,7 +12283,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelReturnObjectsMessage>();
+				}
+			};
+
 
 			ParcelReturnObjectsMessage()
 			: Message(LowHeader())
@@ -11218,7 +12389,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelSetOtherCleanTimeMessage>();
+				}
+			};
+
 
 			ParcelSetOtherCleanTimeMessage()
 			: Message(LowHeader())
@@ -11285,7 +12463,14 @@ namespace omvtk
 			enum { id = 0xFFFF00C9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelDisableObjectsMessage>();
+				}
+			};
+
 
 			ParcelDisableObjectsMessage()
 			: Message(LowHeader())
@@ -11384,7 +12569,14 @@ namespace omvtk
 			enum { id = 0xFFFF00CAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelSelectObjectsMessage>();
+				}
+			};
+
 
 			ParcelSelectObjectsMessage()
 			: Message(LowHeader())
@@ -11467,7 +12659,14 @@ namespace omvtk
 			enum { id = 0xFFFF00CBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EstateCovenantRequestMessage>();
+				}
+			};
+
 
 			EstateCovenantRequestMessage()
 			: Message(LowHeader())
@@ -11516,7 +12715,14 @@ namespace omvtk
 			enum { id = 0xFFFF00CCul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EstateCovenantReplyMessage>();
+				}
+			};
+
 
 			EstateCovenantReplyMessage()
 			: Message(LowHeader())
@@ -11569,7 +12775,14 @@ namespace omvtk
 			enum { id = 0xFFFF00CDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ForceObjectSelectMessage>();
+				}
+			};
+
 
 			ForceObjectSelectMessage()
 			: Message(LowHeader())
@@ -11632,7 +12845,14 @@ namespace omvtk
 			enum { id = 0xFFFF00CEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelBuyPassMessage>();
+				}
+			};
+
 
 			ParcelBuyPassMessage()
 			: Message(LowHeader())
@@ -11697,7 +12917,14 @@ namespace omvtk
 			enum { id = 0xFFFF00CFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelDeedToGroupMessage>();
+				}
+			};
+
 
 			ParcelDeedToGroupMessage()
 			: Message(LowHeader())
@@ -11764,7 +12991,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelReclaimMessage>();
+				}
+			};
+
 
 			ParcelReclaimMessage()
 			: Message(LowHeader())
@@ -11829,7 +13063,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelClaimMessage>();
+				}
+			};
+
 
 			ParcelClaimMessage()
 			: Message(LowHeader())
@@ -11920,7 +13161,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D2ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelJoinMessage>();
+				}
+			};
+
 
 			ParcelJoinMessage()
 			: Message(LowHeader())
@@ -11991,7 +13239,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelDivideMessage>();
+				}
+			};
+
 
 			ParcelDivideMessage()
 			: Message(LowHeader())
@@ -12062,7 +13317,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelReleaseMessage>();
+				}
+			};
+
 
 			ParcelReleaseMessage()
 			: Message(LowHeader())
@@ -12127,7 +13389,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelBuyMessage>();
+				}
+			};
+
 
 			ParcelBuyMessage()
 			: Message(LowHeader())
@@ -12218,7 +13487,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelGodForceOwnerMessage>();
+				}
+			};
+
 
 			ParcelGodForceOwnerMessage()
 			: Message(LowHeader())
@@ -12285,7 +13561,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelAccessListRequestMessage>();
+				}
+			};
+
 
 			ParcelAccessListRequestMessage()
 			: Message(LowHeader())
@@ -12354,7 +13637,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelAccessListReplyMessage>();
+				}
+			};
+
 
 			ParcelAccessListReplyMessage()
 			: Message(LowHeader())
@@ -12427,7 +13717,14 @@ namespace omvtk
 			enum { id = 0xFFFF00D9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelAccessListUpdateMessage>();
+				}
+			};
+
 
 			ParcelAccessListUpdateMessage()
 			: Message(LowHeader())
@@ -12520,7 +13817,14 @@ namespace omvtk
 			enum { id = 0xFFFF00DAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelDwellRequestMessage>();
+				}
+			};
+
 
 			ParcelDwellRequestMessage()
 			: Message(LowHeader())
@@ -12587,7 +13891,14 @@ namespace omvtk
 			enum { id = 0xFFFF00DBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelDwellReplyMessage>();
+				}
+			};
+
 
 			ParcelDwellReplyMessage()
 			: Message(LowHeader())
@@ -12654,7 +13965,14 @@ namespace omvtk
 			enum { id = 0xFFFF00E3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelGodMarkAsContentMessage>();
+				}
+			};
+
 
 			ParcelGodMarkAsContentMessage()
 			: Message(LowHeader())
@@ -12719,7 +14037,14 @@ namespace omvtk
 			enum { id = 0xFFFF00E4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ViewerStartAuctionMessage>();
+				}
+			};
+
 
 			ViewerStartAuctionMessage()
 			: Message(LowHeader())
@@ -12786,7 +14111,14 @@ namespace omvtk
 			enum { id = 0xFFFF00EBul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UUIDNameRequestMessage>();
+				}
+			};
+
 
 			UUIDNameRequestMessage()
 			: Message(LowHeader())
@@ -12833,7 +14165,14 @@ namespace omvtk
 			enum { id = 0xFFFF00ECul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UUIDNameReplyMessage>();
+				}
+			};
+
 
 			UUIDNameReplyMessage()
 			: Message(LowHeader())
@@ -12884,7 +14223,14 @@ namespace omvtk
 			enum { id = 0xFFFF00EDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UUIDGroupNameRequestMessage>();
+				}
+			};
+
 
 			UUIDGroupNameRequestMessage()
 			: Message(LowHeader())
@@ -12931,7 +14277,14 @@ namespace omvtk
 			enum { id = 0xFFFF00EEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UUIDGroupNameReplyMessage>();
+				}
+			};
+
 
 			UUIDGroupNameReplyMessage()
 			: Message(LowHeader())
@@ -12980,7 +14333,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F0ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChildAgentDyingMessage>();
+				}
+			};
+
 
 			ChildAgentDyingMessage()
 			: Message(LowHeader())
@@ -13029,7 +14389,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F1ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChildAgentUnknownMessage>();
+				}
+			};
+
 
 			ChildAgentUnknownMessage()
 			: Message(LowHeader())
@@ -13078,7 +14445,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GetScriptRunningMessage>();
+				}
+			};
+
 
 			GetScriptRunningMessage()
 			: Message(LowHeader())
@@ -13127,7 +14501,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptRunningReplyMessage>();
+				}
+			};
+
 
 			ScriptRunningReplyMessage()
 			: Message(LowHeader())
@@ -13178,7 +14559,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SetScriptRunningMessage>();
+				}
+			};
+
 
 			SetScriptRunningMessage()
 			: Message(LowHeader())
@@ -13247,7 +14635,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptResetMessage>();
+				}
+			};
+
 
 			ScriptResetMessage()
 			: Message(LowHeader())
@@ -13314,7 +14709,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptSensorRequestMessage>();
+				}
+			};
+
 
 			ScriptSensorRequestMessage()
 			: Message(LowHeader())
@@ -13381,7 +14783,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ScriptSensorReplyMessage>();
+				}
+			};
+
 
 			ScriptSensorReplyMessage()
 			: Message(LowHeader())
@@ -13460,7 +14869,14 @@ namespace omvtk
 			enum { id = 0xFFFF00F9ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CompleteAgentMovementMessage>();
+				}
+			};
+
 
 			CompleteAgentMovementMessage()
 			: Message(LowHeader())
@@ -13511,7 +14927,14 @@ namespace omvtk
 			enum { id = 0xFFFF00FAul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentMovementCompleteMessage>();
+				}
+			};
+
 
 			AgentMovementCompleteMessage()
 			: Message(LowHeader())
@@ -13598,7 +15021,14 @@ namespace omvtk
 			enum { id = 0xFFFF00FCul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LogoutRequestMessage>();
+				}
+			};
+
 
 			LogoutRequestMessage()
 			: Message(LowHeader())
@@ -13647,7 +15077,14 @@ namespace omvtk
 			enum { id = 0xFFFF00FDul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LogoutReplyMessage>();
+				}
+			};
+
 
 			LogoutReplyMessage()
 			: Message(LowHeader())
@@ -13712,7 +15149,14 @@ namespace omvtk
 			enum { id = 0xFFFF00FEul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ImprovedInstantMessageMessage>();
+				}
+			};
+
 
 			ImprovedInstantMessageMessage()
 			: Message(LowHeader())
@@ -13799,7 +15243,14 @@ namespace omvtk
 			enum { id = 0xFFFF00FFul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RetrieveInstantMessagesMessage>();
+				}
+			};
+
 
 			RetrieveInstantMessagesMessage()
 			: Message(LowHeader())
@@ -13848,7 +15299,14 @@ namespace omvtk
 			enum { id = 0xFFFF0100ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<FindAgentMessage>();
+				}
+			};
+
 
 			FindAgentMessage()
 			: Message(LowHeader())
@@ -13917,7 +15375,14 @@ namespace omvtk
 			enum { id = 0xFFFF0101ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestGodlikePowersMessage>();
+				}
+			};
+
 
 			RequestGodlikePowersMessage()
 			: Message(LowHeader())
@@ -13984,7 +15449,14 @@ namespace omvtk
 			enum { id = 0xFFFF0102ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GrantGodlikePowersMessage>();
+				}
+			};
+
 
 			GrantGodlikePowersMessage()
 			: Message(LowHeader())
@@ -14051,7 +15523,14 @@ namespace omvtk
 			enum { id = 0xFFFF0103ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GodlikeMessageMessage>();
+				}
+			};
+
 
 			GodlikeMessageMessage()
 			: Message(LowHeader())
@@ -14136,7 +15615,14 @@ namespace omvtk
 			enum { id = 0xFFFF0104ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EstateOwnerMessageMessage>();
+				}
+			};
+
 
 			EstateOwnerMessageMessage()
 			: Message(LowHeader())
@@ -14221,7 +15707,14 @@ namespace omvtk
 			enum { id = 0xFFFF0105ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GenericMessageMessage>();
+				}
+			};
+
 
 			GenericMessageMessage()
 			: Message(LowHeader())
@@ -14306,7 +15799,14 @@ namespace omvtk
 			enum { id = 0xFFFF0106ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MuteListRequestMessage>();
+				}
+			};
+
 
 			MuteListRequestMessage()
 			: Message(LowHeader())
@@ -14371,7 +15871,14 @@ namespace omvtk
 			enum { id = 0xFFFF0107ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UpdateMuteListEntryMessage>();
+				}
+			};
+
 
 			UpdateMuteListEntryMessage()
 			: Message(LowHeader())
@@ -14442,7 +15949,14 @@ namespace omvtk
 			enum { id = 0xFFFF0108ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RemoveMuteListEntryMessage>();
+				}
+			};
+
 
 			RemoveMuteListEntryMessage()
 			: Message(LowHeader())
@@ -14509,7 +16023,14 @@ namespace omvtk
 			enum { id = 0xFFFF0109ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CopyInventoryFromNotecardMessage>();
+				}
+			};
+
 
 			CopyInventoryFromNotecardMessage()
 			: Message(LowHeader())
@@ -14594,7 +16115,14 @@ namespace omvtk
 			enum { id = 0xFFFF010Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UpdateInventoryItemMessage>();
+				}
+			};
+
 
 			UpdateInventoryItemMessage()
 			: Message(LowHeader())
@@ -14703,7 +16231,14 @@ namespace omvtk
 			enum { id = 0xFFFF010Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UpdateCreateInventoryItemMessage>();
+				}
+			};
+
 
 			UpdateCreateInventoryItemMessage()
 			: Message(LowHeader())
@@ -14812,7 +16347,14 @@ namespace omvtk
 			enum { id = 0xFFFF010Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MoveInventoryItemMessage>();
+				}
+			};
+
 
 			MoveInventoryItemMessage()
 			: Message(LowHeader())
@@ -14883,7 +16425,14 @@ namespace omvtk
 			enum { id = 0xFFFF010Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CopyInventoryItemMessage>();
+				}
+			};
+
 
 			CopyInventoryItemMessage()
 			: Message(LowHeader())
@@ -14956,7 +16505,14 @@ namespace omvtk
 			enum { id = 0xFFFF010Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RemoveInventoryItemMessage>();
+				}
+			};
+
 
 			RemoveInventoryItemMessage()
 			: Message(LowHeader())
@@ -15021,7 +16577,14 @@ namespace omvtk
 			enum { id = 0xFFFF010Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChangeInventoryItemFlagsMessage>();
+				}
+			};
+
 
 			ChangeInventoryItemFlagsMessage()
 			: Message(LowHeader())
@@ -15088,7 +16651,14 @@ namespace omvtk
 			enum { id = 0xFFFF0110ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SaveAssetIntoInventoryMessage>();
+				}
+			};
+
 
 			SaveAssetIntoInventoryMessage()
 			: Message(LowHeader())
@@ -15153,7 +16723,14 @@ namespace omvtk
 			enum { id = 0xFFFF0111ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CreateInventoryFolderMessage>();
+				}
+			};
+
 
 			CreateInventoryFolderMessage()
 			: Message(LowHeader())
@@ -15224,7 +16801,14 @@ namespace omvtk
 			enum { id = 0xFFFF0112ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UpdateInventoryFolderMessage>();
+				}
+			};
+
 
 			UpdateInventoryFolderMessage()
 			: Message(LowHeader())
@@ -15295,7 +16879,14 @@ namespace omvtk
 			enum { id = 0xFFFF0113ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MoveInventoryFolderMessage>();
+				}
+			};
+
 
 			MoveInventoryFolderMessage()
 			: Message(LowHeader())
@@ -15364,7 +16955,14 @@ namespace omvtk
 			enum { id = 0xFFFF0114ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RemoveInventoryFolderMessage>();
+				}
+			};
+
 
 			RemoveInventoryFolderMessage()
 			: Message(LowHeader())
@@ -15429,7 +17027,14 @@ namespace omvtk
 			enum { id = 0xFFFF0115ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<FetchInventoryDescendentsMessage>();
+				}
+			};
+
 
 			FetchInventoryDescendentsMessage()
 			: Message(LowHeader())
@@ -15502,7 +17107,14 @@ namespace omvtk
 			enum { id = 0xFFFF0116ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<InventoryDescendentsMessage>();
+				}
+			};
+
 
 			InventoryDescendentsMessage()
 			: Message(LowHeader())
@@ -15635,7 +17247,14 @@ namespace omvtk
 			enum { id = 0xFFFF0117ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<FetchInventoryMessage>();
+				}
+			};
+
 
 			FetchInventoryMessage()
 			: Message(LowHeader())
@@ -15702,7 +17321,14 @@ namespace omvtk
 			enum { id = 0xFFFF0118ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<FetchInventoryReplyMessage>();
+				}
+			};
+
 
 			FetchInventoryReplyMessage()
 			: Message(LowHeader())
@@ -15805,7 +17431,14 @@ namespace omvtk
 			enum { id = 0xFFFF0119ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<BulkUpdateInventoryMessage>();
+				}
+			};
+
 
 			BulkUpdateInventoryMessage()
 			: Message(LowHeader())
@@ -15934,7 +17567,14 @@ namespace omvtk
 			enum { id = 0xFFFF011Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestInventoryAssetMessage>();
+				}
+			};
+
 
 			RequestInventoryAssetMessage()
 			: Message(LowHeader())
@@ -15987,7 +17627,14 @@ namespace omvtk
 			enum { id = 0xFFFF011Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<InventoryAssetResponseMessage>();
+				}
+			};
+
 
 			InventoryAssetResponseMessage()
 			: Message(LowHeader())
@@ -16038,7 +17685,14 @@ namespace omvtk
 			enum { id = 0xFFFF011Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RemoveInventoryObjectsMessage>();
+				}
+			};
+
 
 			RemoveInventoryObjectsMessage()
 			: Message(LowHeader())
@@ -16119,7 +17773,14 @@ namespace omvtk
 			enum { id = 0xFFFF011Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PurgeInventoryDescendentsMessage>();
+				}
+			};
+
 
 			PurgeInventoryDescendentsMessage()
 			: Message(LowHeader())
@@ -16184,7 +17845,14 @@ namespace omvtk
 			enum { id = 0xFFFF011Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UpdateTaskInventoryMessage>();
+				}
+			};
+
 
 			UpdateTaskInventoryMessage()
 			: Message(LowHeader())
@@ -16307,7 +17975,14 @@ namespace omvtk
 			enum { id = 0xFFFF011Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RemoveTaskInventoryMessage>();
+				}
+			};
+
 
 			RemoveTaskInventoryMessage()
 			: Message(LowHeader())
@@ -16374,7 +18049,14 @@ namespace omvtk
 			enum { id = 0xFFFF0120ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MoveTaskInventoryMessage>();
+				}
+			};
+
 
 			MoveTaskInventoryMessage()
 			: Message(LowHeader())
@@ -16443,7 +18125,14 @@ namespace omvtk
 			enum { id = 0xFFFF0121ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestTaskInventoryMessage>();
+				}
+			};
+
 
 			RequestTaskInventoryMessage()
 			: Message(LowHeader())
@@ -16508,7 +18197,14 @@ namespace omvtk
 			enum { id = 0xFFFF0122ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ReplyTaskInventoryMessage>();
+				}
+			};
+
 
 			ReplyTaskInventoryMessage()
 			: Message(LowHeader())
@@ -16559,7 +18255,14 @@ namespace omvtk
 			enum { id = 0xFFFF0123ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DeRezObjectMessage>();
+				}
+			};
+
 
 			DeRezObjectMessage()
 			: Message(LowHeader())
@@ -16650,7 +18353,14 @@ namespace omvtk
 			enum { id = 0xFFFF0124ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DeRezAckMessage>();
+				}
+			};
+
 
 			DeRezAckMessage()
 			: Message(LowHeader())
@@ -16699,7 +18409,14 @@ namespace omvtk
 			enum { id = 0xFFFF0125ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RezObjectMessage>();
+				}
+			};
+
 
 			RezObjectMessage()
 			: Message(LowHeader())
@@ -16844,7 +18561,14 @@ namespace omvtk
 			enum { id = 0xFFFF0126ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RezObjectFromNotecardMessage>();
+				}
+			};
+
 
 			RezObjectFromNotecardMessage()
 			: Message(LowHeader())
@@ -16967,7 +18691,14 @@ namespace omvtk
 			enum { id = 0xFFFF0129ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AcceptFriendshipMessage>();
+				}
+			};
+
 
 			AcceptFriendshipMessage()
 			: Message(LowHeader())
@@ -17048,7 +18779,14 @@ namespace omvtk
 			enum { id = 0xFFFF012Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DeclineFriendshipMessage>();
+				}
+			};
+
 
 			DeclineFriendshipMessage()
 			: Message(LowHeader())
@@ -17113,7 +18851,14 @@ namespace omvtk
 			enum { id = 0xFFFF012Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<FormFriendshipMessage>();
+				}
+			};
+
 
 			FormFriendshipMessage()
 			: Message(LowHeader())
@@ -17162,7 +18907,14 @@ namespace omvtk
 			enum { id = 0xFFFF012Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TerminateFriendshipMessage>();
+				}
+			};
+
 
 			TerminateFriendshipMessage()
 			: Message(LowHeader())
@@ -17227,7 +18979,14 @@ namespace omvtk
 			enum { id = 0xFFFF012Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<OfferCallingCardMessage>();
+				}
+			};
+
 
 			OfferCallingCardMessage()
 			: Message(LowHeader())
@@ -17294,7 +19053,14 @@ namespace omvtk
 			enum { id = 0xFFFF012Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AcceptCallingCardMessage>();
+				}
+			};
+
 
 			AcceptCallingCardMessage()
 			: Message(LowHeader())
@@ -17375,7 +19141,14 @@ namespace omvtk
 			enum { id = 0xFFFF012Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DeclineCallingCardMessage>();
+				}
+			};
+
 
 			DeclineCallingCardMessage()
 			: Message(LowHeader())
@@ -17440,7 +19213,14 @@ namespace omvtk
 			enum { id = 0xFFFF0130ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RezScriptMessage>();
+				}
+			};
+
 
 			RezScriptMessage()
 			: Message(LowHeader())
@@ -17565,7 +19345,14 @@ namespace omvtk
 			enum { id = 0xFFFF0131ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CreateInventoryItemMessage>();
+				}
+			};
+
 
 			CreateInventoryItemMessage()
 			: Message(LowHeader())
@@ -17646,7 +19433,14 @@ namespace omvtk
 			enum { id = 0xFFFF0132ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CreateLandmarkForEventMessage>();
+				}
+			};
+
 
 			CreateLandmarkForEventMessage()
 			: Message(LowHeader())
@@ -17729,7 +19523,14 @@ namespace omvtk
 			enum { id = 0xFFFF0135ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RegionHandleRequestMessage>();
+				}
+			};
+
 
 			RegionHandleRequestMessage()
 			: Message(LowHeader())
@@ -17776,7 +19577,14 @@ namespace omvtk
 			enum { id = 0xFFFF0136ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RegionIDAndHandleReplyMessage>();
+				}
+			};
+
 
 			RegionIDAndHandleReplyMessage()
 			: Message(LowHeader())
@@ -17825,7 +19633,14 @@ namespace omvtk
 			enum { id = 0xFFFF0137ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MoneyTransferRequestMessage>();
+				}
+			};
+
 
 			MoneyTransferRequestMessage()
 			: Message(LowHeader())
@@ -17904,7 +19719,14 @@ namespace omvtk
 			enum { id = 0xFFFF0139ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MoneyBalanceRequestMessage>();
+				}
+			};
+
 
 			MoneyBalanceRequestMessage()
 			: Message(LowHeader())
@@ -17969,7 +19791,14 @@ namespace omvtk
 			enum { id = 0xFFFF013Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MoneyBalanceReplyMessage>();
+				}
+			};
+
 
 			MoneyBalanceReplyMessage()
 			: Message(LowHeader())
@@ -18028,7 +19857,14 @@ namespace omvtk
 			enum { id = 0xFFFF013Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RoutedMoneyBalanceReplyMessage>();
+				}
+			};
+
 
 			RoutedMoneyBalanceReplyMessage()
 			: Message(LowHeader())
@@ -18105,7 +19941,14 @@ namespace omvtk
 			enum { id = 0xFFFF013Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ActivateGesturesMessage>();
+				}
+			};
+
 
 			ActivateGesturesMessage()
 			: Message(LowHeader())
@@ -18176,7 +20019,14 @@ namespace omvtk
 			enum { id = 0xFFFF013Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DeactivateGesturesMessage>();
+				}
+			};
+
 
 			DeactivateGesturesMessage()
 			: Message(LowHeader())
@@ -18245,7 +20095,14 @@ namespace omvtk
 			enum { id = 0xFFFF013Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MuteListUpdateMessage>();
+				}
+			};
+
 
 			MuteListUpdateMessage()
 			: Message(LowHeader())
@@ -18294,7 +20151,14 @@ namespace omvtk
 			enum { id = 0xFFFF013Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UseCachedMuteListMessage>();
+				}
+			};
+
 
 			UseCachedMuteListMessage()
 			: Message(LowHeader())
@@ -18341,7 +20205,14 @@ namespace omvtk
 			enum { id = 0xFFFF0140ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GrantUserRightsMessage>();
+				}
+			};
+
 
 			GrantUserRightsMessage()
 			: Message(LowHeader())
@@ -18408,7 +20279,14 @@ namespace omvtk
 			enum { id = 0xFFFF0141ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChangeUserRightsMessage>();
+				}
+			};
+
 
 			ChangeUserRightsMessage()
 			: Message(LowHeader())
@@ -18473,7 +20351,14 @@ namespace omvtk
 			enum { id = 0xFFFF0142ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<OnlineNotificationMessage>();
+				}
+			};
+
 
 			OnlineNotificationMessage()
 			: Message(LowHeader())
@@ -18520,7 +20405,14 @@ namespace omvtk
 			enum { id = 0xFFFF0143ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<OfflineNotificationMessage>();
+				}
+			};
+
 
 			OfflineNotificationMessage()
 			: Message(LowHeader())
@@ -18567,7 +20459,14 @@ namespace omvtk
 			enum { id = 0xFFFF0144ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SetStartLocationRequestMessage>();
+				}
+			};
+
 
 			SetStartLocationRequestMessage()
 			: Message(LowHeader())
@@ -18638,7 +20537,14 @@ namespace omvtk
 			enum { id = 0xFFFF014Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AssetUploadRequestMessage>();
+				}
+			};
+
 
 			AssetUploadRequestMessage()
 			: Message(LowHeader())
@@ -18693,7 +20599,14 @@ namespace omvtk
 			enum { id = 0xFFFF014Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AssetUploadCompleteMessage>();
+				}
+			};
+
 
 			AssetUploadCompleteMessage()
 			: Message(LowHeader())
@@ -18744,7 +20657,14 @@ namespace omvtk
 			enum { id = 0xFFFF0153ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CreateGroupRequestMessage>();
+				}
+			};
+
 
 			CreateGroupRequestMessage()
 			: Message(LowHeader())
@@ -18823,7 +20743,14 @@ namespace omvtk
 			enum { id = 0xFFFF0154ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CreateGroupReplyMessage>();
+				}
+			};
+
 
 			CreateGroupReplyMessage()
 			: Message(LowHeader())
@@ -18890,7 +20817,14 @@ namespace omvtk
 			enum { id = 0xFFFF0155ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UpdateGroupInfoMessage>();
+				}
+			};
+
 
 			UpdateGroupInfoMessage()
 			: Message(LowHeader())
@@ -18969,7 +20903,14 @@ namespace omvtk
 			enum { id = 0xFFFF0156ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupRoleChangesMessage>();
+				}
+			};
+
 
 			GroupRoleChangesMessage()
 			: Message(LowHeader())
@@ -19040,7 +20981,14 @@ namespace omvtk
 			enum { id = 0xFFFF0157ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<JoinGroupRequestMessage>();
+				}
+			};
+
 
 			JoinGroupRequestMessage()
 			: Message(LowHeader())
@@ -19105,7 +21053,14 @@ namespace omvtk
 			enum { id = 0xFFFF0158ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<JoinGroupReplyMessage>();
+				}
+			};
+
 
 			JoinGroupReplyMessage()
 			: Message(LowHeader())
@@ -19170,7 +21125,14 @@ namespace omvtk
 			enum { id = 0xFFFF0159ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EjectGroupMemberRequestMessage>();
+				}
+			};
+
 
 			EjectGroupMemberRequestMessage()
 			: Message(LowHeader())
@@ -19251,7 +21213,14 @@ namespace omvtk
 			enum { id = 0xFFFF015Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<EjectGroupMemberReplyMessage>();
+				}
+			};
+
 
 			EjectGroupMemberReplyMessage()
 			: Message(LowHeader())
@@ -19330,7 +21299,14 @@ namespace omvtk
 			enum { id = 0xFFFF015Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LeaveGroupRequestMessage>();
+				}
+			};
+
 
 			LeaveGroupRequestMessage()
 			: Message(LowHeader())
@@ -19395,7 +21371,14 @@ namespace omvtk
 			enum { id = 0xFFFF015Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LeaveGroupReplyMessage>();
+				}
+			};
+
 
 			LeaveGroupReplyMessage()
 			: Message(LowHeader())
@@ -19460,7 +21443,14 @@ namespace omvtk
 			enum { id = 0xFFFF015Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<InviteGroupRequestMessage>();
+				}
+			};
+
 
 			InviteGroupRequestMessage()
 			: Message(LowHeader())
@@ -19543,7 +21533,14 @@ namespace omvtk
 			enum { id = 0xFFFF015Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupProfileRequestMessage>();
+				}
+			};
+
 
 			GroupProfileRequestMessage()
 			: Message(LowHeader())
@@ -19608,7 +21605,14 @@ namespace omvtk
 			enum { id = 0xFFFF0160ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupProfileReplyMessage>();
+				}
+			};
+
 
 			GroupProfileReplyMessage()
 			: Message(LowHeader())
@@ -19701,7 +21705,14 @@ namespace omvtk
 			enum { id = 0xFFFF0161ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupAccountSummaryRequestMessage>();
+				}
+			};
+
 
 			GroupAccountSummaryRequestMessage()
 			: Message(LowHeader())
@@ -19772,7 +21783,14 @@ namespace omvtk
 			enum { id = 0xFFFF0162ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupAccountSummaryReplyMessage>();
+				}
+			};
+
 
 			GroupAccountSummaryReplyMessage()
 			: Message(LowHeader())
@@ -19875,7 +21893,14 @@ namespace omvtk
 			enum { id = 0xFFFF0163ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupAccountDetailsRequestMessage>();
+				}
+			};
+
 
 			GroupAccountDetailsRequestMessage()
 			: Message(LowHeader())
@@ -19946,7 +21971,14 @@ namespace omvtk
 			enum { id = 0xFFFF0164ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupAccountDetailsReplyMessage>();
+				}
+			};
+
 
 			GroupAccountDetailsReplyMessage()
 			: Message(LowHeader())
@@ -20035,7 +22067,14 @@ namespace omvtk
 			enum { id = 0xFFFF0165ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupAccountTransactionsRequestMessage>();
+				}
+			};
+
 
 			GroupAccountTransactionsRequestMessage()
 			: Message(LowHeader())
@@ -20106,7 +22145,14 @@ namespace omvtk
 			enum { id = 0xFFFF0166ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupAccountTransactionsReplyMessage>();
+				}
+			};
+
 
 			GroupAccountTransactionsReplyMessage()
 			: Message(LowHeader())
@@ -20201,7 +22247,14 @@ namespace omvtk
 			enum { id = 0xFFFF0167ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupActiveProposalsRequestMessage>();
+				}
+			};
+
 
 			GroupActiveProposalsRequestMessage()
 			: Message(LowHeader())
@@ -20282,7 +22335,14 @@ namespace omvtk
 			enum { id = 0xFFFF0168ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupActiveProposalItemReplyMessage>();
+				}
+			};
+
 
 			GroupActiveProposalItemReplyMessage()
 			: Message(LowHeader())
@@ -20383,7 +22443,14 @@ namespace omvtk
 			enum { id = 0xFFFF0169ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupVoteHistoryRequestMessage>();
+				}
+			};
+
 
 			GroupVoteHistoryRequestMessage()
 			: Message(LowHeader())
@@ -20464,7 +22531,14 @@ namespace omvtk
 			enum { id = 0xFFFF016Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupVoteHistoryItemReplyMessage>();
+				}
+			};
+
 
 			GroupVoteHistoryItemReplyMessage()
 			: Message(LowHeader())
@@ -20585,7 +22659,14 @@ namespace omvtk
 			enum { id = 0xFFFF016Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<StartGroupProposalMessage>();
+				}
+			};
+
 
 			StartGroupProposalMessage()
 			: Message(LowHeader())
@@ -20658,7 +22739,14 @@ namespace omvtk
 			enum { id = 0xFFFF016Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupProposalBallotMessage>();
+				}
+			};
+
 
 			GroupProposalBallotMessage()
 			: Message(LowHeader())
@@ -20727,7 +22815,14 @@ namespace omvtk
 			enum { id = 0xFFFF016Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupMembersRequestMessage>();
+				}
+			};
+
 
 			GroupMembersRequestMessage()
 			: Message(LowHeader())
@@ -20794,7 +22889,14 @@ namespace omvtk
 			enum { id = 0xFFFF016Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupMembersReplyMessage>();
+				}
+			};
+
 
 			GroupMembersReplyMessage()
 			: Message(LowHeader())
@@ -20887,7 +22989,14 @@ namespace omvtk
 			enum { id = 0xFFFF0170ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ActivateGroupMessage>();
+				}
+			};
+
 
 			ActivateGroupMessage()
 			: Message(LowHeader())
@@ -20938,7 +23047,14 @@ namespace omvtk
 			enum { id = 0xFFFF0171ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SetGroupContributionMessage>();
+				}
+			};
+
 
 			SetGroupContributionMessage()
 			: Message(LowHeader())
@@ -21005,7 +23121,14 @@ namespace omvtk
 			enum { id = 0xFFFF0172ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SetGroupAcceptNoticesMessage>();
+				}
+			};
+
 
 			SetGroupAcceptNoticesMessage()
 			: Message(LowHeader())
@@ -21088,7 +23211,14 @@ namespace omvtk
 			enum { id = 0xFFFF0173ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupRoleDataRequestMessage>();
+				}
+			};
+
 
 			GroupRoleDataRequestMessage()
 			: Message(LowHeader())
@@ -21155,7 +23285,14 @@ namespace omvtk
 			enum { id = 0xFFFF0174ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupRoleDataReplyMessage>();
+				}
+			};
+
 
 			GroupRoleDataReplyMessage()
 			: Message(LowHeader())
@@ -21248,7 +23385,14 @@ namespace omvtk
 			enum { id = 0xFFFF0175ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupRoleMembersRequestMessage>();
+				}
+			};
+
 
 			GroupRoleMembersRequestMessage()
 			: Message(LowHeader())
@@ -21315,7 +23459,14 @@ namespace omvtk
 			enum { id = 0xFFFF0176ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupRoleMembersReplyMessage>();
+				}
+			};
+
 
 			GroupRoleMembersReplyMessage()
 			: Message(LowHeader())
@@ -21386,7 +23537,14 @@ namespace omvtk
 			enum { id = 0xFFFF0177ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupTitlesRequestMessage>();
+				}
+			};
+
 
 			GroupTitlesRequestMessage()
 			: Message(LowHeader())
@@ -21439,7 +23597,14 @@ namespace omvtk
 			enum { id = 0xFFFF0178ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupTitlesReplyMessage>();
+				}
+			};
+
 
 			GroupTitlesReplyMessage()
 			: Message(LowHeader())
@@ -21510,7 +23675,14 @@ namespace omvtk
 			enum { id = 0xFFFF0179ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupTitleUpdateMessage>();
+				}
+			};
+
 
 			GroupTitleUpdateMessage()
 			: Message(LowHeader())
@@ -21563,7 +23735,14 @@ namespace omvtk
 			enum { id = 0xFFFF017Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupRoleUpdateMessage>();
+				}
+			};
+
 
 			GroupRoleUpdateMessage()
 			: Message(LowHeader())
@@ -21640,7 +23819,14 @@ namespace omvtk
 			enum { id = 0xFFFF017Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LiveHelpGroupRequestMessage>();
+				}
+			};
+
 
 			LiveHelpGroupRequestMessage()
 			: Message(LowHeader())
@@ -21689,7 +23875,14 @@ namespace omvtk
 			enum { id = 0xFFFF017Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LiveHelpGroupReplyMessage>();
+				}
+			};
+
 
 			LiveHelpGroupReplyMessage()
 			: Message(LowHeader())
@@ -21740,7 +23933,14 @@ namespace omvtk
 			enum { id = 0xFFFF017Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentWearablesRequestMessage>();
+				}
+			};
+
 
 			AgentWearablesRequestMessage()
 			: Message(LowHeader())
@@ -21789,7 +23989,14 @@ namespace omvtk
 			enum { id = 0xFFFF017Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentWearablesUpdateMessage>();
+				}
+			};
+
 
 			AgentWearablesUpdateMessage()
 			: Message(LowHeader())
@@ -21860,7 +24067,14 @@ namespace omvtk
 			enum { id = 0xFFFF017Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentIsNowWearingMessage>();
+				}
+			};
+
 
 			AgentIsNowWearingMessage()
 			: Message(LowHeader())
@@ -21927,7 +24141,14 @@ namespace omvtk
 			enum { id = 0xFFFF0180ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentCachedTextureMessage>();
+				}
+			};
+
 
 			AgentCachedTextureMessage()
 			: Message(LowHeader())
@@ -21996,7 +24217,14 @@ namespace omvtk
 			enum { id = 0xFFFF0181ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentCachedTextureResponseMessage>();
+				}
+			};
+
 
 			AgentCachedTextureResponseMessage()
 			: Message(LowHeader())
@@ -22067,7 +24295,14 @@ namespace omvtk
 			enum { id = 0xFFFF0182ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentDataUpdateRequestMessage>();
+				}
+			};
+
 
 			AgentDataUpdateRequestMessage()
 			: Message(LowHeader())
@@ -22116,7 +24351,14 @@ namespace omvtk
 			enum { id = 0xFFFF0183ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentDataUpdateMessage>();
+				}
+			};
+
 
 			AgentDataUpdateMessage()
 			: Message(LowHeader())
@@ -22175,7 +24417,14 @@ namespace omvtk
 			enum { id = 0xFFFF0184ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<GroupDataUpdateMessage>();
+				}
+			};
+
 
 			GroupDataUpdateMessage()
 			: Message(LowHeader())
@@ -22228,7 +24477,14 @@ namespace omvtk
 			enum { id = 0xFFFF0185ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentGroupDataUpdateMessage>();
+				}
+			};
+
 
 			AgentGroupDataUpdateMessage()
 			: Message(LowHeader())
@@ -22301,7 +24557,14 @@ namespace omvtk
 			enum { id = 0xFFFF0186ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentDropGroupMessage>();
+				}
+			};
+
 
 			AgentDropGroupMessage()
 			: Message(LowHeader())
@@ -22350,7 +24613,14 @@ namespace omvtk
 			enum { id = 0xFFFF0188ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CreateTrustedCircuitMessage>();
+				}
+			};
+
 
 			CreateTrustedCircuitMessage()
 			: Message(LowHeader())
@@ -22399,7 +24669,14 @@ namespace omvtk
 			enum { id = 0xFFFF0189ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DenyTrustedCircuitMessage>();
+				}
+			};
+
 
 			DenyTrustedCircuitMessage()
 			: Message(LowHeader())
@@ -22446,7 +24723,14 @@ namespace omvtk
 			enum { id = 0xFFFF018Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestTrustedCircuitMessage>();
+				}
+			};
+
 
 			RequestTrustedCircuitMessage()
 			: Message(LowHeader())
@@ -22478,7 +24762,14 @@ namespace omvtk
 			enum { id = 0xFFFF018Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RezSingleAttachmentFromInvMessage>();
+				}
+			};
+
 
 			RezSingleAttachmentFromInvMessage()
 			: Message(LowHeader())
@@ -22559,7 +24850,14 @@ namespace omvtk
 			enum { id = 0xFFFF018Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RezMultipleAttachmentsFromInvMessage>();
+				}
+			};
+
 
 			RezMultipleAttachmentsFromInvMessage()
 			: Message(LowHeader())
@@ -22660,7 +24958,14 @@ namespace omvtk
 			enum { id = 0xFFFF018Dul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<DetachAttachmentIntoInvMessage>();
+				}
+			};
+
 
 			DetachAttachmentIntoInvMessage()
 			: Message(LowHeader())
@@ -22709,7 +25014,14 @@ namespace omvtk
 			enum { id = 0xFFFF018Eul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CreateNewOutfitAttachmentsMessage>();
+				}
+			};
+
 
 			CreateNewOutfitAttachmentsMessage()
 			: Message(LowHeader())
@@ -22792,7 +25104,14 @@ namespace omvtk
 			enum { id = 0xFFFF018Ful };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UserInfoRequestMessage>();
+				}
+			};
+
 
 			UserInfoRequestMessage()
 			: Message(LowHeader())
@@ -22841,7 +25160,14 @@ namespace omvtk
 			enum { id = 0xFFFF0190ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UserInfoReplyMessage>();
+				}
+			};
+
 
 			UserInfoReplyMessage()
 			: Message(LowHeader())
@@ -22908,7 +25234,14 @@ namespace omvtk
 			enum { id = 0xFFFF0191ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<UpdateUserInfoMessage>();
+				}
+			};
+
 
 			UpdateUserInfoMessage()
 			: Message(LowHeader())
@@ -22975,7 +25308,14 @@ namespace omvtk
 			enum { id = 0xFFFF0193ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<InitiateDownloadMessage>();
+				}
+			};
+
 
 			InitiateDownloadMessage()
 			: Message(LowHeader())
@@ -23040,7 +25380,14 @@ namespace omvtk
 			enum { id = 0xFFFF0194ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SystemMessageMessage>();
+				}
+			};
+
 
 			SystemMessageMessage()
 			: Message(LowHeader())
@@ -23107,7 +25454,14 @@ namespace omvtk
 			enum { id = 0xFFFF0195ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MapLayerRequestMessage>();
+				}
+			};
+
 
 			MapLayerRequestMessage()
 			: Message(LowHeader())
@@ -23162,7 +25516,14 @@ namespace omvtk
 			enum { id = 0xFFFF0196ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MapLayerReplyMessage>();
+				}
+			};
+
 
 			MapLayerReplyMessage()
 			: Message(LowHeader())
@@ -23235,7 +25596,14 @@ namespace omvtk
 			enum { id = 0xFFFF0197ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MapBlockRequestMessage>();
+				}
+			};
+
 
 			MapBlockRequestMessage()
 			: Message(LowHeader())
@@ -23312,7 +25680,14 @@ namespace omvtk
 			enum { id = 0xFFFF0198ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MapNameRequestMessage>();
+				}
+			};
+
 
 			MapNameRequestMessage()
 			: Message(LowHeader())
@@ -23383,7 +25758,14 @@ namespace omvtk
 			enum { id = 0xFFFF0199ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MapBlockReplyMessage>();
+				}
+			};
+
 
 			MapBlockReplyMessage()
 			: Message(LowHeader())
@@ -23462,7 +25844,14 @@ namespace omvtk
 			enum { id = 0xFFFF019Aul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MapItemRequestMessage>();
+				}
+			};
+
 
 			MapItemRequestMessage()
 			: Message(LowHeader())
@@ -23535,7 +25924,14 @@ namespace omvtk
 			enum { id = 0xFFFF019Bul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MapItemReplyMessage>();
+				}
+			};
+
 
 			MapItemReplyMessage()
 			: Message(LowHeader())
@@ -23626,7 +26022,14 @@ namespace omvtk
 			enum { id = 0xFFFF019Cul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SendPostcardMessage>();
+				}
+			};
+
 
 			SendPostcardMessage()
 			: Message(LowHeader())
@@ -23693,7 +26096,14 @@ namespace omvtk
 			enum { id = 0xFFFF01A3ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelMediaCommandMessageMessage>();
+				}
+			};
+
 
 			ParcelMediaCommandMessageMessage()
 			: Message(LowHeader())
@@ -23744,7 +26154,14 @@ namespace omvtk
 			enum { id = 0xFFFF01A4ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelMediaUpdateMessage>();
+				}
+			};
+
 
 			ParcelMediaUpdateMessage()
 			: Message(LowHeader())
@@ -23819,7 +26236,14 @@ namespace omvtk
 			enum { id = 0xFFFF01A5ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LandStatRequestMessage>();
+				}
+			};
+
 
 			LandStatRequestMessage()
 			: Message(LowHeader())
@@ -23890,7 +26314,14 @@ namespace omvtk
 			enum { id = 0xFFFF01A6ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LandStatReplyMessage>();
+				}
+			};
+
 
 			LandStatReplyMessage()
 			: Message(LowHeader())
@@ -23971,7 +26402,14 @@ namespace omvtk
 			enum { id = 0xFFFF01A7ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ErrorMessage>();
+				}
+			};
+
 
 			ErrorMessage()
 			: Message(LowHeader())
@@ -24044,7 +26482,14 @@ namespace omvtk
 			enum { id = 0xFFFF01A8ul };
 			static FrequencyType const frequency = FT_LOW;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectIncludeInSearchMessage>();
+				}
+			};
+
 
 			ObjectIncludeInSearchMessage()
 			: Message(LowHeader())
@@ -24111,7 +26556,14 @@ namespace omvtk
 			enum { id = 0xFFFFFFFBul };
 			static FrequencyType const frequency = FT_FIXED;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PacketAckMessage>();
+				}
+			};
+
 
 			PacketAckMessage()
 			: Message(LowHeader())
@@ -24158,7 +26610,14 @@ namespace omvtk
 			enum { id = 0xFFFFFFFCul };
 			static FrequencyType const frequency = FT_FIXED;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<OpenCircuitMessage>();
+				}
+			};
+
 
 			OpenCircuitMessage()
 			: Message(LowHeader())
@@ -24207,7 +26666,14 @@ namespace omvtk
 			enum { id = 0xFFFFFFFDul };
 			static FrequencyType const frequency = FT_FIXED;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CloseCircuitMessage>();
+				}
+			};
+
 
 			CloseCircuitMessage()
 			: Message(LowHeader())
@@ -24239,7 +26705,14 @@ namespace omvtk
 			enum { id = 0xFF000001ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectAddMessage>();
+				}
+			};
+
 
 			ObjectAddMessage()
 			: Message(MediumHeader())
@@ -24362,7 +26835,14 @@ namespace omvtk
 			enum { id = 0xFF000002ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<MultipleObjectUpdateMessage>();
+				}
+			};
+
 
 			MultipleObjectUpdateMessage()
 			: Message(MediumHeader())
@@ -24431,7 +26911,14 @@ namespace omvtk
 			enum { id = 0xFF000003ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestMultipleObjectsMessage>();
+				}
+			};
+
 
 			RequestMultipleObjectsMessage()
 			: Message(MediumHeader())
@@ -24498,7 +26985,14 @@ namespace omvtk
 			enum { id = 0xFF000004ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectPositionMessage>();
+				}
+			};
+
 
 			ObjectPositionMessage()
 			: Message(MediumHeader())
@@ -24565,7 +27059,14 @@ namespace omvtk
 			enum { id = 0xFF000005ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestObjectPropertiesFamilyMessage>();
+				}
+			};
+
 
 			RequestObjectPropertiesFamilyMessage()
 			: Message(MediumHeader())
@@ -24632,7 +27133,14 @@ namespace omvtk
 			enum { id = 0xFF000006ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CoarseLocationUpdateMessage>();
+				}
+			};
+
 
 			CoarseLocationUpdateMessage()
 			: Message(MediumHeader())
@@ -24717,7 +27225,14 @@ namespace omvtk
 			enum { id = 0xFF000007ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CrossedRegionMessage>();
+				}
+			};
+
 
 			CrossedRegionMessage()
 			: Message(MediumHeader())
@@ -24806,7 +27321,14 @@ namespace omvtk
 			enum { id = 0xFF000008ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ConfirmEnableSimulatorMessage>();
+				}
+			};
+
 
 			ConfirmEnableSimulatorMessage()
 			: Message(MediumHeader())
@@ -24855,7 +27377,14 @@ namespace omvtk
 			enum { id = 0xFF000009ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectPropertiesMessage>();
+				}
+			};
+
 
 			ObjectPropertiesMessage()
 			: Message(MediumHeader())
@@ -24954,7 +27483,14 @@ namespace omvtk
 			enum { id = 0xFF00000Aul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectPropertiesFamilyMessage>();
+				}
+			};
+
 
 			ObjectPropertiesFamilyMessage()
 			: Message(MediumHeader())
@@ -25031,7 +27567,14 @@ namespace omvtk
 			enum { id = 0xFF00000Bul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelPropertiesRequestMessage>();
+				}
+			};
+
 
 			ParcelPropertiesRequestMessage()
 			: Message(MediumHeader())
@@ -25106,7 +27649,14 @@ namespace omvtk
 			enum { id = 0xFF00000Dul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AttachedSoundMessage>();
+				}
+			};
+
 
 			AttachedSoundMessage()
 			: Message(MediumHeader())
@@ -25161,7 +27711,14 @@ namespace omvtk
 			enum { id = 0xFF00000Eul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AttachedSoundGainChangeMessage>();
+				}
+			};
+
 
 			AttachedSoundGainChangeMessage()
 			: Message(MediumHeader())
@@ -25210,7 +27767,14 @@ namespace omvtk
 			enum { id = 0xFF00000Ful };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<PreloadSoundMessage>();
+				}
+			};
+
 
 			PreloadSoundMessage()
 			: Message(MediumHeader())
@@ -25261,7 +27825,14 @@ namespace omvtk
 			enum { id = 0xFF000011ul };
 			static FrequencyType const frequency = FT_MEDIUM;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ViewerEffectMessage>();
+				}
+			};
+
 
 			ViewerEffectMessage()
 			: Message(MediumHeader())
@@ -25336,7 +27907,14 @@ namespace omvtk
 			enum { id = 0x1ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<StartPingCheckMessage>();
+				}
+			};
+
 
 			StartPingCheckMessage()
 			: Message(HighHeader())
@@ -25385,7 +27963,14 @@ namespace omvtk
 			enum { id = 0x2ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CompletePingCheckMessage>();
+				}
+			};
+
 
 			CompletePingCheckMessage()
 			: Message(HighHeader())
@@ -25432,7 +28017,14 @@ namespace omvtk
 			enum { id = 0x4ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentUpdateMessage>();
+				}
+			};
+
 
 			AgentUpdateMessage()
 			: Message(HighHeader())
@@ -25501,7 +28093,14 @@ namespace omvtk
 			enum { id = 0x5ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentAnimationMessage>();
+				}
+			};
+
 
 			AgentAnimationMessage()
 			: Message(HighHeader())
@@ -25584,7 +28183,14 @@ namespace omvtk
 			enum { id = 0x6ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentRequestSitMessage>();
+				}
+			};
+
 
 			AgentRequestSitMessage()
 			: Message(HighHeader())
@@ -25651,7 +28257,14 @@ namespace omvtk
 			enum { id = 0x7ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AgentSitMessage>();
+				}
+			};
+
 
 			AgentSitMessage()
 			: Message(HighHeader())
@@ -25700,7 +28313,14 @@ namespace omvtk
 			enum { id = 0x8ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<RequestImageMessage>();
+				}
+			};
+
 
 			RequestImageMessage()
 			: Message(HighHeader())
@@ -25773,7 +28393,14 @@ namespace omvtk
 			enum { id = 0x9ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ImageDataMessage>();
+				}
+			};
+
 
 			ImageDataMessage()
 			: Message(HighHeader())
@@ -25842,7 +28469,14 @@ namespace omvtk
 			enum { id = 0xAul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ImagePacketMessage>();
+				}
+			};
+
 
 			ImagePacketMessage()
 			: Message(HighHeader())
@@ -25907,7 +28541,14 @@ namespace omvtk
 			enum { id = 0xBul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<LayerDataMessage>();
+				}
+			};
+
 
 			LayerDataMessage()
 			: Message(HighHeader())
@@ -25970,7 +28611,14 @@ namespace omvtk
 			enum { id = 0xCul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectUpdateMessage>();
+				}
+			};
+
 
 			ObjectUpdateMessage()
 			: Message(HighHeader())
@@ -26125,7 +28773,14 @@ namespace omvtk
 			enum { id = 0xDul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectUpdateCompressedMessage>();
+				}
+			};
+
 
 			ObjectUpdateCompressedMessage()
 			: Message(HighHeader())
@@ -26192,7 +28847,14 @@ namespace omvtk
 			enum { id = 0xEul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ObjectUpdateCachedMessage>();
+				}
+			};
+
 
 			ObjectUpdateCachedMessage()
 			: Message(HighHeader())
@@ -26261,7 +28923,14 @@ namespace omvtk
 			enum { id = 0xFul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ImprovedTerseObjectUpdateMessage>();
+				}
+			};
+
 
 			ImprovedTerseObjectUpdateMessage()
 			: Message(HighHeader())
@@ -26328,7 +28997,14 @@ namespace omvtk
 			enum { id = 0x10ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<KillObjectMessage>();
+				}
+			};
+
 
 			KillObjectMessage()
 			: Message(HighHeader())
@@ -26375,7 +29051,14 @@ namespace omvtk
 			enum { id = 0x11ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<TransferPacketMessage>();
+				}
+			};
+
 
 			TransferPacketMessage()
 			: Message(HighHeader())
@@ -26430,7 +29113,14 @@ namespace omvtk
 			enum { id = 0x12ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SendXferPacketMessage>();
+				}
+			};
+
 
 			SendXferPacketMessage()
 			: Message(HighHeader())
@@ -26495,7 +29185,14 @@ namespace omvtk
 			enum { id = 0x13ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ConfirmXferPacketMessage>();
+				}
+			};
+
 
 			ConfirmXferPacketMessage()
 			: Message(HighHeader())
@@ -26544,7 +29241,14 @@ namespace omvtk
 			enum { id = 0x14ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarAnimationMessage>();
+				}
+			};
+
 
 			AvatarAnimationMessage()
 			: Message(HighHeader())
@@ -26641,7 +29345,14 @@ namespace omvtk
 			enum { id = 0x15ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<AvatarSitResponseMessage>();
+				}
+			};
+
 
 			AvatarSitResponseMessage()
 			: Message(HighHeader())
@@ -26714,7 +29425,14 @@ namespace omvtk
 			enum { id = 0x16ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<CameraConstraintMessage>();
+				}
+			};
+
 
 			CameraConstraintMessage()
 			: Message(HighHeader())
@@ -26761,7 +29479,14 @@ namespace omvtk
 			enum { id = 0x17ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ParcelPropertiesMessage>();
+				}
+			};
+
 
 			ParcelPropertiesMessage()
 			: Message(HighHeader())
@@ -26920,7 +29645,14 @@ namespace omvtk
 			enum { id = 0x19ul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChildAgentUpdateMessage>();
+				}
+			};
+
 
 			ChildAgentUpdateMessage()
 			: Message(HighHeader())
@@ -27103,7 +29835,14 @@ namespace omvtk
 			enum { id = 0x1Aul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChildAgentAliveMessage>();
+				}
+			};
+
 
 			ChildAgentAliveMessage()
 			: Message(HighHeader())
@@ -27156,7 +29895,14 @@ namespace omvtk
 			enum { id = 0x1Bul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<ChildAgentPositionUpdateMessage>();
+				}
+			};
+
 
 			ChildAgentPositionUpdateMessage()
 			: Message(HighHeader())
@@ -27225,7 +29971,14 @@ namespace omvtk
 			enum { id = 0x1Dul };
 			static FrequencyType const frequency = FT_HIGH;
 			static bool const encoded = false;
-			
+
+
+			struct apply {
+				apply( PacketInitializer & initializer ) {
+					initializer.init<SoundTriggerMessage>();
+				}
+			};
+
 
 			SoundTriggerMessage()
 			: Message(HighHeader())
@@ -27276,1573 +30029,1572 @@ namespace omvtk
 
 		};
 
-		template<typename Func>
-		inline bool Lookup(UInt32 msg_id, Func & fn)
+		inline bool Lookup(UInt32 msg_id, PacketInitializer & initializer)
 		{
 			switch(msg_id)
 			{
 			case StartPingCheckMessage::id:
-				fn.template apply<StartPingCheckMessage>();
+				{ StartPingCheckMessage::apply a_(initializer); }
 				return true;
 
 			case CompletePingCheckMessage::id:
-				fn.template apply<CompletePingCheckMessage>();
+				{ CompletePingCheckMessage::apply a_(initializer); }
 				return true;
 
 			case AgentUpdateMessage::id:
-				fn.template apply<AgentUpdateMessage>();
+				{ AgentUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case AgentAnimationMessage::id:
-				fn.template apply<AgentAnimationMessage>();
+				{ AgentAnimationMessage::apply a_(initializer); }
 				return true;
 
 			case AgentRequestSitMessage::id:
-				fn.template apply<AgentRequestSitMessage>();
+				{ AgentRequestSitMessage::apply a_(initializer); }
 				return true;
 
 			case AgentSitMessage::id:
-				fn.template apply<AgentSitMessage>();
+				{ AgentSitMessage::apply a_(initializer); }
 				return true;
 
 			case RequestImageMessage::id:
-				fn.template apply<RequestImageMessage>();
+				{ RequestImageMessage::apply a_(initializer); }
 				return true;
 
 			case ImageDataMessage::id:
-				fn.template apply<ImageDataMessage>();
+				{ ImageDataMessage::apply a_(initializer); }
 				return true;
 
 			case ImagePacketMessage::id:
-				fn.template apply<ImagePacketMessage>();
+				{ ImagePacketMessage::apply a_(initializer); }
 				return true;
 
 			case LayerDataMessage::id:
-				fn.template apply<LayerDataMessage>();
+				{ LayerDataMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectUpdateMessage::id:
-				fn.template apply<ObjectUpdateMessage>();
+				{ ObjectUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectUpdateCompressedMessage::id:
-				fn.template apply<ObjectUpdateCompressedMessage>();
+				{ ObjectUpdateCompressedMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectUpdateCachedMessage::id:
-				fn.template apply<ObjectUpdateCachedMessage>();
+				{ ObjectUpdateCachedMessage::apply a_(initializer); }
 				return true;
 
 			case ImprovedTerseObjectUpdateMessage::id:
-				fn.template apply<ImprovedTerseObjectUpdateMessage>();
+				{ ImprovedTerseObjectUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case KillObjectMessage::id:
-				fn.template apply<KillObjectMessage>();
+				{ KillObjectMessage::apply a_(initializer); }
 				return true;
 
 			case TransferPacketMessage::id:
-				fn.template apply<TransferPacketMessage>();
+				{ TransferPacketMessage::apply a_(initializer); }
 				return true;
 
 			case SendXferPacketMessage::id:
-				fn.template apply<SendXferPacketMessage>();
+				{ SendXferPacketMessage::apply a_(initializer); }
 				return true;
 
 			case ConfirmXferPacketMessage::id:
-				fn.template apply<ConfirmXferPacketMessage>();
+				{ ConfirmXferPacketMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarAnimationMessage::id:
-				fn.template apply<AvatarAnimationMessage>();
+				{ AvatarAnimationMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarSitResponseMessage::id:
-				fn.template apply<AvatarSitResponseMessage>();
+				{ AvatarSitResponseMessage::apply a_(initializer); }
 				return true;
 
 			case CameraConstraintMessage::id:
-				fn.template apply<CameraConstraintMessage>();
+				{ CameraConstraintMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelPropertiesMessage::id:
-				fn.template apply<ParcelPropertiesMessage>();
+				{ ParcelPropertiesMessage::apply a_(initializer); }
 				return true;
 
 			case ChildAgentUpdateMessage::id:
-				fn.template apply<ChildAgentUpdateMessage>();
+				{ ChildAgentUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ChildAgentAliveMessage::id:
-				fn.template apply<ChildAgentAliveMessage>();
+				{ ChildAgentAliveMessage::apply a_(initializer); }
 				return true;
 
 			case ChildAgentPositionUpdateMessage::id:
-				fn.template apply<ChildAgentPositionUpdateMessage>();
+				{ ChildAgentPositionUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case SoundTriggerMessage::id:
-				fn.template apply<SoundTriggerMessage>();
+				{ SoundTriggerMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectAddMessage::id:
-				fn.template apply<ObjectAddMessage>();
+				{ ObjectAddMessage::apply a_(initializer); }
 				return true;
 
 			case MultipleObjectUpdateMessage::id:
-				fn.template apply<MultipleObjectUpdateMessage>();
+				{ MultipleObjectUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case RequestMultipleObjectsMessage::id:
-				fn.template apply<RequestMultipleObjectsMessage>();
+				{ RequestMultipleObjectsMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectPositionMessage::id:
-				fn.template apply<ObjectPositionMessage>();
+				{ ObjectPositionMessage::apply a_(initializer); }
 				return true;
 
 			case RequestObjectPropertiesFamilyMessage::id:
-				fn.template apply<RequestObjectPropertiesFamilyMessage>();
+				{ RequestObjectPropertiesFamilyMessage::apply a_(initializer); }
 				return true;
 
 			case CoarseLocationUpdateMessage::id:
-				fn.template apply<CoarseLocationUpdateMessage>();
+				{ CoarseLocationUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case CrossedRegionMessage::id:
-				fn.template apply<CrossedRegionMessage>();
+				{ CrossedRegionMessage::apply a_(initializer); }
 				return true;
 
 			case ConfirmEnableSimulatorMessage::id:
-				fn.template apply<ConfirmEnableSimulatorMessage>();
+				{ ConfirmEnableSimulatorMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectPropertiesMessage::id:
-				fn.template apply<ObjectPropertiesMessage>();
+				{ ObjectPropertiesMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectPropertiesFamilyMessage::id:
-				fn.template apply<ObjectPropertiesFamilyMessage>();
+				{ ObjectPropertiesFamilyMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelPropertiesRequestMessage::id:
-				fn.template apply<ParcelPropertiesRequestMessage>();
+				{ ParcelPropertiesRequestMessage::apply a_(initializer); }
 				return true;
 
 			case AttachedSoundMessage::id:
-				fn.template apply<AttachedSoundMessage>();
+				{ AttachedSoundMessage::apply a_(initializer); }
 				return true;
 
 			case AttachedSoundGainChangeMessage::id:
-				fn.template apply<AttachedSoundGainChangeMessage>();
+				{ AttachedSoundGainChangeMessage::apply a_(initializer); }
 				return true;
 
 			case PreloadSoundMessage::id:
-				fn.template apply<PreloadSoundMessage>();
+				{ PreloadSoundMessage::apply a_(initializer); }
 				return true;
 
 			case ViewerEffectMessage::id:
-				fn.template apply<ViewerEffectMessage>();
+				{ ViewerEffectMessage::apply a_(initializer); }
 				return true;
 
 			case TestMessageMessage::id:
-				fn.template apply<TestMessageMessage>();
+				{ TestMessageMessage::apply a_(initializer); }
 				return true;
 
 			case UseCircuitCodeMessage::id:
-				fn.template apply<UseCircuitCodeMessage>();
+				{ UseCircuitCodeMessage::apply a_(initializer); }
 				return true;
 
 			case TelehubInfoMessage::id:
-				fn.template apply<TelehubInfoMessage>();
+				{ TelehubInfoMessage::apply a_(initializer); }
 				return true;
 
 			case EconomyDataRequestMessage::id:
-				fn.template apply<EconomyDataRequestMessage>();
+				{ EconomyDataRequestMessage::apply a_(initializer); }
 				return true;
 
 			case EconomyDataMessage::id:
-				fn.template apply<EconomyDataMessage>();
+				{ EconomyDataMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarPickerRequestMessage::id:
-				fn.template apply<AvatarPickerRequestMessage>();
+				{ AvatarPickerRequestMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarPickerReplyMessage::id:
-				fn.template apply<AvatarPickerReplyMessage>();
+				{ AvatarPickerReplyMessage::apply a_(initializer); }
 				return true;
 
 			case PlacesQueryMessage::id:
-				fn.template apply<PlacesQueryMessage>();
+				{ PlacesQueryMessage::apply a_(initializer); }
 				return true;
 
 			case PlacesReplyMessage::id:
-				fn.template apply<PlacesReplyMessage>();
+				{ PlacesReplyMessage::apply a_(initializer); }
 				return true;
 
 			case DirFindQueryMessage::id:
-				fn.template apply<DirFindQueryMessage>();
+				{ DirFindQueryMessage::apply a_(initializer); }
 				return true;
 
 			case DirPlacesQueryMessage::id:
-				fn.template apply<DirPlacesQueryMessage>();
+				{ DirPlacesQueryMessage::apply a_(initializer); }
 				return true;
 
 			case DirPlacesReplyMessage::id:
-				fn.template apply<DirPlacesReplyMessage>();
+				{ DirPlacesReplyMessage::apply a_(initializer); }
 				return true;
 
 			case DirPeopleReplyMessage::id:
-				fn.template apply<DirPeopleReplyMessage>();
+				{ DirPeopleReplyMessage::apply a_(initializer); }
 				return true;
 
 			case DirEventsReplyMessage::id:
-				fn.template apply<DirEventsReplyMessage>();
+				{ DirEventsReplyMessage::apply a_(initializer); }
 				return true;
 
 			case DirGroupsReplyMessage::id:
-				fn.template apply<DirGroupsReplyMessage>();
+				{ DirGroupsReplyMessage::apply a_(initializer); }
 				return true;
 
 			case DirClassifiedQueryMessage::id:
-				fn.template apply<DirClassifiedQueryMessage>();
+				{ DirClassifiedQueryMessage::apply a_(initializer); }
 				return true;
 
 			case DirClassifiedReplyMessage::id:
-				fn.template apply<DirClassifiedReplyMessage>();
+				{ DirClassifiedReplyMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarClassifiedReplyMessage::id:
-				fn.template apply<AvatarClassifiedReplyMessage>();
+				{ AvatarClassifiedReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ClassifiedInfoRequestMessage::id:
-				fn.template apply<ClassifiedInfoRequestMessage>();
+				{ ClassifiedInfoRequestMessage::apply a_(initializer); }
 				return true;
 
 			case ClassifiedInfoReplyMessage::id:
-				fn.template apply<ClassifiedInfoReplyMessage>();
+				{ ClassifiedInfoReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ClassifiedInfoUpdateMessage::id:
-				fn.template apply<ClassifiedInfoUpdateMessage>();
+				{ ClassifiedInfoUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ClassifiedDeleteMessage::id:
-				fn.template apply<ClassifiedDeleteMessage>();
+				{ ClassifiedDeleteMessage::apply a_(initializer); }
 				return true;
 
 			case ClassifiedGodDeleteMessage::id:
-				fn.template apply<ClassifiedGodDeleteMessage>();
+				{ ClassifiedGodDeleteMessage::apply a_(initializer); }
 				return true;
 
 			case DirLandQueryMessage::id:
-				fn.template apply<DirLandQueryMessage>();
+				{ DirLandQueryMessage::apply a_(initializer); }
 				return true;
 
 			case DirLandReplyMessage::id:
-				fn.template apply<DirLandReplyMessage>();
+				{ DirLandReplyMessage::apply a_(initializer); }
 				return true;
 
 			case DirPopularQueryMessage::id:
-				fn.template apply<DirPopularQueryMessage>();
+				{ DirPopularQueryMessage::apply a_(initializer); }
 				return true;
 
 			case DirPopularReplyMessage::id:
-				fn.template apply<DirPopularReplyMessage>();
+				{ DirPopularReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelInfoRequestMessage::id:
-				fn.template apply<ParcelInfoRequestMessage>();
+				{ ParcelInfoRequestMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelInfoReplyMessage::id:
-				fn.template apply<ParcelInfoReplyMessage>();
+				{ ParcelInfoReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelObjectOwnersRequestMessage::id:
-				fn.template apply<ParcelObjectOwnersRequestMessage>();
+				{ ParcelObjectOwnersRequestMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelObjectOwnersReplyMessage::id:
-				fn.template apply<ParcelObjectOwnersReplyMessage>();
+				{ ParcelObjectOwnersReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupNoticesListRequestMessage::id:
-				fn.template apply<GroupNoticesListRequestMessage>();
+				{ GroupNoticesListRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupNoticesListReplyMessage::id:
-				fn.template apply<GroupNoticesListReplyMessage>();
+				{ GroupNoticesListReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupNoticeRequestMessage::id:
-				fn.template apply<GroupNoticeRequestMessage>();
+				{ GroupNoticeRequestMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportRequestMessage::id:
-				fn.template apply<TeleportRequestMessage>();
+				{ TeleportRequestMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportLocationRequestMessage::id:
-				fn.template apply<TeleportLocationRequestMessage>();
+				{ TeleportLocationRequestMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportLocalMessage::id:
-				fn.template apply<TeleportLocalMessage>();
+				{ TeleportLocalMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportLandmarkRequestMessage::id:
-				fn.template apply<TeleportLandmarkRequestMessage>();
+				{ TeleportLandmarkRequestMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportProgressMessage::id:
-				fn.template apply<TeleportProgressMessage>();
+				{ TeleportProgressMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportFinishMessage::id:
-				fn.template apply<TeleportFinishMessage>();
+				{ TeleportFinishMessage::apply a_(initializer); }
 				return true;
 
 			case StartLureMessage::id:
-				fn.template apply<StartLureMessage>();
+				{ StartLureMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportLureRequestMessage::id:
-				fn.template apply<TeleportLureRequestMessage>();
+				{ TeleportLureRequestMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportCancelMessage::id:
-				fn.template apply<TeleportCancelMessage>();
+				{ TeleportCancelMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportStartMessage::id:
-				fn.template apply<TeleportStartMessage>();
+				{ TeleportStartMessage::apply a_(initializer); }
 				return true;
 
 			case TeleportFailedMessage::id:
-				fn.template apply<TeleportFailedMessage>();
+				{ TeleportFailedMessage::apply a_(initializer); }
 				return true;
 
 			case UndoMessage::id:
-				fn.template apply<UndoMessage>();
+				{ UndoMessage::apply a_(initializer); }
 				return true;
 
 			case RedoMessage::id:
-				fn.template apply<RedoMessage>();
+				{ RedoMessage::apply a_(initializer); }
 				return true;
 
 			case UndoLandMessage::id:
-				fn.template apply<UndoLandMessage>();
+				{ UndoLandMessage::apply a_(initializer); }
 				return true;
 
 			case AgentPauseMessage::id:
-				fn.template apply<AgentPauseMessage>();
+				{ AgentPauseMessage::apply a_(initializer); }
 				return true;
 
 			case AgentResumeMessage::id:
-				fn.template apply<AgentResumeMessage>();
+				{ AgentResumeMessage::apply a_(initializer); }
 				return true;
 
 			case ChatFromViewerMessage::id:
-				fn.template apply<ChatFromViewerMessage>();
+				{ ChatFromViewerMessage::apply a_(initializer); }
 				return true;
 
 			case AgentThrottleMessage::id:
-				fn.template apply<AgentThrottleMessage>();
+				{ AgentThrottleMessage::apply a_(initializer); }
 				return true;
 
 			case AgentFOVMessage::id:
-				fn.template apply<AgentFOVMessage>();
+				{ AgentFOVMessage::apply a_(initializer); }
 				return true;
 
 			case AgentHeightWidthMessage::id:
-				fn.template apply<AgentHeightWidthMessage>();
+				{ AgentHeightWidthMessage::apply a_(initializer); }
 				return true;
 
 			case AgentSetAppearanceMessage::id:
-				fn.template apply<AgentSetAppearanceMessage>();
+				{ AgentSetAppearanceMessage::apply a_(initializer); }
 				return true;
 
 			case AgentQuitCopyMessage::id:
-				fn.template apply<AgentQuitCopyMessage>();
+				{ AgentQuitCopyMessage::apply a_(initializer); }
 				return true;
 
 			case ImageNotInDatabaseMessage::id:
-				fn.template apply<ImageNotInDatabaseMessage>();
+				{ ImageNotInDatabaseMessage::apply a_(initializer); }
 				return true;
 
 			case RebakeAvatarTexturesMessage::id:
-				fn.template apply<RebakeAvatarTexturesMessage>();
+				{ RebakeAvatarTexturesMessage::apply a_(initializer); }
 				return true;
 
 			case SetAlwaysRunMessage::id:
-				fn.template apply<SetAlwaysRunMessage>();
+				{ SetAlwaysRunMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDeleteMessage::id:
-				fn.template apply<ObjectDeleteMessage>();
+				{ ObjectDeleteMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDuplicateMessage::id:
-				fn.template apply<ObjectDuplicateMessage>();
+				{ ObjectDuplicateMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDuplicateOnRayMessage::id:
-				fn.template apply<ObjectDuplicateOnRayMessage>();
+				{ ObjectDuplicateOnRayMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectScaleMessage::id:
-				fn.template apply<ObjectScaleMessage>();
+				{ ObjectScaleMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectRotationMessage::id:
-				fn.template apply<ObjectRotationMessage>();
+				{ ObjectRotationMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectFlagUpdateMessage::id:
-				fn.template apply<ObjectFlagUpdateMessage>();
+				{ ObjectFlagUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectClickActionMessage::id:
-				fn.template apply<ObjectClickActionMessage>();
+				{ ObjectClickActionMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectImageMessage::id:
-				fn.template apply<ObjectImageMessage>();
+				{ ObjectImageMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectMaterialMessage::id:
-				fn.template apply<ObjectMaterialMessage>();
+				{ ObjectMaterialMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectShapeMessage::id:
-				fn.template apply<ObjectShapeMessage>();
+				{ ObjectShapeMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectExtraParamsMessage::id:
-				fn.template apply<ObjectExtraParamsMessage>();
+				{ ObjectExtraParamsMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectOwnerMessage::id:
-				fn.template apply<ObjectOwnerMessage>();
+				{ ObjectOwnerMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectGroupMessage::id:
-				fn.template apply<ObjectGroupMessage>();
+				{ ObjectGroupMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectBuyMessage::id:
-				fn.template apply<ObjectBuyMessage>();
+				{ ObjectBuyMessage::apply a_(initializer); }
 				return true;
 
 			case BuyObjectInventoryMessage::id:
-				fn.template apply<BuyObjectInventoryMessage>();
+				{ BuyObjectInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case DerezContainerMessage::id:
-				fn.template apply<DerezContainerMessage>();
+				{ DerezContainerMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectPermissionsMessage::id:
-				fn.template apply<ObjectPermissionsMessage>();
+				{ ObjectPermissionsMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectSaleInfoMessage::id:
-				fn.template apply<ObjectSaleInfoMessage>();
+				{ ObjectSaleInfoMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectNameMessage::id:
-				fn.template apply<ObjectNameMessage>();
+				{ ObjectNameMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDescriptionMessage::id:
-				fn.template apply<ObjectDescriptionMessage>();
+				{ ObjectDescriptionMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectCategoryMessage::id:
-				fn.template apply<ObjectCategoryMessage>();
+				{ ObjectCategoryMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectSelectMessage::id:
-				fn.template apply<ObjectSelectMessage>();
+				{ ObjectSelectMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDeselectMessage::id:
-				fn.template apply<ObjectDeselectMessage>();
+				{ ObjectDeselectMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectAttachMessage::id:
-				fn.template apply<ObjectAttachMessage>();
+				{ ObjectAttachMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDetachMessage::id:
-				fn.template apply<ObjectDetachMessage>();
+				{ ObjectDetachMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDropMessage::id:
-				fn.template apply<ObjectDropMessage>();
+				{ ObjectDropMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectLinkMessage::id:
-				fn.template apply<ObjectLinkMessage>();
+				{ ObjectLinkMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDelinkMessage::id:
-				fn.template apply<ObjectDelinkMessage>();
+				{ ObjectDelinkMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectGrabMessage::id:
-				fn.template apply<ObjectGrabMessage>();
+				{ ObjectGrabMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectGrabUpdateMessage::id:
-				fn.template apply<ObjectGrabUpdateMessage>();
+				{ ObjectGrabUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectDeGrabMessage::id:
-				fn.template apply<ObjectDeGrabMessage>();
+				{ ObjectDeGrabMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectSpinStartMessage::id:
-				fn.template apply<ObjectSpinStartMessage>();
+				{ ObjectSpinStartMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectSpinUpdateMessage::id:
-				fn.template apply<ObjectSpinUpdateMessage>();
+				{ ObjectSpinUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectSpinStopMessage::id:
-				fn.template apply<ObjectSpinStopMessage>();
+				{ ObjectSpinStopMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectExportSelectedMessage::id:
-				fn.template apply<ObjectExportSelectedMessage>();
+				{ ObjectExportSelectedMessage::apply a_(initializer); }
 				return true;
 
 			case ModifyLandMessage::id:
-				fn.template apply<ModifyLandMessage>();
+				{ ModifyLandMessage::apply a_(initializer); }
 				return true;
 
 			case VelocityInterpolateOnMessage::id:
-				fn.template apply<VelocityInterpolateOnMessage>();
+				{ VelocityInterpolateOnMessage::apply a_(initializer); }
 				return true;
 
 			case VelocityInterpolateOffMessage::id:
-				fn.template apply<VelocityInterpolateOffMessage>();
+				{ VelocityInterpolateOffMessage::apply a_(initializer); }
 				return true;
 
 			case StateSaveMessage::id:
-				fn.template apply<StateSaveMessage>();
+				{ StateSaveMessage::apply a_(initializer); }
 				return true;
 
 			case ReportAutosaveCrashMessage::id:
-				fn.template apply<ReportAutosaveCrashMessage>();
+				{ ReportAutosaveCrashMessage::apply a_(initializer); }
 				return true;
 
 			case SimWideDeletesMessage::id:
-				fn.template apply<SimWideDeletesMessage>();
+				{ SimWideDeletesMessage::apply a_(initializer); }
 				return true;
 
 			case TrackAgentMessage::id:
-				fn.template apply<TrackAgentMessage>();
+				{ TrackAgentMessage::apply a_(initializer); }
 				return true;
 
 			case ViewerStatsMessage::id:
-				fn.template apply<ViewerStatsMessage>();
+				{ ViewerStatsMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptAnswerYesMessage::id:
-				fn.template apply<ScriptAnswerYesMessage>();
+				{ ScriptAnswerYesMessage::apply a_(initializer); }
 				return true;
 
 			case UserReportMessage::id:
-				fn.template apply<UserReportMessage>();
+				{ UserReportMessage::apply a_(initializer); }
 				return true;
 
 			case AlertMessageMessage::id:
-				fn.template apply<AlertMessageMessage>();
+				{ AlertMessageMessage::apply a_(initializer); }
 				return true;
 
 			case AgentAlertMessageMessage::id:
-				fn.template apply<AgentAlertMessageMessage>();
+				{ AgentAlertMessageMessage::apply a_(initializer); }
 				return true;
 
 			case MeanCollisionAlertMessage::id:
-				fn.template apply<MeanCollisionAlertMessage>();
+				{ MeanCollisionAlertMessage::apply a_(initializer); }
 				return true;
 
 			case ViewerFrozenMessageMessage::id:
-				fn.template apply<ViewerFrozenMessageMessage>();
+				{ ViewerFrozenMessageMessage::apply a_(initializer); }
 				return true;
 
 			case HealthMessageMessage::id:
-				fn.template apply<HealthMessageMessage>();
+				{ HealthMessageMessage::apply a_(initializer); }
 				return true;
 
 			case ChatFromSimulatorMessage::id:
-				fn.template apply<ChatFromSimulatorMessage>();
+				{ ChatFromSimulatorMessage::apply a_(initializer); }
 				return true;
 
 			case SimStatsMessage::id:
-				fn.template apply<SimStatsMessage>();
+				{ SimStatsMessage::apply a_(initializer); }
 				return true;
 
 			case RequestRegionInfoMessage::id:
-				fn.template apply<RequestRegionInfoMessage>();
+				{ RequestRegionInfoMessage::apply a_(initializer); }
 				return true;
 
 			case RegionInfoMessage::id:
-				fn.template apply<RegionInfoMessage>();
+				{ RegionInfoMessage::apply a_(initializer); }
 				return true;
 
 			case GodUpdateRegionInfoMessage::id:
-				fn.template apply<GodUpdateRegionInfoMessage>();
+				{ GodUpdateRegionInfoMessage::apply a_(initializer); }
 				return true;
 
 			case NearestLandingRegionUpdatedMessage::id:
-				fn.template apply<NearestLandingRegionUpdatedMessage>();
+				{ NearestLandingRegionUpdatedMessage::apply a_(initializer); }
 				return true;
 
 			case RegionHandshakeMessage::id:
-				fn.template apply<RegionHandshakeMessage>();
+				{ RegionHandshakeMessage::apply a_(initializer); }
 				return true;
 
 			case RegionHandshakeReplyMessage::id:
-				fn.template apply<RegionHandshakeReplyMessage>();
+				{ RegionHandshakeReplyMessage::apply a_(initializer); }
 				return true;
 
 			case SimulatorViewerTimeMessageMessage::id:
-				fn.template apply<SimulatorViewerTimeMessageMessage>();
+				{ SimulatorViewerTimeMessageMessage::apply a_(initializer); }
 				return true;
 
 			case EnableSimulatorMessage::id:
-				fn.template apply<EnableSimulatorMessage>();
+				{ EnableSimulatorMessage::apply a_(initializer); }
 				return true;
 
 			case DisableSimulatorMessage::id:
-				fn.template apply<DisableSimulatorMessage>();
+				{ DisableSimulatorMessage::apply a_(initializer); }
 				return true;
 
 			case TransferRequestMessage::id:
-				fn.template apply<TransferRequestMessage>();
+				{ TransferRequestMessage::apply a_(initializer); }
 				return true;
 
 			case TransferInfoMessage::id:
-				fn.template apply<TransferInfoMessage>();
+				{ TransferInfoMessage::apply a_(initializer); }
 				return true;
 
 			case TransferAbortMessage::id:
-				fn.template apply<TransferAbortMessage>();
+				{ TransferAbortMessage::apply a_(initializer); }
 				return true;
 
 			case RequestXferMessage::id:
-				fn.template apply<RequestXferMessage>();
+				{ RequestXferMessage::apply a_(initializer); }
 				return true;
 
 			case AbortXferMessage::id:
-				fn.template apply<AbortXferMessage>();
+				{ AbortXferMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarAppearanceMessage::id:
-				fn.template apply<AvatarAppearanceMessage>();
+				{ AvatarAppearanceMessage::apply a_(initializer); }
 				return true;
 
 			case SetFollowCamPropertiesMessage::id:
-				fn.template apply<SetFollowCamPropertiesMessage>();
+				{ SetFollowCamPropertiesMessage::apply a_(initializer); }
 				return true;
 
 			case ClearFollowCamPropertiesMessage::id:
-				fn.template apply<ClearFollowCamPropertiesMessage>();
+				{ ClearFollowCamPropertiesMessage::apply a_(initializer); }
 				return true;
 
 			case RequestPayPriceMessage::id:
-				fn.template apply<RequestPayPriceMessage>();
+				{ RequestPayPriceMessage::apply a_(initializer); }
 				return true;
 
 			case PayPriceReplyMessage::id:
-				fn.template apply<PayPriceReplyMessage>();
+				{ PayPriceReplyMessage::apply a_(initializer); }
 				return true;
 
 			case KickUserMessage::id:
-				fn.template apply<KickUserMessage>();
+				{ KickUserMessage::apply a_(initializer); }
 				return true;
 
 			case KickUserAckMessage::id:
-				fn.template apply<KickUserAckMessage>();
+				{ KickUserAckMessage::apply a_(initializer); }
 				return true;
 
 			case GodKickUserMessage::id:
-				fn.template apply<GodKickUserMessage>();
+				{ GodKickUserMessage::apply a_(initializer); }
 				return true;
 
 			case EjectUserMessage::id:
-				fn.template apply<EjectUserMessage>();
+				{ EjectUserMessage::apply a_(initializer); }
 				return true;
 
 			case FreezeUserMessage::id:
-				fn.template apply<FreezeUserMessage>();
+				{ FreezeUserMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarPropertiesRequestMessage::id:
-				fn.template apply<AvatarPropertiesRequestMessage>();
+				{ AvatarPropertiesRequestMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarPropertiesReplyMessage::id:
-				fn.template apply<AvatarPropertiesReplyMessage>();
+				{ AvatarPropertiesReplyMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarInterestsReplyMessage::id:
-				fn.template apply<AvatarInterestsReplyMessage>();
+				{ AvatarInterestsReplyMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarGroupsReplyMessage::id:
-				fn.template apply<AvatarGroupsReplyMessage>();
+				{ AvatarGroupsReplyMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarPropertiesUpdateMessage::id:
-				fn.template apply<AvatarPropertiesUpdateMessage>();
+				{ AvatarPropertiesUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarInterestsUpdateMessage::id:
-				fn.template apply<AvatarInterestsUpdateMessage>();
+				{ AvatarInterestsUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarNotesReplyMessage::id:
-				fn.template apply<AvatarNotesReplyMessage>();
+				{ AvatarNotesReplyMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarNotesUpdateMessage::id:
-				fn.template apply<AvatarNotesUpdateMessage>();
+				{ AvatarNotesUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case AvatarPicksReplyMessage::id:
-				fn.template apply<AvatarPicksReplyMessage>();
+				{ AvatarPicksReplyMessage::apply a_(initializer); }
 				return true;
 
 			case EventInfoRequestMessage::id:
-				fn.template apply<EventInfoRequestMessage>();
+				{ EventInfoRequestMessage::apply a_(initializer); }
 				return true;
 
 			case EventInfoReplyMessage::id:
-				fn.template apply<EventInfoReplyMessage>();
+				{ EventInfoReplyMessage::apply a_(initializer); }
 				return true;
 
 			case EventNotificationAddRequestMessage::id:
-				fn.template apply<EventNotificationAddRequestMessage>();
+				{ EventNotificationAddRequestMessage::apply a_(initializer); }
 				return true;
 
 			case EventNotificationRemoveRequestMessage::id:
-				fn.template apply<EventNotificationRemoveRequestMessage>();
+				{ EventNotificationRemoveRequestMessage::apply a_(initializer); }
 				return true;
 
 			case EventGodDeleteMessage::id:
-				fn.template apply<EventGodDeleteMessage>();
+				{ EventGodDeleteMessage::apply a_(initializer); }
 				return true;
 
 			case PickInfoReplyMessage::id:
-				fn.template apply<PickInfoReplyMessage>();
+				{ PickInfoReplyMessage::apply a_(initializer); }
 				return true;
 
 			case PickInfoUpdateMessage::id:
-				fn.template apply<PickInfoUpdateMessage>();
+				{ PickInfoUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case PickDeleteMessage::id:
-				fn.template apply<PickDeleteMessage>();
+				{ PickDeleteMessage::apply a_(initializer); }
 				return true;
 
 			case PickGodDeleteMessage::id:
-				fn.template apply<PickGodDeleteMessage>();
+				{ PickGodDeleteMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptQuestionMessage::id:
-				fn.template apply<ScriptQuestionMessage>();
+				{ ScriptQuestionMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptControlChangeMessage::id:
-				fn.template apply<ScriptControlChangeMessage>();
+				{ ScriptControlChangeMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptDialogMessage::id:
-				fn.template apply<ScriptDialogMessage>();
+				{ ScriptDialogMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptDialogReplyMessage::id:
-				fn.template apply<ScriptDialogReplyMessage>();
+				{ ScriptDialogReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ForceScriptControlReleaseMessage::id:
-				fn.template apply<ForceScriptControlReleaseMessage>();
+				{ ForceScriptControlReleaseMessage::apply a_(initializer); }
 				return true;
 
 			case RevokePermissionsMessage::id:
-				fn.template apply<RevokePermissionsMessage>();
+				{ RevokePermissionsMessage::apply a_(initializer); }
 				return true;
 
 			case LoadURLMessage::id:
-				fn.template apply<LoadURLMessage>();
+				{ LoadURLMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptTeleportRequestMessage::id:
-				fn.template apply<ScriptTeleportRequestMessage>();
+				{ ScriptTeleportRequestMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelOverlayMessage::id:
-				fn.template apply<ParcelOverlayMessage>();
+				{ ParcelOverlayMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelPropertiesRequestByIDMessage::id:
-				fn.template apply<ParcelPropertiesRequestByIDMessage>();
+				{ ParcelPropertiesRequestByIDMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelPropertiesUpdateMessage::id:
-				fn.template apply<ParcelPropertiesUpdateMessage>();
+				{ ParcelPropertiesUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelReturnObjectsMessage::id:
-				fn.template apply<ParcelReturnObjectsMessage>();
+				{ ParcelReturnObjectsMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelSetOtherCleanTimeMessage::id:
-				fn.template apply<ParcelSetOtherCleanTimeMessage>();
+				{ ParcelSetOtherCleanTimeMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelDisableObjectsMessage::id:
-				fn.template apply<ParcelDisableObjectsMessage>();
+				{ ParcelDisableObjectsMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelSelectObjectsMessage::id:
-				fn.template apply<ParcelSelectObjectsMessage>();
+				{ ParcelSelectObjectsMessage::apply a_(initializer); }
 				return true;
 
 			case EstateCovenantRequestMessage::id:
-				fn.template apply<EstateCovenantRequestMessage>();
+				{ EstateCovenantRequestMessage::apply a_(initializer); }
 				return true;
 
 			case EstateCovenantReplyMessage::id:
-				fn.template apply<EstateCovenantReplyMessage>();
+				{ EstateCovenantReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ForceObjectSelectMessage::id:
-				fn.template apply<ForceObjectSelectMessage>();
+				{ ForceObjectSelectMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelBuyPassMessage::id:
-				fn.template apply<ParcelBuyPassMessage>();
+				{ ParcelBuyPassMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelDeedToGroupMessage::id:
-				fn.template apply<ParcelDeedToGroupMessage>();
+				{ ParcelDeedToGroupMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelReclaimMessage::id:
-				fn.template apply<ParcelReclaimMessage>();
+				{ ParcelReclaimMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelClaimMessage::id:
-				fn.template apply<ParcelClaimMessage>();
+				{ ParcelClaimMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelJoinMessage::id:
-				fn.template apply<ParcelJoinMessage>();
+				{ ParcelJoinMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelDivideMessage::id:
-				fn.template apply<ParcelDivideMessage>();
+				{ ParcelDivideMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelReleaseMessage::id:
-				fn.template apply<ParcelReleaseMessage>();
+				{ ParcelReleaseMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelBuyMessage::id:
-				fn.template apply<ParcelBuyMessage>();
+				{ ParcelBuyMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelGodForceOwnerMessage::id:
-				fn.template apply<ParcelGodForceOwnerMessage>();
+				{ ParcelGodForceOwnerMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelAccessListRequestMessage::id:
-				fn.template apply<ParcelAccessListRequestMessage>();
+				{ ParcelAccessListRequestMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelAccessListReplyMessage::id:
-				fn.template apply<ParcelAccessListReplyMessage>();
+				{ ParcelAccessListReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelAccessListUpdateMessage::id:
-				fn.template apply<ParcelAccessListUpdateMessage>();
+				{ ParcelAccessListUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelDwellRequestMessage::id:
-				fn.template apply<ParcelDwellRequestMessage>();
+				{ ParcelDwellRequestMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelDwellReplyMessage::id:
-				fn.template apply<ParcelDwellReplyMessage>();
+				{ ParcelDwellReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelGodMarkAsContentMessage::id:
-				fn.template apply<ParcelGodMarkAsContentMessage>();
+				{ ParcelGodMarkAsContentMessage::apply a_(initializer); }
 				return true;
 
 			case ViewerStartAuctionMessage::id:
-				fn.template apply<ViewerStartAuctionMessage>();
+				{ ViewerStartAuctionMessage::apply a_(initializer); }
 				return true;
 
 			case UUIDNameRequestMessage::id:
-				fn.template apply<UUIDNameRequestMessage>();
+				{ UUIDNameRequestMessage::apply a_(initializer); }
 				return true;
 
 			case UUIDNameReplyMessage::id:
-				fn.template apply<UUIDNameReplyMessage>();
+				{ UUIDNameReplyMessage::apply a_(initializer); }
 				return true;
 
 			case UUIDGroupNameRequestMessage::id:
-				fn.template apply<UUIDGroupNameRequestMessage>();
+				{ UUIDGroupNameRequestMessage::apply a_(initializer); }
 				return true;
 
 			case UUIDGroupNameReplyMessage::id:
-				fn.template apply<UUIDGroupNameReplyMessage>();
+				{ UUIDGroupNameReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ChildAgentDyingMessage::id:
-				fn.template apply<ChildAgentDyingMessage>();
+				{ ChildAgentDyingMessage::apply a_(initializer); }
 				return true;
 
 			case ChildAgentUnknownMessage::id:
-				fn.template apply<ChildAgentUnknownMessage>();
+				{ ChildAgentUnknownMessage::apply a_(initializer); }
 				return true;
 
 			case GetScriptRunningMessage::id:
-				fn.template apply<GetScriptRunningMessage>();
+				{ GetScriptRunningMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptRunningReplyMessage::id:
-				fn.template apply<ScriptRunningReplyMessage>();
+				{ ScriptRunningReplyMessage::apply a_(initializer); }
 				return true;
 
 			case SetScriptRunningMessage::id:
-				fn.template apply<SetScriptRunningMessage>();
+				{ SetScriptRunningMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptResetMessage::id:
-				fn.template apply<ScriptResetMessage>();
+				{ ScriptResetMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptSensorRequestMessage::id:
-				fn.template apply<ScriptSensorRequestMessage>();
+				{ ScriptSensorRequestMessage::apply a_(initializer); }
 				return true;
 
 			case ScriptSensorReplyMessage::id:
-				fn.template apply<ScriptSensorReplyMessage>();
+				{ ScriptSensorReplyMessage::apply a_(initializer); }
 				return true;
 
 			case CompleteAgentMovementMessage::id:
-				fn.template apply<CompleteAgentMovementMessage>();
+				{ CompleteAgentMovementMessage::apply a_(initializer); }
 				return true;
 
 			case AgentMovementCompleteMessage::id:
-				fn.template apply<AgentMovementCompleteMessage>();
+				{ AgentMovementCompleteMessage::apply a_(initializer); }
 				return true;
 
 			case LogoutRequestMessage::id:
-				fn.template apply<LogoutRequestMessage>();
+				{ LogoutRequestMessage::apply a_(initializer); }
 				return true;
 
 			case LogoutReplyMessage::id:
-				fn.template apply<LogoutReplyMessage>();
+				{ LogoutReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ImprovedInstantMessageMessage::id:
-				fn.template apply<ImprovedInstantMessageMessage>();
+				{ ImprovedInstantMessageMessage::apply a_(initializer); }
 				return true;
 
 			case RetrieveInstantMessagesMessage::id:
-				fn.template apply<RetrieveInstantMessagesMessage>();
+				{ RetrieveInstantMessagesMessage::apply a_(initializer); }
 				return true;
 
 			case FindAgentMessage::id:
-				fn.template apply<FindAgentMessage>();
+				{ FindAgentMessage::apply a_(initializer); }
 				return true;
 
 			case RequestGodlikePowersMessage::id:
-				fn.template apply<RequestGodlikePowersMessage>();
+				{ RequestGodlikePowersMessage::apply a_(initializer); }
 				return true;
 
 			case GrantGodlikePowersMessage::id:
-				fn.template apply<GrantGodlikePowersMessage>();
+				{ GrantGodlikePowersMessage::apply a_(initializer); }
 				return true;
 
 			case GodlikeMessageMessage::id:
-				fn.template apply<GodlikeMessageMessage>();
+				{ GodlikeMessageMessage::apply a_(initializer); }
 				return true;
 
 			case EstateOwnerMessageMessage::id:
-				fn.template apply<EstateOwnerMessageMessage>();
+				{ EstateOwnerMessageMessage::apply a_(initializer); }
 				return true;
 
 			case GenericMessageMessage::id:
-				fn.template apply<GenericMessageMessage>();
+				{ GenericMessageMessage::apply a_(initializer); }
 				return true;
 
 			case MuteListRequestMessage::id:
-				fn.template apply<MuteListRequestMessage>();
+				{ MuteListRequestMessage::apply a_(initializer); }
 				return true;
 
 			case UpdateMuteListEntryMessage::id:
-				fn.template apply<UpdateMuteListEntryMessage>();
+				{ UpdateMuteListEntryMessage::apply a_(initializer); }
 				return true;
 
 			case RemoveMuteListEntryMessage::id:
-				fn.template apply<RemoveMuteListEntryMessage>();
+				{ RemoveMuteListEntryMessage::apply a_(initializer); }
 				return true;
 
 			case CopyInventoryFromNotecardMessage::id:
-				fn.template apply<CopyInventoryFromNotecardMessage>();
+				{ CopyInventoryFromNotecardMessage::apply a_(initializer); }
 				return true;
 
 			case UpdateInventoryItemMessage::id:
-				fn.template apply<UpdateInventoryItemMessage>();
+				{ UpdateInventoryItemMessage::apply a_(initializer); }
 				return true;
 
 			case UpdateCreateInventoryItemMessage::id:
-				fn.template apply<UpdateCreateInventoryItemMessage>();
+				{ UpdateCreateInventoryItemMessage::apply a_(initializer); }
 				return true;
 
 			case MoveInventoryItemMessage::id:
-				fn.template apply<MoveInventoryItemMessage>();
+				{ MoveInventoryItemMessage::apply a_(initializer); }
 				return true;
 
 			case CopyInventoryItemMessage::id:
-				fn.template apply<CopyInventoryItemMessage>();
+				{ CopyInventoryItemMessage::apply a_(initializer); }
 				return true;
 
 			case RemoveInventoryItemMessage::id:
-				fn.template apply<RemoveInventoryItemMessage>();
+				{ RemoveInventoryItemMessage::apply a_(initializer); }
 				return true;
 
 			case ChangeInventoryItemFlagsMessage::id:
-				fn.template apply<ChangeInventoryItemFlagsMessage>();
+				{ ChangeInventoryItemFlagsMessage::apply a_(initializer); }
 				return true;
 
 			case SaveAssetIntoInventoryMessage::id:
-				fn.template apply<SaveAssetIntoInventoryMessage>();
+				{ SaveAssetIntoInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case CreateInventoryFolderMessage::id:
-				fn.template apply<CreateInventoryFolderMessage>();
+				{ CreateInventoryFolderMessage::apply a_(initializer); }
 				return true;
 
 			case UpdateInventoryFolderMessage::id:
-				fn.template apply<UpdateInventoryFolderMessage>();
+				{ UpdateInventoryFolderMessage::apply a_(initializer); }
 				return true;
 
 			case MoveInventoryFolderMessage::id:
-				fn.template apply<MoveInventoryFolderMessage>();
+				{ MoveInventoryFolderMessage::apply a_(initializer); }
 				return true;
 
 			case RemoveInventoryFolderMessage::id:
-				fn.template apply<RemoveInventoryFolderMessage>();
+				{ RemoveInventoryFolderMessage::apply a_(initializer); }
 				return true;
 
 			case FetchInventoryDescendentsMessage::id:
-				fn.template apply<FetchInventoryDescendentsMessage>();
+				{ FetchInventoryDescendentsMessage::apply a_(initializer); }
 				return true;
 
 			case InventoryDescendentsMessage::id:
-				fn.template apply<InventoryDescendentsMessage>();
+				{ InventoryDescendentsMessage::apply a_(initializer); }
 				return true;
 
 			case FetchInventoryMessage::id:
-				fn.template apply<FetchInventoryMessage>();
+				{ FetchInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case FetchInventoryReplyMessage::id:
-				fn.template apply<FetchInventoryReplyMessage>();
+				{ FetchInventoryReplyMessage::apply a_(initializer); }
 				return true;
 
 			case BulkUpdateInventoryMessage::id:
-				fn.template apply<BulkUpdateInventoryMessage>();
+				{ BulkUpdateInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case RequestInventoryAssetMessage::id:
-				fn.template apply<RequestInventoryAssetMessage>();
+				{ RequestInventoryAssetMessage::apply a_(initializer); }
 				return true;
 
 			case InventoryAssetResponseMessage::id:
-				fn.template apply<InventoryAssetResponseMessage>();
+				{ InventoryAssetResponseMessage::apply a_(initializer); }
 				return true;
 
 			case RemoveInventoryObjectsMessage::id:
-				fn.template apply<RemoveInventoryObjectsMessage>();
+				{ RemoveInventoryObjectsMessage::apply a_(initializer); }
 				return true;
 
 			case PurgeInventoryDescendentsMessage::id:
-				fn.template apply<PurgeInventoryDescendentsMessage>();
+				{ PurgeInventoryDescendentsMessage::apply a_(initializer); }
 				return true;
 
 			case UpdateTaskInventoryMessage::id:
-				fn.template apply<UpdateTaskInventoryMessage>();
+				{ UpdateTaskInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case RemoveTaskInventoryMessage::id:
-				fn.template apply<RemoveTaskInventoryMessage>();
+				{ RemoveTaskInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case MoveTaskInventoryMessage::id:
-				fn.template apply<MoveTaskInventoryMessage>();
+				{ MoveTaskInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case RequestTaskInventoryMessage::id:
-				fn.template apply<RequestTaskInventoryMessage>();
+				{ RequestTaskInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case ReplyTaskInventoryMessage::id:
-				fn.template apply<ReplyTaskInventoryMessage>();
+				{ ReplyTaskInventoryMessage::apply a_(initializer); }
 				return true;
 
 			case DeRezObjectMessage::id:
-				fn.template apply<DeRezObjectMessage>();
+				{ DeRezObjectMessage::apply a_(initializer); }
 				return true;
 
 			case DeRezAckMessage::id:
-				fn.template apply<DeRezAckMessage>();
+				{ DeRezAckMessage::apply a_(initializer); }
 				return true;
 
 			case RezObjectMessage::id:
-				fn.template apply<RezObjectMessage>();
+				{ RezObjectMessage::apply a_(initializer); }
 				return true;
 
 			case RezObjectFromNotecardMessage::id:
-				fn.template apply<RezObjectFromNotecardMessage>();
+				{ RezObjectFromNotecardMessage::apply a_(initializer); }
 				return true;
 
 			case AcceptFriendshipMessage::id:
-				fn.template apply<AcceptFriendshipMessage>();
+				{ AcceptFriendshipMessage::apply a_(initializer); }
 				return true;
 
 			case DeclineFriendshipMessage::id:
-				fn.template apply<DeclineFriendshipMessage>();
+				{ DeclineFriendshipMessage::apply a_(initializer); }
 				return true;
 
 			case FormFriendshipMessage::id:
-				fn.template apply<FormFriendshipMessage>();
+				{ FormFriendshipMessage::apply a_(initializer); }
 				return true;
 
 			case TerminateFriendshipMessage::id:
-				fn.template apply<TerminateFriendshipMessage>();
+				{ TerminateFriendshipMessage::apply a_(initializer); }
 				return true;
 
 			case OfferCallingCardMessage::id:
-				fn.template apply<OfferCallingCardMessage>();
+				{ OfferCallingCardMessage::apply a_(initializer); }
 				return true;
 
 			case AcceptCallingCardMessage::id:
-				fn.template apply<AcceptCallingCardMessage>();
+				{ AcceptCallingCardMessage::apply a_(initializer); }
 				return true;
 
 			case DeclineCallingCardMessage::id:
-				fn.template apply<DeclineCallingCardMessage>();
+				{ DeclineCallingCardMessage::apply a_(initializer); }
 				return true;
 
 			case RezScriptMessage::id:
-				fn.template apply<RezScriptMessage>();
+				{ RezScriptMessage::apply a_(initializer); }
 				return true;
 
 			case CreateInventoryItemMessage::id:
-				fn.template apply<CreateInventoryItemMessage>();
+				{ CreateInventoryItemMessage::apply a_(initializer); }
 				return true;
 
 			case CreateLandmarkForEventMessage::id:
-				fn.template apply<CreateLandmarkForEventMessage>();
+				{ CreateLandmarkForEventMessage::apply a_(initializer); }
 				return true;
 
 			case RegionHandleRequestMessage::id:
-				fn.template apply<RegionHandleRequestMessage>();
+				{ RegionHandleRequestMessage::apply a_(initializer); }
 				return true;
 
 			case RegionIDAndHandleReplyMessage::id:
-				fn.template apply<RegionIDAndHandleReplyMessage>();
+				{ RegionIDAndHandleReplyMessage::apply a_(initializer); }
 				return true;
 
 			case MoneyTransferRequestMessage::id:
-				fn.template apply<MoneyTransferRequestMessage>();
+				{ MoneyTransferRequestMessage::apply a_(initializer); }
 				return true;
 
 			case MoneyBalanceRequestMessage::id:
-				fn.template apply<MoneyBalanceRequestMessage>();
+				{ MoneyBalanceRequestMessage::apply a_(initializer); }
 				return true;
 
 			case MoneyBalanceReplyMessage::id:
-				fn.template apply<MoneyBalanceReplyMessage>();
+				{ MoneyBalanceReplyMessage::apply a_(initializer); }
 				return true;
 
 			case RoutedMoneyBalanceReplyMessage::id:
-				fn.template apply<RoutedMoneyBalanceReplyMessage>();
+				{ RoutedMoneyBalanceReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ActivateGesturesMessage::id:
-				fn.template apply<ActivateGesturesMessage>();
+				{ ActivateGesturesMessage::apply a_(initializer); }
 				return true;
 
 			case DeactivateGesturesMessage::id:
-				fn.template apply<DeactivateGesturesMessage>();
+				{ DeactivateGesturesMessage::apply a_(initializer); }
 				return true;
 
 			case MuteListUpdateMessage::id:
-				fn.template apply<MuteListUpdateMessage>();
+				{ MuteListUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case UseCachedMuteListMessage::id:
-				fn.template apply<UseCachedMuteListMessage>();
+				{ UseCachedMuteListMessage::apply a_(initializer); }
 				return true;
 
 			case GrantUserRightsMessage::id:
-				fn.template apply<GrantUserRightsMessage>();
+				{ GrantUserRightsMessage::apply a_(initializer); }
 				return true;
 
 			case ChangeUserRightsMessage::id:
-				fn.template apply<ChangeUserRightsMessage>();
+				{ ChangeUserRightsMessage::apply a_(initializer); }
 				return true;
 
 			case OnlineNotificationMessage::id:
-				fn.template apply<OnlineNotificationMessage>();
+				{ OnlineNotificationMessage::apply a_(initializer); }
 				return true;
 
 			case OfflineNotificationMessage::id:
-				fn.template apply<OfflineNotificationMessage>();
+				{ OfflineNotificationMessage::apply a_(initializer); }
 				return true;
 
 			case SetStartLocationRequestMessage::id:
-				fn.template apply<SetStartLocationRequestMessage>();
+				{ SetStartLocationRequestMessage::apply a_(initializer); }
 				return true;
 
 			case AssetUploadRequestMessage::id:
-				fn.template apply<AssetUploadRequestMessage>();
+				{ AssetUploadRequestMessage::apply a_(initializer); }
 				return true;
 
 			case AssetUploadCompleteMessage::id:
-				fn.template apply<AssetUploadCompleteMessage>();
+				{ AssetUploadCompleteMessage::apply a_(initializer); }
 				return true;
 
 			case CreateGroupRequestMessage::id:
-				fn.template apply<CreateGroupRequestMessage>();
+				{ CreateGroupRequestMessage::apply a_(initializer); }
 				return true;
 
 			case CreateGroupReplyMessage::id:
-				fn.template apply<CreateGroupReplyMessage>();
+				{ CreateGroupReplyMessage::apply a_(initializer); }
 				return true;
 
 			case UpdateGroupInfoMessage::id:
-				fn.template apply<UpdateGroupInfoMessage>();
+				{ UpdateGroupInfoMessage::apply a_(initializer); }
 				return true;
 
 			case GroupRoleChangesMessage::id:
-				fn.template apply<GroupRoleChangesMessage>();
+				{ GroupRoleChangesMessage::apply a_(initializer); }
 				return true;
 
 			case JoinGroupRequestMessage::id:
-				fn.template apply<JoinGroupRequestMessage>();
+				{ JoinGroupRequestMessage::apply a_(initializer); }
 				return true;
 
 			case JoinGroupReplyMessage::id:
-				fn.template apply<JoinGroupReplyMessage>();
+				{ JoinGroupReplyMessage::apply a_(initializer); }
 				return true;
 
 			case EjectGroupMemberRequestMessage::id:
-				fn.template apply<EjectGroupMemberRequestMessage>();
+				{ EjectGroupMemberRequestMessage::apply a_(initializer); }
 				return true;
 
 			case EjectGroupMemberReplyMessage::id:
-				fn.template apply<EjectGroupMemberReplyMessage>();
+				{ EjectGroupMemberReplyMessage::apply a_(initializer); }
 				return true;
 
 			case LeaveGroupRequestMessage::id:
-				fn.template apply<LeaveGroupRequestMessage>();
+				{ LeaveGroupRequestMessage::apply a_(initializer); }
 				return true;
 
 			case LeaveGroupReplyMessage::id:
-				fn.template apply<LeaveGroupReplyMessage>();
+				{ LeaveGroupReplyMessage::apply a_(initializer); }
 				return true;
 
 			case InviteGroupRequestMessage::id:
-				fn.template apply<InviteGroupRequestMessage>();
+				{ InviteGroupRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupProfileRequestMessage::id:
-				fn.template apply<GroupProfileRequestMessage>();
+				{ GroupProfileRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupProfileReplyMessage::id:
-				fn.template apply<GroupProfileReplyMessage>();
+				{ GroupProfileReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupAccountSummaryRequestMessage::id:
-				fn.template apply<GroupAccountSummaryRequestMessage>();
+				{ GroupAccountSummaryRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupAccountSummaryReplyMessage::id:
-				fn.template apply<GroupAccountSummaryReplyMessage>();
+				{ GroupAccountSummaryReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupAccountDetailsRequestMessage::id:
-				fn.template apply<GroupAccountDetailsRequestMessage>();
+				{ GroupAccountDetailsRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupAccountDetailsReplyMessage::id:
-				fn.template apply<GroupAccountDetailsReplyMessage>();
+				{ GroupAccountDetailsReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupAccountTransactionsRequestMessage::id:
-				fn.template apply<GroupAccountTransactionsRequestMessage>();
+				{ GroupAccountTransactionsRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupAccountTransactionsReplyMessage::id:
-				fn.template apply<GroupAccountTransactionsReplyMessage>();
+				{ GroupAccountTransactionsReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupActiveProposalsRequestMessage::id:
-				fn.template apply<GroupActiveProposalsRequestMessage>();
+				{ GroupActiveProposalsRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupActiveProposalItemReplyMessage::id:
-				fn.template apply<GroupActiveProposalItemReplyMessage>();
+				{ GroupActiveProposalItemReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupVoteHistoryRequestMessage::id:
-				fn.template apply<GroupVoteHistoryRequestMessage>();
+				{ GroupVoteHistoryRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupVoteHistoryItemReplyMessage::id:
-				fn.template apply<GroupVoteHistoryItemReplyMessage>();
+				{ GroupVoteHistoryItemReplyMessage::apply a_(initializer); }
 				return true;
 
 			case StartGroupProposalMessage::id:
-				fn.template apply<StartGroupProposalMessage>();
+				{ StartGroupProposalMessage::apply a_(initializer); }
 				return true;
 
 			case GroupProposalBallotMessage::id:
-				fn.template apply<GroupProposalBallotMessage>();
+				{ GroupProposalBallotMessage::apply a_(initializer); }
 				return true;
 
 			case GroupMembersRequestMessage::id:
-				fn.template apply<GroupMembersRequestMessage>();
+				{ GroupMembersRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupMembersReplyMessage::id:
-				fn.template apply<GroupMembersReplyMessage>();
+				{ GroupMembersReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ActivateGroupMessage::id:
-				fn.template apply<ActivateGroupMessage>();
+				{ ActivateGroupMessage::apply a_(initializer); }
 				return true;
 
 			case SetGroupContributionMessage::id:
-				fn.template apply<SetGroupContributionMessage>();
+				{ SetGroupContributionMessage::apply a_(initializer); }
 				return true;
 
 			case SetGroupAcceptNoticesMessage::id:
-				fn.template apply<SetGroupAcceptNoticesMessage>();
+				{ SetGroupAcceptNoticesMessage::apply a_(initializer); }
 				return true;
 
 			case GroupRoleDataRequestMessage::id:
-				fn.template apply<GroupRoleDataRequestMessage>();
+				{ GroupRoleDataRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupRoleDataReplyMessage::id:
-				fn.template apply<GroupRoleDataReplyMessage>();
+				{ GroupRoleDataReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupRoleMembersRequestMessage::id:
-				fn.template apply<GroupRoleMembersRequestMessage>();
+				{ GroupRoleMembersRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupRoleMembersReplyMessage::id:
-				fn.template apply<GroupRoleMembersReplyMessage>();
+				{ GroupRoleMembersReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupTitlesRequestMessage::id:
-				fn.template apply<GroupTitlesRequestMessage>();
+				{ GroupTitlesRequestMessage::apply a_(initializer); }
 				return true;
 
 			case GroupTitlesReplyMessage::id:
-				fn.template apply<GroupTitlesReplyMessage>();
+				{ GroupTitlesReplyMessage::apply a_(initializer); }
 				return true;
 
 			case GroupTitleUpdateMessage::id:
-				fn.template apply<GroupTitleUpdateMessage>();
+				{ GroupTitleUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case GroupRoleUpdateMessage::id:
-				fn.template apply<GroupRoleUpdateMessage>();
+				{ GroupRoleUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case LiveHelpGroupRequestMessage::id:
-				fn.template apply<LiveHelpGroupRequestMessage>();
+				{ LiveHelpGroupRequestMessage::apply a_(initializer); }
 				return true;
 
 			case LiveHelpGroupReplyMessage::id:
-				fn.template apply<LiveHelpGroupReplyMessage>();
+				{ LiveHelpGroupReplyMessage::apply a_(initializer); }
 				return true;
 
 			case AgentWearablesRequestMessage::id:
-				fn.template apply<AgentWearablesRequestMessage>();
+				{ AgentWearablesRequestMessage::apply a_(initializer); }
 				return true;
 
 			case AgentWearablesUpdateMessage::id:
-				fn.template apply<AgentWearablesUpdateMessage>();
+				{ AgentWearablesUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case AgentIsNowWearingMessage::id:
-				fn.template apply<AgentIsNowWearingMessage>();
+				{ AgentIsNowWearingMessage::apply a_(initializer); }
 				return true;
 
 			case AgentCachedTextureMessage::id:
-				fn.template apply<AgentCachedTextureMessage>();
+				{ AgentCachedTextureMessage::apply a_(initializer); }
 				return true;
 
 			case AgentCachedTextureResponseMessage::id:
-				fn.template apply<AgentCachedTextureResponseMessage>();
+				{ AgentCachedTextureResponseMessage::apply a_(initializer); }
 				return true;
 
 			case AgentDataUpdateRequestMessage::id:
-				fn.template apply<AgentDataUpdateRequestMessage>();
+				{ AgentDataUpdateRequestMessage::apply a_(initializer); }
 				return true;
 
 			case AgentDataUpdateMessage::id:
-				fn.template apply<AgentDataUpdateMessage>();
+				{ AgentDataUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case GroupDataUpdateMessage::id:
-				fn.template apply<GroupDataUpdateMessage>();
+				{ GroupDataUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case AgentGroupDataUpdateMessage::id:
-				fn.template apply<AgentGroupDataUpdateMessage>();
+				{ AgentGroupDataUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case AgentDropGroupMessage::id:
-				fn.template apply<AgentDropGroupMessage>();
+				{ AgentDropGroupMessage::apply a_(initializer); }
 				return true;
 
 			case CreateTrustedCircuitMessage::id:
-				fn.template apply<CreateTrustedCircuitMessage>();
+				{ CreateTrustedCircuitMessage::apply a_(initializer); }
 				return true;
 
 			case DenyTrustedCircuitMessage::id:
-				fn.template apply<DenyTrustedCircuitMessage>();
+				{ DenyTrustedCircuitMessage::apply a_(initializer); }
 				return true;
 
 			case RequestTrustedCircuitMessage::id:
-				fn.template apply<RequestTrustedCircuitMessage>();
+				{ RequestTrustedCircuitMessage::apply a_(initializer); }
 				return true;
 
 			case RezSingleAttachmentFromInvMessage::id:
-				fn.template apply<RezSingleAttachmentFromInvMessage>();
+				{ RezSingleAttachmentFromInvMessage::apply a_(initializer); }
 				return true;
 
 			case RezMultipleAttachmentsFromInvMessage::id:
-				fn.template apply<RezMultipleAttachmentsFromInvMessage>();
+				{ RezMultipleAttachmentsFromInvMessage::apply a_(initializer); }
 				return true;
 
 			case DetachAttachmentIntoInvMessage::id:
-				fn.template apply<DetachAttachmentIntoInvMessage>();
+				{ DetachAttachmentIntoInvMessage::apply a_(initializer); }
 				return true;
 
 			case CreateNewOutfitAttachmentsMessage::id:
-				fn.template apply<CreateNewOutfitAttachmentsMessage>();
+				{ CreateNewOutfitAttachmentsMessage::apply a_(initializer); }
 				return true;
 
 			case UserInfoRequestMessage::id:
-				fn.template apply<UserInfoRequestMessage>();
+				{ UserInfoRequestMessage::apply a_(initializer); }
 				return true;
 
 			case UserInfoReplyMessage::id:
-				fn.template apply<UserInfoReplyMessage>();
+				{ UserInfoReplyMessage::apply a_(initializer); }
 				return true;
 
 			case UpdateUserInfoMessage::id:
-				fn.template apply<UpdateUserInfoMessage>();
+				{ UpdateUserInfoMessage::apply a_(initializer); }
 				return true;
 
 			case InitiateDownloadMessage::id:
-				fn.template apply<InitiateDownloadMessage>();
+				{ InitiateDownloadMessage::apply a_(initializer); }
 				return true;
 
 			case SystemMessageMessage::id:
-				fn.template apply<SystemMessageMessage>();
+				{ SystemMessageMessage::apply a_(initializer); }
 				return true;
 
 			case MapLayerRequestMessage::id:
-				fn.template apply<MapLayerRequestMessage>();
+				{ MapLayerRequestMessage::apply a_(initializer); }
 				return true;
 
 			case MapLayerReplyMessage::id:
-				fn.template apply<MapLayerReplyMessage>();
+				{ MapLayerReplyMessage::apply a_(initializer); }
 				return true;
 
 			case MapBlockRequestMessage::id:
-				fn.template apply<MapBlockRequestMessage>();
+				{ MapBlockRequestMessage::apply a_(initializer); }
 				return true;
 
 			case MapNameRequestMessage::id:
-				fn.template apply<MapNameRequestMessage>();
+				{ MapNameRequestMessage::apply a_(initializer); }
 				return true;
 
 			case MapBlockReplyMessage::id:
-				fn.template apply<MapBlockReplyMessage>();
+				{ MapBlockReplyMessage::apply a_(initializer); }
 				return true;
 
 			case MapItemRequestMessage::id:
-				fn.template apply<MapItemRequestMessage>();
+				{ MapItemRequestMessage::apply a_(initializer); }
 				return true;
 
 			case MapItemReplyMessage::id:
-				fn.template apply<MapItemReplyMessage>();
+				{ MapItemReplyMessage::apply a_(initializer); }
 				return true;
 
 			case SendPostcardMessage::id:
-				fn.template apply<SendPostcardMessage>();
+				{ SendPostcardMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelMediaCommandMessageMessage::id:
-				fn.template apply<ParcelMediaCommandMessageMessage>();
+				{ ParcelMediaCommandMessageMessage::apply a_(initializer); }
 				return true;
 
 			case ParcelMediaUpdateMessage::id:
-				fn.template apply<ParcelMediaUpdateMessage>();
+				{ ParcelMediaUpdateMessage::apply a_(initializer); }
 				return true;
 
 			case LandStatRequestMessage::id:
-				fn.template apply<LandStatRequestMessage>();
+				{ LandStatRequestMessage::apply a_(initializer); }
 				return true;
 
 			case LandStatReplyMessage::id:
-				fn.template apply<LandStatReplyMessage>();
+				{ LandStatReplyMessage::apply a_(initializer); }
 				return true;
 
 			case ErrorMessage::id:
-				fn.template apply<ErrorMessage>();
+				{ ErrorMessage::apply a_(initializer); }
 				return true;
 
 			case ObjectIncludeInSearchMessage::id:
-				fn.template apply<ObjectIncludeInSearchMessage>();
+				{ ObjectIncludeInSearchMessage::apply a_(initializer); }
 				return true;
 
 			case PacketAckMessage::id:
-				fn.template apply<PacketAckMessage>();
+				{ PacketAckMessage::apply a_(initializer); }
 				return true;
 
 			case OpenCircuitMessage::id:
-				fn.template apply<OpenCircuitMessage>();
+				{ OpenCircuitMessage::apply a_(initializer); }
 				return true;
 
 			case CloseCircuitMessage::id:
-				fn.template apply<CloseCircuitMessage>();
+				{ CloseCircuitMessage::apply a_(initializer); }
 				return true;
 
 			default: break;

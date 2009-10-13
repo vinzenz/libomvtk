@@ -325,9 +325,25 @@ struct Builder
 	{
 		os << "#ifndef GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED\n#define GUARD_LIBOMVTK_PACKETS_PACKETS_H_INCLUDED\n";
 		os << "\n\n#if _MSC_VER > 1200\n#	pragma once\n#endif\n\n";
-		os << "#include \"../packets/processors.h\"\n";
+		os << "#include \"processors.h\"\n";
+		os << "#include \"../network/network.h\"\n";
 		os << "namespace omvtk\n{\n";
 		os << "\tnamespace packets\n\t{\n";
+        os << "\t\tstruct PacketInitializer {\n"
+              "\t\tomvtk::Network & n_; omvtk::Simulator & s_; omvtk::ByteBuffer & b_;\n"
+              "\t\t\tPacketInitializer(omvtk::Network & net, omvtk::Simulator & sim, omvtk::ByteBuffer & buf)\n"
+              "\t\t\t: n_(net), s_(sim), b_(buf)\n"
+              "\t\t\t{}\n\n"
+              "\t\t\ttemplate<typename T>\n"
+              "\t\t\tvoid init() {\n"
+              "\t\t\t\tstd::size_t p = 0;\n"
+              "\t\t\t\tT m(b_, p);\n"
+              "\t\t\t\tif ( p == b_.size() ) {\n"
+              "\t\t\t\t\tn_.messages_manager()(m, s_);\n"
+              "\t\t\t\t}\n"
+              "\t\t\t}\n"
+              "\t\t};\n";
+
 		std::map<boost::uint32_t, std::string> message_types;
 		write(os,m_parser.LowMessages,message_types);		
 		write(os,m_parser.MedMessages,message_types);		
@@ -336,15 +352,14 @@ struct Builder
 //		os << "\t\t\tswitch(id)\n";
 //		os << "\t\t\t{\n";
 		typedef std::pair<boost::uint32_t, std::string> msgpair;
-		os << "\t\ttemplate<typename Func>\n";
-		os << "\t\tinline bool Lookup(UInt32 msg_id, Func & fn)\n";
+		os << "\t\tinline bool Lookup(UInt32 msg_id, PacketInitializer & initializer)\n";
 		os << "\t\t{\n";
 		os << "\t\t\tswitch(msg_id)\n";
 		os << "\t\t\t{\n";
 		BOOST_FOREACH(msgpair p, message_types)
 		{
 			os << "\t\t\tcase " << p.second << "Message::id:\n";
-			os << "\t\t\t\tfn.template apply<" << p.second <<  "Message>();\n";
+			os << "\t\t\t\t{ " << p.second << "Message::apply a_(initializer); }\n";
 			os << "\t\t\t\treturn true;\n\n";
 		}
 		os << "\t\t\tdefault: break;\n";
@@ -383,8 +398,14 @@ struct Builder
 		"\t\t\tstatic bool const trusted = %s;\n"
 		"\t\t\tenum { id = 0x%.08Xul };\n"
 		"\t\t\tstatic FrequencyType const frequency = %s;\n"
-		"\t\t\tstatic bool const encoded = %s;\n"
-		"\t\t\t\n\n"
+		"\t\t\tstatic bool const encoded = %s;\n"        
+		"\n\n"
+        "\t\t\tstruct apply {\n"
+        "\t\t\t\tapply( PacketInitializer & initializer ) {\n"
+        "\t\t\t\t\tinitializer.init<%sMessage>();\n"
+        "\t\t\t\t}\n"
+        "\t\t\t};\n"
+		"\n\n"
 		"\t\t\t%sMessage()\n"
 		"\t\t\t: Message(%sHeader())\n"
 		"%s"
@@ -413,6 +434,7 @@ struct Builder
 		msg_format % msg.id;
 		msg_format % FrequencyTypeToString(msg.frequencyType);
 		msg_format % (msg.encoded ? "true" : "false");
+		msg_format % msg.name;
 
 		std::string header_prefix;
 		if(msg.frequencyType == FT_Low || msg.frequencyType == FT_Fixed)
