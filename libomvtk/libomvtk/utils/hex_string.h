@@ -37,7 +37,7 @@ namespace omvtk {
     }
 
     String to_hex_string( byte_sub_range const & range ) {
-        static char const HEX_C[17] = "0123456789ABCDEF";
+        static char const HEX_C[17] = "0123456789abcdef";
         String result;
         BOOST_FOREACH( Byte b, range )
         {

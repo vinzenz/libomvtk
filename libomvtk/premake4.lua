@@ -105,4 +105,45 @@ solution "omvtk"
 		configuration "Release"
 			defines { "NDEBUG" }
 
+	project "http_test_client"
+		kind "ConsoleApp"
+		language "C++"
+		basedir "unit_tests"
+		targetdir "out/bin"
+		links { "omvtk"} --- , }
+		libdirs { "../3rdparty/lib" }
+		files { "http_test_client/**.h", "http_test_client/**.cpp" }
+
+		--- This needs to be called before any "configuration" call
+		standard_configuration()
+
+		--- Link OpenSSL for Visual Studio
+		configuration { "vs*", "Debug" }
+			links { "libeay32MTd", "ssleay32MTd" }
+
+		configuration { "vs*", "Release" }
+			links { "libeay32MT", "ssleay32MT" }
 			
+		--- Link OpenSSL for mingw
+		configuration { "windows", "gmake" }
+			links { "libeay32.a", "ssleay32.a" }
+
+		--- link SSL Library and boost on linux
+		--- VC auto links the libs
+		configuration { "linux" }
+			links { 
+				"ssl", 
+				"boost_filesystem-mt",  
+				"boost_system-mt",  
+				"boost_thread-mt",
+				"boost_regex-mt"
+			}
+
+		--- Link uripp and TinyXML++
+		configuration "Debug"
+			links { "urippd", "ticppd" }
+
+		configuration "Release"
+			defines { "NDEBUG" }
+
+						
