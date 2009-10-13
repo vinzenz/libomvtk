@@ -41,10 +41,17 @@ namespace omvtk {
     }
 }
 
-template<> struct boost::system::is_error_code_enum<omvtk::error::omvtk_error_codes>
-{ 
-    static const bool value = true; 
-};
+namespace boost { 
+    namespace system {
+        template<> 
+        struct is_error_code_enum < 
+            omvtk::error::omvtk_error_codes
+        >
+        { 
+            static const bool value = true; 
+        };
+    }
+}
 
 namespace omvtk {
     namespace error {
@@ -55,7 +62,7 @@ namespace omvtk {
         inline boost::system::error_code make_error_code( omvtk_error_codes e ) {
             return boost::system::error_code( e, category );
         }
-    };
+    }
 }
 
 
