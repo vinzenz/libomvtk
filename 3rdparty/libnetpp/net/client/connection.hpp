@@ -51,7 +51,7 @@ namespace net
         : service_(service)
         , resolver_(service)
         , timer_(service)
-		, connect_timeout_(boost::posix_time::seconds(30))
+		, connect_timeout_(boost::posix_time::seconds(120))
         {
         }
 
