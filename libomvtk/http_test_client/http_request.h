@@ -26,32 +26,46 @@
 #ifndef GUARD_OMVTK_NETWORK_HTTP_HTTP_REQUEST_H_INCLUDED
 #define GUARD_OMVTK_NETWORK_HTTP_HTTP_REQUEST_H_INCLUDED
 
-#include <boost/unordered_map.hpp>
+#include "http_headers.h"
 #include "../libomvtk/types/lluuid.h"
 #include "../libomvtk/types/lluri.h"
+#include "http_request_builder.h"
 
 namespace omvtk {
 
-    inline LLUUID random_uuid(){
-        return boost::uuids::random_generator<>()();
-    }
-
     struct HTTPRequest {
-        typedef boost::unordered_multimap< String, String >  HeaderCollection;
+        typedef http::Header::Collection HeaderCollectionType;
 
-        HTTPRequest()
-            : id( random_uuid() )
-            , uri()
-            , method()
-            , body() 
-            , headers() {
-        }
+        HTTPRequest( LLURI const & uri );
+        HTTPRequest( LLURI const & uri, String const & body );
+        HTTPRequest( LLURI const & uri, String const & body, String const & content_type );
+        HTTPRequest( HTTPRequest const & o );
 
-        LLUUID       id;
-        LLURI        uri;
-        String       method;
-        String       body;    
-        HeaderCollection    headers;
+        HTTPRequest & operator=( HTTPRequest o );
+        void swap( HTTPRequest & o );
+        
+        http::HeaderProxy header();
+        http::ConstHeaderProxy const header() const;
+
+        bool ssl() const;
+        String to_string() const;
+        
+        LLUUID const & id() const;
+        String const & method() const;
+        String const & body() const;
+    protected:
+        struct Data {
+            Data( LLURI const & uri, String const & method, String const & body  );
+            LLUUID                 id_;
+            LLURI                  uri_;
+            String                 method_;
+            String                 body_;
+            HeaderCollectionType   headers_;
+            void swap( Data & o );
+        };
+        typedef HTTPRequestBuilder<Data> Builder;
+    protected:
+        Data data_;
     };
 }
 

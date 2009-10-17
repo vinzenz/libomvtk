@@ -37,6 +37,8 @@
 
 #include <boost/foreach.hpp>
 
+#if 0
+
 #define OMVTK_LOG_HTTP_ERROR( EC, INSTANCE, MSG )       \
     LOG_ERR << "Request id: "   << INSTANCE->request.id \
         << " " << MSG                                   \
@@ -382,3 +384,6 @@ namespace omvtk {
 
 //##############################################################################
 }
+#endif
+
+

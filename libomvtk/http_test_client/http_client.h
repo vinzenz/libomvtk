@@ -35,7 +35,17 @@
 #include "http_request.h"
 #include "http_response.h"
 
-namespace omvtk{
+namespace omvtk {
+
+    struct HTTPClient {
+        HTTPClient();
+        
+        void start( HTTPRequest const & request );
+    protected:
+        
+    };
+
+#if 0
     struct Network;
     struct HttpClient {
         struct Progress {
@@ -57,23 +67,12 @@ namespace omvtk{
             UInt64               bytes_received;
             HTTPResponse                response;
         };
-
+        typedef boost::reference_wrapper<HTTPRequest> HTTPRequestRef;
         typedef boost::function< bool (HTTPRequest const & request, Progress const & data) > ProgressHandler;
-        typedef HTTPRequest::HeaderCollection HeaderCollection;
 
         HttpClient(Network & network);
-        LLUUID get(LLURI const & uri, ProgressHandler handler, 
-                 HeaderCollection const & headers = HeaderCollection());
-        
-        LLUUID post(LLURI const & uri, String const & body, 
-                  ProgressHandler handler, HeaderCollection const & headers = HeaderCollection());
-        
-        LLUUID post(LLURI const & uri, String const & content_type, 
-                  String const & body, ProgressHandler handler);
 
-        LLUUID create_instance(String const & method, LLURI const & uri, 
-                             String const & body, ProgressHandler handler, 
-                             HeaderCollection const & headers);
+        void create_instance( HTTPRequestRef request, ProgressHandler handler );
 
     protected:
         struct Instance;
@@ -96,7 +95,7 @@ namespace omvtk{
     protected:
         Network & network_;
     };
-
+#endif
 }
 
 #endif //GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED

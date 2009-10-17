@@ -27,51 +27,50 @@
 #define GUARD_LIBOMVTK_HTTP_HTTP_REQUEST_BUILDER_H_INCLUDED
 #include <sstream>
 #include <boost/foreach.hpp>
-#include "http_request.h"
+#include "http_headers.h"
 
 namespace omvtk {
 
+    template< typename DataType > 
     struct HTTPRequestBuilder {
 
-        omvtk::String operator()(HTTPRequest const  & r){
+        String operator()( DataType const & r ){
             std::ostringstream m;
-            m << r.method << " "; path(r, m); m << " HTTP/1.1\r\n";
+            m << r.method_ << " "; path(r, m); m << " HTTP/1.1\r\n";
             host(r, m);
             headers( r, m );
             m << "\r\n";
-            m << r.body;
+            m << r.body_;
             return m.str();
         };
 
-        void headers( HTTPRequest const & r, std::ostream & os ) {
-            BOOST_FOREACH( HTTPRequest::HeaderCollection::value_type const & value,  r.headers ) {
+        void headers( DataType const & r, std::ostream & os ) {
+            typedef std::pair<String,String> value_type;
+            BOOST_FOREACH( value_type const & value,  r.headers_ ) {
                 os << value.first << ": " << value.second << "\r\n";
             }
         }
 
-        void host(HTTPRequest const & r, std::ostream & m) {
-            m << "Host: " << r.uri.get().authority().host();
-            //if ( r.uri.get().authority().port() ){
-            //    m << ":" << r.uri.get().authority().port();
-            //}
+        void host( DataType const & r, std::ostream & m) {
+            m << "Host: " << r.uri_.get().authority().host();
             m << "\r\n";
         }
 
-        void path(HTTPRequest const & r, std::ostream & m) {
+        void path( DataType const & r, std::ostream & m) {
 
-            if ( r.uri.get().path().empty() ) {
+            if ( r.uri_.get().path().empty() ) {
                 m << "/";
             }
             else {
-                m << r.uri.get().path(); 
+                m << r.uri_.get().path(); 
             }
 
-            if ( !r.uri.get().query().empty() ) {
-                m << "?" << r.uri.get().query();
+            if ( !r.uri_.get().query().empty() ) {
+                m << "?" << r.uri_.get().query();
             }
 
-            if ( !r.uri.get().fragment().empty() ) {
-                    m << "#" << r.uri.get().fragment();
+            if ( !r.uri_.get().fragment().empty() ) {
+                    m << "#" << r.uri_.get().fragment();
             }        
         }
     };

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "http_client.h"
+#include "http_client_connection.h"
 #include "../libomvtk/gridclient.h"
 #include "../libomvtk/logger/logger.h"
 #include "../libomvtk/llsd/value.h"
@@ -40,6 +40,7 @@ String build_login_request(String const & firstname, String const & lastname, St
            "<llsd>" + LLSDValue(map).xml_encode() + "</llsd>";
         
 }
+
 int main(int argc, char const ** argv)
 {
     if( argc != 4 ) {
@@ -47,14 +48,23 @@ int main(int argc, char const ** argv)
         return EXIT_FAILURE;
     }
 
-    omvtk::logger::set_log_level(omvtk::logger::debug);
-    omvtk::GridClient grid;
-    omvtk::HttpClient client(grid.network());   
+    logger::set_log_level(logger::debug);
+    GridClient grid;
     grid.library().context().set_options(boost::asio::ssl::context::default_workarounds);
 	grid.library().context().set_verify_mode(boost::asio::ssl::context::verify_none);
-	grid.library().context().load_verify_file("../data/ca.pem");
+	grid.library().context().load_verify_file("./data/ca.pem");
+
+    HTTPClientConnection::ProgressHandler handler;
+    HTTPClientConnection connection( handler, true );
+    String req = build_login_request( argv[1], argv[2], argv[3] );
+    req = "POST /cgi-bin/login.cgi HTTP/1.1\r\nHost: login.agni.lindenlab.com\r\nContent-Type: application/llsd+xml\r\nContent-Length: " 
+            + boost::lexical_cast<String>( req.size() ) + "\r\n\r\n" + req; 
+
+    std::cout << "REQUEST:\n-------------------------------------------------" << req << "\n-----------------------------------------\n";
+    connection.start( "login.agni.lindenlab.com", 443, req );
  
-    
+    #if 0 
+    HttpClient client(grid.network());   
     HTTPRequest::HeaderCollection headers;
     String request = build_login_request(argv[1], argv[2], argv[3]);
     headers.insert( std::make_pair("Content-Length", boost::lexical_cast<String>( request.size() ) ) );
@@ -62,8 +72,8 @@ int main(int argc, char const ** argv)
     headers.insert( std::make_pair("Content-Type", "application/xml+llsd" ) );
     headers.insert( std::make_pair("Connection", "Keep-Alive" ) );
     client.post( LLURI(grid.settings().login_uri), request, HttpClient::ProgressHandler(), headers);
-    // client.get(omvtk::LLURI("http://www.google.cz"), omvtk::HttpClient::ProgressHandler());
+    // client.get(LLURI("http://www.google.cz"), HttpClient::ProgressHandler());
+    #endif
     grid.network().service().run();
-
     return EXIT_SUCCESS;
 }
