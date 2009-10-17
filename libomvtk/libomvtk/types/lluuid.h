@@ -102,6 +102,12 @@ namespace omvtk
 
 		/// returns the internal instance
 		value_type const & get() const;
+
+        /// returns a random LLUUID
+        static LLUUID random()
+        {
+            return boost::uuids::random_generator<>()();
+        }
 	protected:
 		value_type m_data;
 	};
