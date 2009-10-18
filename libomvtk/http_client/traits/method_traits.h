@@ -26,6 +26,7 @@
 #ifndef GUARD_OMVTK_NETWORK_HTTP_TRAITS_METHOD_TRAITS_H_INCLUDED
 #define GUARD_OMVTK_NETWORK_HTTP_TRAITS_METHOD_TRAITS_H_INCLUDED
 
+#include <boost/static_assert.hpp>
 #include "../method.h"
 
 namespace omvtk {

@@ -26,8 +26,15 @@
 #ifndef GUARD_OMVTK_NETWORK_HTTP_TRAITS_VERSION_TRAITS_H_INCLUDED
 #define GUARD_OMVTK_NETWORK_HTTP_TRAITS_VERSION_TRAITS_H_INCLUDED
 
+#include "../version.h"
+
 namespace omvtk {
-    namespace omvtk {
+    namespace http {
+        /// Defines the default version HTTP 1.1
+        template< typename >
+        struct version_traits {
+            typedef version::http_1_1 type;
+        };
         
     }
 }

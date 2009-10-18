@@ -26,9 +26,38 @@
 #ifndef GUARD_OMVTK_NETWORK_HTTP_TRAITS_URL_TRAITS_H_INCLUDED
 #define GUARD_OMVTK_NETWORK_HTTP_TRAITS_URL_TRAITS_H_INCLUDED
 
+#include "../../libomvtk/types/base_types.h"
+
 namespace omvtk {
-    namespace omvtk {
-        
+    namespace http {
+        namespace detail {
+
+            /// Simple type which holds the URL and returns the value of it
+            template< typename URLType >
+            struct url_fragment {
+                typedef URLType value_type;
+                
+                url_fragment( value_type const  & url )
+                : url_( url ) 
+                {}
+                
+                value_type const & url() const {
+                    return url_;
+                }
+                    
+                value_type & url() {
+                    return url_;
+                }
+            protected:
+                value_type url_;
+            };
+        }
+
+        /// Defines the URL traits
+        template< typename Tag >
+        struct url_traits {
+            typedef detail::url_fragment<String> type;
+        };            
     }
 }
 

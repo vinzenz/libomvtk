@@ -23,31 +23,29 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
-#ifndef GUARD_OMVTK_NETWORK_HTTP_TRAITS_HEADER_TRAITS_H_INCLUDED
-#define GUARD_OMVTK_NETWORK_HTTP_TRAITS_HEADER_TRAITS_H_INCLUDED
-
-#include "../http_header.h"
+#ifndef GUARD_OMVTK_NETWORK_HTTP_VERSION_H_INCLUDED
+#define GUARD_OMVTK_NETWORK_HTTP_VERSION_H_INCLUDED
 
 namespace omvtk {
     namespace http {
-        
-        template< typename >
-        struct header_traits {
-            struct sink_ {
-            protected:
-                Header::collection_type collection_;
+        namespace version {
+
+            /// For HTTP 1.1 requests
+            struct http_1_1 {
+                static CharType const * version() {
+                    return OMVTK_TEXT( "1.1" );
+                };
             };
-            
-            struct type : sink_, HeaderProxy {
-                type()
-                : sink_()
-                , HeaderProxy( boost::ref( sink_::collection_ ) ) {
-                }
+
+            /// For HTTP 1.0 requests Note: they are not supported yet as such. 
+            /// They are threatened as HTTP 1.1 requests
+            struct http_1_0 {
+                static CharType const * version() {
+                    return OMVTK_TEXT( "1.0" );
+                };
             };
-            
-            typedef type tag;
-        };
+        }
     }
 }
 
-#endif // GUARD_OMVTK_NETWORK_HTTP_TRAITS_HEADER_TRAITS_H_INCLUDED
+#endif //GUARD_OMVTK_NETWORK_HTTP_TRAITS_URL_TRAITS_H_INCLUDED

@@ -26,9 +26,16 @@
 #ifndef GUARD_OMVTK_NETWORK_HTTP_TRAITS_REQUEST_STREAM_TRAITS_H_INCLUDED
 #define GUARD_OMVTK_NETWORK_HTTP_TRAITS_REQUEST_STREAM_TRAITS_H_INCLUDED
 
+#include <sstream>
+
 namespace omvtk {
-    namespace omvtk {
-        
+    namespace http {
+
+        /// Traits for the underlying request stream type
+        template< typename Tag >
+        struct request_stream_traits {
+            typedef std::stringstream type;
+        };
     }
 }
 

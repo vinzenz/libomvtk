@@ -33,7 +33,7 @@
 #include <boost/unordered_map.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/ref.hpp>
-
+#include "../libomvtk/types/base_types.h"
 #include <utility>
 
 namespace omvtk {

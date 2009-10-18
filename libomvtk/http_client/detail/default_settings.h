@@ -23,4 +23,39 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
+#ifndef GUARD_OMVTK_NETWORK_HTTP_DETAIL_DEFAULT_SETTINGS_H_INCLUDED
+#define GUARD_OMVTK_NETWORK_HTTP_DETAIL_DEFAULT_SETTINGS_INCLUDED
 
+#include "../../libomvtk/types/base_types.h"
+#include "../http_header.h"
+
+namespace omvtk {
+    namespace http {
+        namespace detail {
+            /// Defines default settings for all requests 
+            /// which have no specialization
+            template < typename MethodType > 
+            struct request_default_settings {
+                struct apply {
+                    template<typename RequestType>
+                    apply( RequestType & ){} 
+                };
+            };
+
+            /// Defines default settings for POST requests
+            /// So far we're by default setting 
+            /// Content-Type: application/x-www-form-urlencoded
+            template <> 
+            struct request_default_settings< method::detail::post > {
+                struct apply {
+                    template<typename RequestType>
+                    apply( RequestType & r ){
+                        r % ContentType( OMVTK_TEXT( "application/x-www-form-urlencoded" ) );
+                    } 
+                };
+            };
+        }        
+    }
+}
+
+#endif //GUARD_OMVTK_NETWORK_HTTP_TRAITS_VERSION_TRAITS_H_INCLUDED

@@ -30,10 +30,10 @@
 #include <boost/mpl/contains.hpp>
 #include <boost/mpl/vector.hpp>
 
-#include "../libomvtk/base_types.h"
+#include "../libomvtk/types/base_types.h"
 
 namespace omvtk {
-    namespace omvtk {    
+    namespace http {    
         namespace method {
             
             namespace detail {
