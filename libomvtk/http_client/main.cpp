@@ -1,4 +1,4 @@
-#include "http_request_stream.h"
+#include "http_request.h"
 #include <iostream>
 #include <fstream>
 #include <iterator>
@@ -14,8 +14,8 @@ int main(){
     request % ContentLength( 0x1000 ) // Da muss ich noch automatisch die größe from stream nehmen :-)
             % Accept( "*/*" )
             % ContentType( "application/llsd+xml" );
-    
+
     std::cout << request.url()         << std::endl;
     std::cout << request.version()     << std::endl;
-    std::cout << request.method()     << std::endl;
+    std::cout << request.method()      << std::endl;
 }
