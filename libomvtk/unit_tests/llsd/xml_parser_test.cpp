@@ -38,23 +38,23 @@ omvtk::String XML_PARSER_TEST_STRING1 =
 
 namespace tut
 {
-	struct llsd_xml_parser_data{};
+    struct llsd_xml_parser_data{};
 
-	DEFINE_TEST_GROUP(llsd_xml_parser_data, "LLSD XML parser test");
+    DEFINE_TEST_GROUP(llsd_xml_parser_data, "LLSD XML parser test");
 
-	DEF_TEST(1)
-	{
-		omvtk::LLSDValue value = omvtk::detail::XML::Parser::Parse(XML_PARSER_TEST_STRING1.begin(),XML_PARSER_TEST_STRING1.end());
-		omvtk::String encoded = value.xml_encode();
-		ensure_equals(omvtk::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
-	}
+    DEF_TEST(1)
+    {
+        omvtk::LLSDValue value = omvtk::detail::XML::Parser::Parse(XML_PARSER_TEST_STRING1.begin(),XML_PARSER_TEST_STRING1.end());
+        omvtk::String encoded = value.xml_encode();
+        ensure_equals(omvtk::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
+    }
 
-	DEF_TEST(2)
-	{
-		omvtk::String empty;
-		omvtk::LLSDValue value = omvtk::detail::XML::Parser::Parse(empty.begin(),empty.end());
-		omvtk::String encoded = value.xml_encode();
-		ensure_equals(omvtk::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
-	}
+    DEF_TEST(2)
+    {
+        omvtk::String empty;
+        omvtk::LLSDValue value = omvtk::detail::XML::Parser::Parse(empty.begin(),empty.end());
+        omvtk::String encoded = value.xml_encode();
+        ensure_equals(omvtk::detail::XML::Parser::Parse(encoded.begin(), encoded.end()).xml_encode(),encoded);
+    }
 }
 
