@@ -33,19 +33,19 @@
 
 namespace omvtk
 {
-	struct CapsClient
-	{
-		typedef boost::shared_ptr<LLSDValue> LLSDValuePtr;
-		typedef boost::function< void (LLSDValuePtr) > HandlerType;
-		
-		CapsClient(HandlerType handler);
-		~CapsClient();
-	
-		void Connect(String const & uri);
-		
-	protected:
-		HandlerType m_handler;
-	};
+    struct CapsClient
+    {
+        typedef boost::shared_ptr<LLSDValue> LLSDValuePtr;
+        typedef boost::function< void (LLSDValuePtr) > HandlerType;
+        
+        CapsClient(HandlerType handler);
+        ~CapsClient();
+    
+        void Connect(String const & uri);
+        
+    protected:
+        HandlerType m_handler;
+    };
 }
 
 #endif //GUARD_LIBOMVTK_NETWORK_CAPS_CAPS_CLIENT_H_INCLUDED

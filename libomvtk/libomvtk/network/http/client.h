@@ -27,7 +27,7 @@
 #define GUARD_LIBOMVTK_NETWORK_HTTP_CLIENT_H_INCLUDED
 
 #if _MSC_VER > 1200
-#	pragma once
+#    pragma once
 #endif
 
 #include <net/client/client.hpp>
@@ -48,7 +48,7 @@ namespace omvtk
             
         protected:
             Network & m_network;
-	    };
+        };
     }
 }
 

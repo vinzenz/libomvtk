@@ -29,19 +29,19 @@
 
 namespace omvtk
 {
-	Settings::Settings(GridClient & gc)
-	: boost::noncopyable()
-	, m_client(gc)
-	, m_mutex()
-	, login_uri(m_mutex, "https://login.agni.lindenlab.com/cgi-bin/login.cgi")
-	, agni_uri(m_mutex, "https://login.agni.lindenlab.com/cgi-bin/login.cgi")
-	, aditi_uri(m_mutex, "https://login.aditi.lindenlab.com/cgi-bin/login.cgi")
-	, resource_directory(m_mutex, "../../data/")
-	, cache_directory(m_mutex, "../../data/cache/")
+    Settings::Settings(GridClient & gc)
+    : boost::noncopyable()
+    , m_client(gc)
+    , m_mutex()
+    , login_uri(m_mutex, "https://login.agni.lindenlab.com/cgi-bin/login.cgi")
+    , agni_uri(m_mutex, "https://login.agni.lindenlab.com/cgi-bin/login.cgi")
+    , aditi_uri(m_mutex, "https://login.aditi.lindenlab.com/cgi-bin/login.cgi")
+    , resource_directory(m_mutex, "../../data/")
+    , cache_directory(m_mutex, "../../data/cache/")
     // Network Settings
-	, user_agent(m_mutex, LIBOMVTK_VERSION_STRING)
-	, http_connect_timeout(m_mutex, 30)
-	, http_timeout(m_mutex, 30)
-	{}			
+    , user_agent(m_mutex, LIBOMVTK_VERSION_STRING)
+    , http_connect_timeout(m_mutex, 30)
+    , http_timeout(m_mutex, 30)
+    {}            
 }
 

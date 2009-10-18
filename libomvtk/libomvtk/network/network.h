@@ -27,7 +27,7 @@
 #define GUARD_LIBOMVTK_NETWORK_NETWORK_H_INCLUDED
 
 #if _MSC_VER > 1200
-#	pragma once
+#    pragma once
 #endif
 
 #include "../types/lluuid.h"
@@ -38,74 +38,74 @@
 
 namespace omvtk
 {
-	namespace packets
-	{
-		struct UseCircuitCodeMessage;
-	}
-	struct GridClient;
-	struct Network 
-		: boost::noncopyable
-	{
-		struct HandlerManager
-		{
-			CapsHandlerManager & caps()
-			{ 
-				return m_caps; 
-			}
+    namespace packets
+    {
+        struct UseCircuitCodeMessage;
+    }
+    struct GridClient;
+    struct Network 
+        : boost::noncopyable
+    {
+        struct HandlerManager
+        {
+            CapsHandlerManager & caps()
+            { 
+                return m_caps; 
+            }
 
-			CapsHandlerManager const & caps() const 
-			{
-				return m_caps; 
-			}
-			
-			MessageHandlerManager & messages()
-			{
-				return m_messages; 
-			}
-			
-			MessageHandlerManager const & messages() const 
-			{
-				return m_messages; 
-			}
-		protected:
-			CapsHandlerManager m_caps;
-			MessageHandlerManager m_messages;
-		};
+            CapsHandlerManager const & caps() const 
+            {
+                return m_caps; 
+            }
+            
+            MessageHandlerManager & messages()
+            {
+                return m_messages; 
+            }
+            
+            MessageHandlerManager const & messages() const 
+            {
+                return m_messages; 
+            }
+        protected:
+            CapsHandlerManager m_caps;
+            MessageHandlerManager m_messages;
+        };
 
-		Network(GridClient & client);
-		~Network();
+        Network(GridClient & client);
+        ~Network();
 
-		LLUUID id() const;
-		void id(LLUUID const &);
-		
-		LLUUID session_id() const;		
-		void session_id(LLUUID const &);
+        LLUUID id() const;
+        void id(LLUUID const &);
+        
+        LLUUID session_id() const;        
+        void session_id(LLUUID const &);
 
-		void circuit_code(UInt32 code);
-		UInt32 circuit_code() const;
+        void circuit_code(UInt32 code);
+        UInt32 circuit_code() const;
 
-		boost::asio::io_service & service();
-		boost::asio::ssl::context & context();
-		
+        boost::asio::io_service & service();
+        boost::asio::ssl::context & context();
+        
         GridClient const & client() const;
         GridClient & client();
 
-		MessageHandlerManager & messages_manager();
-		CapsHandlerManager & caps_manager();
+        MessageHandlerManager & messages_manager();
+        CapsHandlerManager & caps_manager();
 
-		void get_circuit_code(packets::UseCircuitCodeMessage&);
-	
-		void shutdown();			
+        void get_circuit_code(packets::UseCircuitCodeMessage&);
+    
+        void shutdown();            
 
-		HandlerManager const & handler() const;
-		HandlerManager & handler();
-	protected:
-		GridClient & m_client;
-		HandlerManager m_handler_manager;		
-		LLUUID m_id;
-		LLUUID m_session_id;
-		UInt32 m_circuit_code;
-	};
+        HandlerManager const & handler() const;
+        HandlerManager & handler();
+    protected:
+        GridClient & m_client;
+        HandlerManager m_handler_manager;        
+        LLUUID m_id;
+        LLUUID m_session_id;
+        UInt32 m_circuit_code;
+    };
 }
 
 #endif //GUARD_LIBOMVTK_NETWORK_NETWORK_H_INCLUDED

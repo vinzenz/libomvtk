@@ -42,117 +42,117 @@ namespace
 {
     using namespace boost::posix_time;
 
-	omvtk::LLDate::value_type FromByteSubRange(omvtk::byte_sub_range const & sr)
-	{
-		libomvtk_ensure(sr.size() == sizeof(omvtk::Real64));
-		omvtk::Real64 r = *(omvtk::Real64*)&sr[0];
+    omvtk::LLDate::value_type FromByteSubRange(omvtk::byte_sub_range const & sr)
+    {
+        libomvtk_ensure(sr.size() == sizeof(omvtk::Real64));
+        omvtk::Real64 r = *(omvtk::Real64*)&sr[0];
         return from_time_t( std::time_t( omvtk::to_host(r) ) );
-	}
+    }
 
-	omvtk::LLDate::value_type FromString(omvtk::String const & s)
-	{
+    omvtk::LLDate::value_type FromString(omvtk::String const & s)
+    {
         std::istringstream istr(s);
         omvtk::LLDate d;
         istr >> d;
-		return d.get();
-	}
+        return d.get();
+    }
 
     
 }
 
 namespace omvtk
 {
-	String const LLDate::DateFormat = "%Y-%m-%dT%H:%M:%S";
+    String const LLDate::DateFormat = "%Y-%m-%dT%H:%M:%S";
 
-	LLDate::LLDate()
-		: m_data(from_time_t(0))
-	{		
-	}
+    LLDate::LLDate()
+        : m_data(from_time_t(0))
+    {        
+    }
 
-	LLDate::LLDate(byte_sub_range const & sr)
-		: m_data(FromByteSubRange(sr))
-    {	
-	}
+    LLDate::LLDate(byte_sub_range const & sr)
+        : m_data(FromByteSubRange(sr))
+    {    
+    }
 
-	LLDate::LLDate(Int32 secondsSinceEpoch)
-		: m_data(from_time_t(secondsSinceEpoch))
-	{	
-	}
+    LLDate::LLDate(Int32 secondsSinceEpoch)
+        : m_data(from_time_t(secondsSinceEpoch))
+    {    
+    }
 
-	LLDate::LLDate(double secondsSinceEpoch)
+    LLDate::LLDate(double secondsSinceEpoch)
         : m_data(from_time_t( std::time_t( secondsSinceEpoch ) ))
-	{	
-	}
+    {    
+    }
 
-	LLDate::LLDate(String const & fromString)
-		: m_data(FromString(fromString))
-	{
-	}
+    LLDate::LLDate(String const & fromString)
+        : m_data(FromString(fromString))
+    {
+    }
 
-	LLDate::LLDate(LLDate const & o)
+    LLDate::LLDate(LLDate const & o)
         : m_data(o.m_data)
-	{
-	}
+    {
+    }
 
     LLDate::~LLDate()
     {
     }
 
 
-	LLDate & LLDate::operator=(LLDate o)
-	{                
+    LLDate & LLDate::operator=(LLDate o)
+    {                
         swap(o);
-		return *this;
-	}
+        return *this;
+    }
 
 
-	bool LLDate::operator == (LLDate const & o) const
-	{
-		return m_data == o.m_data;
-	}
-	
-	bool LLDate::operator != (LLDate const & o) const
-	{
-		return m_data != o.m_data;
-	}
-	
-	bool LLDate::operator <  (LLDate const & o) const
-	{
-		return m_data < o.m_data;
-	}
-	
-	bool LLDate::operator <= (LLDate const & o) const
-	{
-		return m_data <= o.m_data;
-	}
-	
-	bool LLDate::operator >  (LLDate const & o) const
+    bool LLDate::operator == (LLDate const & o) const
     {
-		return m_data > o.m_data;
-	}
-	
-	bool LLDate::operator >= (LLDate const & o) const
-	{
-		return m_data >= o.m_data;
-	}
-	
-	void LLDate::swap(LLDate & other)
-	{
+        return m_data == o.m_data;
+    }
+    
+    bool LLDate::operator != (LLDate const & o) const
+    {
+        return m_data != o.m_data;
+    }
+    
+    bool LLDate::operator <  (LLDate const & o) const
+    {
+        return m_data < o.m_data;
+    }
+    
+    bool LLDate::operator <= (LLDate const & o) const
+    {
+        return m_data <= o.m_data;
+    }
+    
+    bool LLDate::operator >  (LLDate const & o) const
+    {
+        return m_data > o.m_data;
+    }
+    
+    bool LLDate::operator >= (LLDate const & o) const
+    {
+        return m_data >= o.m_data;
+    }
+    
+    void LLDate::swap(LLDate & other)
+    {
         std::swap( m_data, other.m_data );
-	}
-	
-	String LLDate::to_string() const
-	{
+    }
+    
+    String LLDate::to_string() const
+    {
         std::ostringstream ostr;        
         ostr << *this;
         return ostr.str();
-	}
+    }
 
-	Int32 LLDate::to_integer() const {
+    Int32 LLDate::to_integer() const {
         return static_cast<Int32>(to_real()); 
-	}
+    }
 
-	Real64 LLDate::to_real() const{
+    Real64 LLDate::to_real() const{
         //if ptime is not_a_date_time or an infinity there's no conversion 
         if (m_data.is_special()) { 
             throw BadConversionException("LLDate to Real64 conversion undefined"); 
@@ -165,17 +165,17 @@ namespace omvtk
         } 
         time_duration td = m_data - time_t_epoch; 
         return static_cast<Real64>( td.total_seconds() ); 
-	}
+    }
 
-	LLDate::value_type const & LLDate::get() const
-	{
-		return m_data;
-	}
+    LLDate::value_type const & LLDate::get() const
+    {
+        return m_data;
+    }
 
-	LLDate::value_type & LLDate::get()
-	{
-		return m_data;
-	}
+    LLDate::value_type & LLDate::get()
+    {
+        return m_data;
+    }
 }
 
 namespace std{
@@ -222,7 +222,7 @@ namespace std{
             }
         }
         return is;        
-	}
+    }
     
     ostream & operator<<(ostream & os, omvtk::LLDate const & d)
     {

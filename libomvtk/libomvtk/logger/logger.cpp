@@ -28,69 +28,69 @@
 
 namespace omvtk
 {
-	namespace logger
-	{
-		  
-		BOOST_DEFINE_LOG_FILTER( g_log_level, boost::logging::level::holder )
-		BOOST_DEFINE_LOG(g_logger, logger_type)
-		  
-		void set_log_level(log_level l)
-		{
-			using namespace boost::logging;
-			switch(l)
-			{
+    namespace logger
+    {
+          
+        BOOST_DEFINE_LOG_FILTER( g_log_level, boost::logging::level::holder )
+        BOOST_DEFINE_LOG(g_logger, logger_type)
+          
+        void set_log_level(log_level l)
+        {
+            using namespace boost::logging;
+            switch(l)
+            {
             case trace:
-			  g_log_level()->set_enabled(level::enable_all);
-			  break;
+              g_log_level()->set_enabled(level::enable_all);
+              break;
             case debug:
-			  g_log_level()->set_enabled(level::debug);
-			  break;
+              g_log_level()->set_enabled(level::debug);
+              break;
             case verbose:
               g_log_level()->set_enabled(verbose);
-			  break;
-			case info:
-			  g_log_level()->set_enabled(level::info);
-			  break;
+              break;
+            case info:
+              g_log_level()->set_enabled(level::info);
+              break;
             case warning:
               g_log_level()->set_enabled(level::warning);
-			  break;
-			case error:
-			  g_log_level()->set_enabled(level::error);
-			  break;
-			case fatal:
-			  g_log_level()->set_enabled(level::fatal);
-			  break;
-			}
-		}
-		  
-		void init(log_level level)
-		{
+              break;
+            case error:
+              g_log_level()->set_enabled(level::error);
+              break;
+            case fatal:
+              g_log_level()->set_enabled(level::fatal);
+              break;
+            }
+        }
+          
+        void init(log_level level)
+        {
 #ifdef LIBOMVTK_WINDOWS
 #   define LIBOMVTK_DEBUG_LOG " debug"
 #else
 #   define LIBOMVTK_DEBUG_LOG
 #endif            
-			g_logger()->writer().write("[%idx%] %time%($yyyy-$MM-$dd $hh:$mm.$ss) %thread_id% |\n", 
+            g_logger()->writer().write("[%idx%] %time%($yyyy-$MM-$dd $hh:$mm.$ss) %thread_id% |\n", 
                                         "file(libomvtk.log)" LIBOMVTK_DEBUG_LOG " cout");
-			g_logger()->mark_as_initialized();    
-			LOG_INFO << "Logger Subsystem initialized";
-			set_log_level(level);
-		}
+            g_logger()->mark_as_initialized();    
+            LOG_INFO << "Logger Subsystem initialized";
+            set_log_level(level);
+        }
 
-		void suspend()
-		{
-			g_log_level()->set_enabled(false);
-		}
+        void suspend()
+        {
+            g_log_level()->set_enabled(false);
+        }
 
-		void resume()
-		{
-			g_log_level()->set_enabled(true);
-		}
+        void resume()
+        {
+            g_log_level()->set_enabled(true);
+        }
 
-		void shutdown()
-		{
-			set_log_level(info);
-			LOG_INFO << "Logger Subsystem shutdown";    
-		}
-	}
+        void shutdown()
+        {
+            set_log_level(info);
+            LOG_INFO << "Logger Subsystem shutdown";    
+        }
+    }
 }

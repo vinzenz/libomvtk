@@ -30,7 +30,7 @@
 
 namespace omvtk
 {
-	String get_mac();
+    String get_mac();
 }
 
 #endif //GUARD_LIBOMVTK_NETWORK_GET_MAC_H_INCLUDED

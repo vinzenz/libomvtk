@@ -34,22 +34,22 @@
 namespace omvtk
 {
 
-	struct GridClient
-	{
-		GridClient();
-		~GridClient();
+    struct GridClient
+    {
+        GridClient();
+        ~GridClient();
 
-		Network & network();
-		Network const & network() const;
-		Settings & settings();		
-		Settings const & settings() const;		
-		Library & library();
-		Library const & library() const;
-	protected:
-		Library m_library;
-		Settings m_settings;
-		Network m_network;
-	};
+        Network & network();
+        Network const & network() const;
+        Settings & settings();        
+        Settings const & settings() const;        
+        Library & library();
+        Library const & library() const;
+    protected:
+        Library m_library;
+        Settings m_settings;
+        Network m_network;
+    };
 }
 
 #endif //GUARD_LIBOMVTK_GRID_CLIENT_H_INCLUDED

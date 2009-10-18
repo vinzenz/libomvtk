@@ -30,9 +30,9 @@
 
 namespace omvtk
 {
-	struct Simulator;
-	struct Network;
-	void build_message(Simulator & sim, Network & net, ByteBuffer & buf, UInt32 id);
+    struct Simulator;
+    struct Network;
+    void build_message(Simulator & sim, Network & net, ByteBuffer & buf, UInt32 id);
 }
 
 #endif //GUARD_LIBOMVTK_NETWORK_MESSAGE_BUILDER_H_INCLUDED

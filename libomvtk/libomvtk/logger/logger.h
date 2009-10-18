@@ -37,39 +37,39 @@
 
 namespace omvtk
 {
-	namespace logger
-	{
-  		enum log_level
-  		{
+    namespace logger
+    {
+          enum log_level
+          {
             trace,
-    		debug,
+            debug,
             verbose,
-    		info,
+            info,
             warning,
-    		error,
+            error,
             fatal
-  		};
+          };
   
-  		typedef boost::logging::named_logger<>::type logger_type;
+          typedef boost::logging::named_logger<>::type logger_type;
         #define LOG_(lvl) BOOST_LOG_USE_LOG_IF_LEVEL( omvtk::logger::g_logger() , omvtk::logger::g_log_level(), lvl ) << __FILE__ << ":" << __LINE__
 
-		#define LOG_DBG     LOG_(debug)     <<  " [ DEBUG ] MSG: "
-		#define LOG_APP     LOG_(verbose)   <<  " [  APP  ] MSG: "
-		#define LOG_INFO    LOG_(info)      <<  " [ INFO  ] MSG: "
-		#define LOG_ERR     LOG_(error)     <<  " [ ERROR ] MSG: "		
-		#define LOG_FATAL   LOG_(fatal)     <<  " [ FATAL ] MSG: "
-		#define LOG_WARN    LOG_(warning)   <<  " [ WARN  ] MSG: "
-		#define LOG_TRACE   LOG_(enable_all)<<  " [ TRACE ] MSG: "
+        #define LOG_DBG     LOG_(debug)     <<  " [ DEBUG ] MSG: "
+        #define LOG_APP     LOG_(verbose)   <<  " [  APP  ] MSG: "
+        #define LOG_INFO    LOG_(info)      <<  " [ INFO  ] MSG: "
+        #define LOG_ERR     LOG_(error)     <<  " [ ERROR ] MSG: "        
+        #define LOG_FATAL   LOG_(fatal)     <<  " [ FATAL ] MSG: "
+        #define LOG_WARN    LOG_(warning)   <<  " [ WARN  ] MSG: "
+        #define LOG_TRACE   LOG_(enable_all)<<  " [ TRACE ] MSG: "
 
-		BOOST_DECLARE_LOG_FILTER( g_log_level, boost::logging::level::holder )
-		BOOST_DECLARE_LOG(g_logger, logger_type)
+        BOOST_DECLARE_LOG_FILTER( g_log_level, boost::logging::level::holder )
+        BOOST_DECLARE_LOG(g_logger, logger_type)
   
-		void set_log_level(log_level l);  
-		void init(log_level level = DEFAULT_LOG_LEVEL);
-		void suspend();
-		void resume();
-		void shutdown();
-	}
+        void set_log_level(log_level l);  
+        void init(log_level level = DEFAULT_LOG_LEVEL);
+        void suspend();
+        void resume();
+        void shutdown();
+    }
 }
 
 #endif //GUARD_LIBOMVTK_LOGGER_LOGGER_H_INCLUDED

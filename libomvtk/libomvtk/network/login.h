@@ -28,10 +28,10 @@
 
 namespace omvtk
 {
-	struct Login
-	{
-		Login();
-	};
+    struct Login
+    {
+        Login();
+    };
 }
 
 #endif //GUARD_LIBOMVTK_NETWORK_LOGIN_H_INCLUDED

@@ -30,34 +30,34 @@
 
 namespace omvtk
 {
-	template<CapsEvent event_id>
-	struct CapsHandler : CapsHandlerManager::ConnectionT
-	{
-		typedef CapsHandlerManager::ConnectionT Base;
-		typedef CapsHandlerManager::LLSDPtr LLSDPtr;
-		typedef boost::function<void(LLSDPtr,Simulator&)> Handler;
+    template<CapsEvent event_id>
+    struct CapsHandler : CapsHandlerManager::ConnectionT
+    {
+        typedef CapsHandlerManager::ConnectionT Base;
+        typedef CapsHandlerManager::LLSDPtr LLSDPtr;
+        typedef boost::function<void(LLSDPtr,Simulator&)> Handler;
 
-		CapsHandler()
-		: Base(event_id)
-		, m_handler()
-		{}
+        CapsHandler()
+        : Base(event_id)
+        , m_handler()
+        {}
 
-		CapsHandler(Handler const & handler)
-		: Base(event_id)
-		, m_handler(handler)
-		{}
+        CapsHandler(Handler const & handler)
+        : Base(event_id)
+        , m_handler(handler)
+        {}
 
-		void operator()(LLSDPtr value, Simulator & sender)
-		{
-			if(m_handler)
-			{
-				m_handler(value, sender);	
-			}		
-		}
+        void operator()(LLSDPtr value, Simulator & sender)
+        {
+            if(m_handler)
+            {
+                m_handler(value, sender);    
+            }        
+        }
 
-	protected:
-		Handler m_handler;
-	}
+    protected:
+        Handler m_handler;
+    }
 }
 
 #endif //GUARD_LIBOMVTK_NETWORK_CAPS_HANDLER_H_INCLUDED

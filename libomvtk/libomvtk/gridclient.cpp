@@ -28,52 +28,52 @@
 #include "library.h"
 
 #if _MSC_VER > 1200
-#	pragma warning(push)
+#    pragma warning(push)
 #   pragma warning(disable:4355) // this in initalization list 
 #endif
 
 namespace omvtk
 {
-	GridClient::GridClient()
+    GridClient::GridClient()
     : m_library()
-	, m_settings(*this)
-	, m_network(*this)
-	{}
+    , m_settings(*this)
+    , m_network(*this)
+    {}
 
     GridClient::~GridClient()
     {}
-	
-	Network & GridClient::network()
-	{
-		return m_network;
-	}
+    
+    Network & GridClient::network()
+    {
+        return m_network;
+    }
 
-	Network const & GridClient::network() const
-	{
-		return m_network;
-	}
+    Network const & GridClient::network() const
+    {
+        return m_network;
+    }
 
-	Settings & GridClient::settings()
-	{
-		return m_settings;
-	}
+    Settings & GridClient::settings()
+    {
+        return m_settings;
+    }
 
-	Settings const & GridClient::settings() const
-	{
-		return m_settings;
-	}
+    Settings const & GridClient::settings() const
+    {
+        return m_settings;
+    }
 
-	Library & GridClient::library()
-	{
-		return m_library;
-	}
-	
-	Library const & GridClient::library() const
-	{
-		return m_library;
-	}
+    Library & GridClient::library()
+    {
+        return m_library;
+    }
+    
+    Library const & GridClient::library() const
+    {
+        return m_library;
+    }
 }
 
 #if _MSC_VER > 1200
-#	pragma warning(pop)
+#    pragma warning(pop)
 #endif

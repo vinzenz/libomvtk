@@ -30,10 +30,10 @@
 
 namespace omvtk
 {
-	void build_message(Network & net, Simulator & sim, ByteBuffer & buf, UInt32 id)
-	{
+    void build_message(Network & net, Simulator & sim, ByteBuffer & buf, UInt32 id)
+    {
         packets::PacketInitializer initializer(net, sim, buf);
-		packets::Lookup(id, initializer);
-	}
+        packets::Lookup(id, initializer);
+    }
 }
 

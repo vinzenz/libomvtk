@@ -31,11 +31,11 @@
 
 namespace omvtk
 {
-	struct Library
-	{
-		boost::asio::io_service   & service();		
-		boost::asio::ssl::context & context();
-	};
+    struct Library
+    {
+        boost::asio::io_service   & service();        
+        boost::asio::ssl::context & context();
+    };
 }
 
 #endif //GUARD_LIBOMVTK_LIBRARY_H_INCLUDED
