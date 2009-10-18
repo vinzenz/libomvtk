@@ -135,8 +135,7 @@ solution "omvtk"
 				"ssl", 
 				"boost_filesystem-mt",  
 				"boost_system-mt",  
-				"boost_thread-mt",
-				"boost_regex-mt"
+				"boost_thread-mt"                
 			}
 
 		--- Link uripp and TinyXML++
@@ -146,4 +145,45 @@ solution "omvtk"
 		configuration "Release"
 			defines { "NDEBUG" }
 
-						
+	project "http_client"
+		kind "ConsoleApp"
+		language "C++"
+		basedir "unit_tests"
+		targetdir "out/bin"
+		links { "omvtk"} --- , }
+		libdirs { "../3rdparty/lib" }
+		files { "http_client/**.h", "http_client/**.cpp" }
+
+		--- This needs to be called before any "configuration" call
+		standard_configuration()
+
+		--- Link OpenSSL for Visual Studio
+		configuration { "vs*", "Debug" }
+			links { "libeay32MTd", "ssleay32MTd" }
+
+		configuration { "vs*", "Release" }
+			links { "libeay32MT", "ssleay32MT" }
+			
+		--- Link OpenSSL for mingw
+		configuration { "windows", "gmake" }
+			links { "libeay32.a", "ssleay32.a" }
+
+		--- link SSL Library and boost on linux
+		--- VC auto links the libs
+		configuration { "linux" }
+			links { 
+				"ssl", 
+				"boost_filesystem-mt",  
+				"boost_system-mt",  
+				"boost_thread-mt",
+				"boost_iostreams-mt"
+			}
+
+		--- Link uripp and TinyXML++
+		configuration "Debug"
+			links { "urippd", "ticppd" }
+
+		configuration "Release"
+			defines { "NDEBUG" }
+
+												
