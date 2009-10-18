@@ -10,23 +10,23 @@ using namespace omvtk;
 
 String build_login_request(String const & firstname, String const & lastname, String const & password)
 {
-	LLSDValue::Map map;	
-	map["first"] 			= firstname;
-	map["last"] 			= lastname;
-    map["passwd"] 			= "$1$" + MD5::hash(password).to_string();
-	map["start"] 			= "last";
-	map["channel"] 			= "contact@virtuosic-bytes.com";
-	map["version"] 			= "1.23.4.123908";
-	map["major"] 			= "1";
-	map["minor"] 			= "23";
-	map["patch"] 			= "4";
-	map["build"] 			= "123908";
-	map["platform"] 		= "Win";
-	map["mac"] 				= "00:13:8F:63:2B:B5";
-	map["agree_to_tos"] 	= true;
-	map["read_critical"] 	= true;
-	map["viewer_digest"] 	= "68920a26-9f41-b742-a5e6-db6a713dcd96";
-	map["id0"] 				= map["mac"];
+    LLSDValue::Map map;    
+    map["first"]             = firstname;
+    map["last"]             = lastname;
+    map["passwd"]             = "$1$" + MD5::hash(password).to_string();
+    map["start"]             = "last";
+    map["channel"]             = "contact@virtuosic-bytes.com";
+    map["version"]             = "1.23.4.123908";
+    map["major"]             = "1";
+    map["minor"]             = "23";
+    map["patch"]             = "4";
+    map["build"]             = "123908";
+    map["platform"]         = "Win";
+    map["mac"]                 = "00:13:8F:63:2B:B5";
+    map["agree_to_tos"]     = true;
+    map["read_critical"]     = true;
+    map["viewer_digest"]     = "68920a26-9f41-b742-a5e6-db6a713dcd96";
+    map["id0"]                 = map["mac"];
     LLSDValue::Array arr;
     arr.push_back("login-flags");
     arr.push_back("adult_compliant");
@@ -36,7 +36,7 @@ String build_login_request(String const & firstname, String const & lastname, St
     
     // return LoginRequestXMLRPC()(map);
 
-	return "<?xml version=\"1.0\"?>"
+    return "<?xml version=\"1.0\"?>"
            "<llsd>" + LLSDValue(map).xml_encode() + "</llsd>";
         
 }
@@ -51,8 +51,8 @@ int main(int argc, char const ** argv)
     logger::set_log_level(logger::debug);
     GridClient grid;
     grid.library().context().set_options(boost::asio::ssl::context::default_workarounds);
-	grid.library().context().set_verify_mode(boost::asio::ssl::context::verify_none);
-	grid.library().context().load_verify_file("./data/ca.pem");
+    grid.library().context().set_verify_mode(boost::asio::ssl::context::verify_none);
+    grid.library().context().load_verify_file("./data/ca.pem");
 
     HTTPClientConnection::ProgressHandler handler;
     HTTPClientConnection connection( handler, true );

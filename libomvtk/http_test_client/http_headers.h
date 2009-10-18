@@ -39,7 +39,7 @@
 
 namespace omvtk {
     namespace http {
-
+        
         struct Header : std::pair<String, String> {
             typedef boost::unordered_multimap< String, String > Collection;
 

@@ -44,22 +44,22 @@
         "<member><name>user-agent</name><value><string>" + "0.0.1" + "</string></value></member>"
      "<member><name>author</name><value><string>" + "contact@virtuosic-bytes.com" + "</string></value></member>"
         "</struct></value></param></params></methodCall>\r\n\r\n";
-	map["first"] 			= firstname;
-	map["last"] 			= lastname;
-    map["passwd"] 			= "$1$" + MD5::hash(password).to_string();
-	map["start"] 			= "last";
-	map["channel"] 			= "contact@virtuosic-bytes.com";
-	map["version"] 			= "1.23.4.123908";
-	map["major"] 			= "1";
-	map["minor"] 			= "23";
-	map["patch"] 			= "4";
-	map["build"] 			= "123908";
-	map["platform"] 		= "Win";
-	map["mac"] 				= "00:13:8F:63:2B:B5";
-	map["agree_to_tos"] 	= true;
-	map["read_critical"] 	= true;
-	map["viewer_digest"] 	= "68920a26-9f41-b742-a5e6-db6a713dcd96";
-	map["id0"] 				= map["mac"];
+    map["first"]             = firstname;
+    map["last"]             = lastname;
+    map["passwd"]             = "$1$" + MD5::hash(password).to_string();
+    map["start"]             = "last";
+    map["channel"]             = "contact@virtuosic-bytes.com";
+    map["version"]             = "1.23.4.123908";
+    map["major"]             = "1";
+    map["minor"]             = "23";
+    map["patch"]             = "4";
+    map["build"]             = "123908";
+    map["platform"]         = "Win";
+    map["mac"]                 = "00:13:8F:63:2B:B5";
+    map["agree_to_tos"]     = true;
+    map["read_critical"]     = true;
+    map["viewer_digest"]     = "68920a26-9f41-b742-a5e6-db6a713dcd96";
+    map["id0"]                 = map["mac"];
 #endif
 namespace omvtk {
     struct LoginRequestXMLRPC {

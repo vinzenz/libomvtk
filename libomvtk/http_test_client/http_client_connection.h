@@ -35,8 +35,8 @@
 #include <net/client/client.hpp>
 #include <istream>
 
-namespace omvtk {	
-	
+namespace omvtk {    
+    
     struct HTTPClientConnection {
         typedef net::http::basic_chunked_content_parser<net::http::message_tag> ChunkedParser;
         typedef net::http::basic_header_parser<net::http::message_tag, false>   HeaderParser;
