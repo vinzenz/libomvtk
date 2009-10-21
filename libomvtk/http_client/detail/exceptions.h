@@ -23,18 +23,25 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
-#ifndef GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
-#define GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
+#ifndef GUARD_OMVTK_NETWORK_HTTP_DETAIL_EXCEPTIONS_H_INCLUDED
+#define GUARD_OMVTK_NETWORK_HTTP_DETAIL_EXCEPTIONS_H_INCLUDED
+
+#include <stdexcept>
 
 namespace omvtk {
     namespace http {
-        template< typename Tag >
-        struct basic_client {
-            
-            basic_client()
+
+        struct request_not_finished_error : std::runtime_error {
+            request_not_finished_error()
+            : std::runtime_error("Tried to access response data of a not finished HTTP request.")
+            {}
+        };
+        struct handler_already_specified_error : std::runtime_error {
+            handler_already_specified_error()
+            : std::runtime_error("Try to set a handler failed because a handler was already set.")
             {}
         };
     }
 }
 
-#endif //GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
+#endif //GUARD_OMVTK_NETWORK_HTTP_DETAIL_EXCEPTIONS_H_INCLUDED

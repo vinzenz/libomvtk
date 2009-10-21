@@ -23,16 +23,36 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
-#ifndef GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
-#define GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
+#ifndef GUARD_OMVTK_NETWORK_HTTP_SESSION_H_INCLUDED
+#define GUARD_OMVTK_NETWORK_HTTP_SESSION_H_INCLUDED
+
+#include "http_request.h"
+#include "request_result.h"
 
 namespace omvtk {
     namespace http {
+        
         template< typename Tag >
-        struct basic_client {
+        struct basic_http_session {
+            typedef basic_request< Tag >        request_type;
+            typedef basic_request_result< Tag > result_type;
             
-            basic_client()
+            basic_http_session()
             {}
+            
+            result_type start( request_type const & request ) {
+                
+            }
+
+            template< typename RequestCompletionHandler >
+            result_type start( request_type const & request, RequestCompletionHandler handler ) {
+                result_type result = start( request );
+                result.set_callback( handler );
+                return result;
+            }
+
+        protected:
+            
         };
     }
 }

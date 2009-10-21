@@ -23,18 +23,45 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
-#ifndef GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
-#define GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
+
+#include <boost/thread/shared_mutex.hpp>
+#include <boost/thread/locks.hpp>
 
 namespace omvtk {
     namespace http {
+        namespace detail {
+            struct write_lock {
+                write_lock(boost::shared_mutex & m)
+                : lock_(m)
+                , unique_(lock_)
+                {}
+                    
+                boost::upgrade_lock<boost::shared_mutex> lock_;
+                boost::upgrade_to_unique_lock<boost::shared_mutex> unique_;
+            };
+
+            struct read_lock {
+                read_lock(boost::shared_mutex & m)
+                : lock_(m)
+                {}
+                
+                boost::shared_lock<boost::shared_mutex> lock_;
+            };
+        }
+        
         template< typename Tag >
-        struct basic_client {
-            
-            basic_client()
-            {}
+        struct locking_traits {
+            struct type {
+                typedef detail::read_lock    read_lock; 
+                typedef detail::write_lock   write_lock;
+                
+                type()
+                : mutex_()
+                {}
+                
+            protected:
+                mutable boost::shared_mutex  mutex_;
+            };
         };
     }
 }
-
-#endif //GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED

@@ -23,18 +23,18 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE
-#ifndef GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
-#define GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
+#ifndef GUARD_OMVTK_HTTP_DETAIL_REQUEST_ID_TRAITS_H_INCLUDED
+#define GUARD_OMVTK_HTTP_DETAIL_REQUEST_ID_TRAITS_H_INCLUDED
+
+#include "../../libomvtk/types/base_types.h"
 
 namespace omvtk {
     namespace http {
-        template< typename Tag >
-        struct basic_client {
-            
-            basic_client()
-            {}
+        template <typename Tag>
+        struct request_id_traits {
+            typedef UInt64 type;
         };
     }
 }
 
-#endif //GUARD_OMVTK_NETWORK_HTTP_HTTP_CLIENT_H_INCLUDED
+#endif //GUARD_OMVTK_HTTP_DETAIL_REQUEST_ID_TRAITS_H_INCLUDED
